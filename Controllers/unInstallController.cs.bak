@@ -1,0 +1,153 @@
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Web.Http;
+
+namespace testInstallServer.Classes
+{
+    public class unInstallController : ApiController
+    {
+        private loggingClass loggingClass = new loggingClass();
+        private installerClass installerClass = new installerClass();
+        private uninstallerClass uninstallerClass = new uninstallerClass();
+
+        public async Task<List<string>> PostPreReqUninstallAsync(int id)
+        {
+            List<string> uninstalls = new List<string>();
+
+            List<string> response = new List<string>();
+            switch (id)
+            {
+               
+					
+					 case 2:
+                    //await uninstallerClass.uninstallProgramAsync("Microsoft SQL Server Compact 3.5 SP2 x64 ENU");
+                    //await uninstallerClass.uninstallProgramAsync("Microsoft SQL Server Compact 3.5 SP2 ENU");
+
+                    if (uninstallerClass.uninstallProgramAsync("Microsoft SQL Server Compact 3.5 SP2 x64 ENU").Equals(true))
+                    {
+                        uninstalls.Add("Microsoft SQL Server Compact 3.5 SP2 x64 ENU");
+                    }
+                    if (uninstallerClass.uninstallProgramAsync("Microsoft SQL Server Compact 3.5 SP2 ENU").Equals(true))
+                    {
+                        uninstalls.Add("Microsoft SQL Server Compact 3.5 SP2 ENU");
+                    }
+
+                    break;
+
+                case 3:
+                    //await uninstallerClass.uninstallProgramAsync("New World GIS Components x64");
+                    //await uninstallerClass.uninstallProgramAsync("New World GIS Components x86");
+
+                    if (uninstallerClass.uninstallProgramAsync("New World GIS Components x64").Equals(true))
+                    {
+                        uninstalls.Add("New World GIS Components x64");
+                    }
+
+                    if (uninstallerClass.uninstallProgramAsync("New World GIS Components x86").Equals(true))
+                    {
+                        uninstalls.Add("New World GIS Components x86");
+                    }
+
+                    break;
+
+               
+
+                case 5:
+                    //updateSnackBar("Installing Updater");
+                    //await uninstallerClass.uninstallProgramAsync("Enterprise Updater");
+
+                    if (uninstallerClass.uninstallProgramAsync("New World Automatic Updater").Result == true)
+                    {
+                        uninstalls.Add("New World Automatic Updater");
+                    }
+                    if (uninstallerClass.uninstallProgramAsync("Enterprise Updater").Result == true)
+                    {
+                        uninstalls.Add("Enterprise Updater");
+                    }
+
+                    break;
+
+                case 6:
+                    //updateSnackBar("Installing ScenePD");
+
+                    //await uninstallerClass.uninstallProgramAsync("ScenePD 6 ActiveX Control");
+                    //await uninstallerClass.uninstallProgramAsync("ScenePD 6 Desktop Edition");
+
+                    if (uninstallerClass.uninstallProgramAsync("ScenePD 6 ActiveX Control").Result == true)
+                    {
+                        uninstalls.Add("ScenePD 6 ActiveX Control");
+                    }
+                    if (uninstallerClass.uninstallProgramAsync("ScenePD 6 ActiveX Control").Result == true)
+                    {
+                        uninstalls.Add("ScenePD 6 ActiveX Control");
+                    }
+
+                    break;
+
+                case 7:
+                    //await uninstallerClass.uninstallProgramAsync("Microsoft SQL Server Compact 4.0 x64 ENU");
+
+                    if (uninstallerClass.uninstallProgramAsync("Microsoft SQL Server Compact 4.0 x64 ENU").Result == true)
+                    {
+                        uninstalls.Add("Microsoft SQL Server Compact 4.0 x64 ENU");
+                    }
+
+                    break;
+
+                case 9:
+                    //await uninstallerClass.uninstallProgramAsync("Microsoft SQL Server System CLR Types (x64)");
+                    //await uninstallerClass.uninstallProgramAsync("Microsoft SQL Server System CLR Types");
+
+                    if (uninstallerClass.uninstallProgramAsync("Microsoft SQL Server System CLR Types (x64)").Result == true)
+                    {
+                        uninstalls.Add("Microsoft SQL Server System CLR Types (x64)");
+                    }
+                    if (uninstallerClass.uninstallProgramAsync("Microsoft SQL Server System CLR Types").Result == true)
+                    {
+                        uninstalls.Add("Microsoft SQL Server System CLR Types");
+                    }
+
+                    break;
+					
+					 case 10:
+
+                    //var uninstall1 =  await uninstallerClass.uninstallProgramAsync("NWPS Enterprise Mobile PDF Printer");
+
+                    //var uninstall2 = await uninstallerClass.uninstallProgramAsync("novaPDF 8 Printer Driver");
+
+                    //var uninstall3 = await uninstallerClass.uninstallProgramAsync("novaPDF 8 SDK COM (x86)");
+
+                    //var uninstall4 = await uninstallerClass.uninstallProgramAsync("novaPDF 8 SDK COM (x64)");
+
+                    if (uninstallerClass.uninstallProgramAsync("NWPS Enterprise Mobile PDF Printer").Equals(true))
+                    {
+                        uninstalls.Add("NWPS Enterprise Mobile PDF Printer");
+                    }
+
+                    if (uninstallerClass.uninstallProgramAsync("novaPDF 8 Printer Driver").Equals(true))
+                    {
+                        uninstalls.Add("novaPDF 8 Printer Driver");
+                    }
+
+                    if (uninstallerClass.uninstallProgramAsync("novaPDF 8 SDK COM (x86)").Equals(true))
+                    {
+                        uninstalls.Add("novaPDF 8 SDK COM (x86)");
+                    }
+
+                    if (uninstallerClass.uninstallProgramAsync("novaPDF 8 SDK COM (x64)").Equals(true))
+                    {
+                        uninstalls.Add("novaPDF 8 SDK COM (x64)");
+                    }
+
+                    response = uninstalls;
+
+                    break;
+
+                default:
+                    break;
+            }
+
+            return response;
+        }
+    }
+}
