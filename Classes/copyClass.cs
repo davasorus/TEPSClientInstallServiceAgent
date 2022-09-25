@@ -10,9 +10,9 @@ namespace testInstallServer.Classes
 {
     public class copyClass
     {
-        private readonly string preReqRun = @"C:\ProgramData\Tyler Technologies\Public Safety\Tyler Client Install Agent\PreReqs";
-        private readonly string nwsAddonLocalRun = @"C:\ProgramData\Tyler Technologies\Public Safety\Tyler Client Install Agent\Addons";
-        private readonly string clientRun = @"C:\ProgramData\Tyler Technologies\Public Safety\Tyler Client Install Agent\Clients";
+        private readonly string preReqRun = @"C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Agent\PreReqs";
+        private readonly string nwsAddonLocalRun = @"C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Agent\Addons";
+        private readonly string clientRun = @"C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Agent\Clients";
         private bool flag;
 
         private loggingClass loggingClass = new loggingClass();

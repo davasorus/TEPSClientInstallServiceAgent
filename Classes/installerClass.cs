@@ -10,9 +10,9 @@ namespace testInstallServer.Classes
 {
     internal class installerClass
     {
-        private readonly string preReqRun = @"C:\ProgramData\Tyler Technologies\Public Safety\Tyler Client Install Agent\PreReqs";
-        private readonly string nwsAddonLocalRun = @"C:\ProgramData\Tyler Technologies\Public Safety\Tyler Client Install Agent\Addons";
-        private readonly string clientRun = @"C:\ProgramData\Tyler Technologies\Public Safety\Tyler Client Install Agent\Clients";
+        private readonly string preReqRun = @"C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Agent\PreReqs";
+        private readonly string nwsAddonLocalRun = @"C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Agent\Addons";
+        private readonly string clientRun = @"C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Agent\Clients";
         private readonly string dotNet47 = "dotNetFx471_Full_setup_Offline.exe";
         private readonly string dotNet48 = "ndp48-x86-x64-allos-enu.exe";
         private readonly string sqlCE3532 = "SSCERuntime_x86-ENU.msi";

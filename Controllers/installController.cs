@@ -15,7 +15,7 @@ namespace testInstallServer.Classes
         private serviceClass serviceClass = new serviceClass();
         private updaterConfigClass updaterConfigClass = new updaterConfigClass();
 
-        private readonly string clientRun = @"C:\ProgramData\Tyler Technologies\Public Safety\Tyler Client Install Agent\Clients";
+        private readonly string clientRun = @"C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Agent\Clients";
 
         public string PostPreReqInstall(int id)
         {
