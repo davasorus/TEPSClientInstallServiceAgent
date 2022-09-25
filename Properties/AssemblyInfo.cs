@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("TEPSClientInstallAgent")]
+[assembly: AssemblyTitle("TEPSAutomatedClientInstallAgent")]
 [assembly: AssemblyDescription("TEPS Client Install Service Agent")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Tyler Enterprise Public Safety")]
