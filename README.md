@@ -1,4 +1,4 @@
-# TEPSClientInstallAgent
+# TEPS Client Install Agent
 Agent service that does the actual software management on a end users machine
 
 
