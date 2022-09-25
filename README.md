@@ -8,7 +8,7 @@ Agent service that does the actual software management on a end users machine
 - build the application at least once
 - follow install directions (if running for the first time)
 - interact with API via api interaction tool
-  - endpoint should be "http:\\(machineName):8080"
+  - check logging for end point and port
   - logging should be C:\ProgramData\New World Systems\IMS\Tyler Client Install Agent\TEPS Automated Client Install Agent (release number).json
      - EX C:\ProgramData\New World Systems\IMS\Tyler Client Install Agent\TEPS Automated Client Install Agent 1.22.9.3.json
   - you will need the TEPS client installers in C:\ProgramData\New World Systems\IMS\Tyler Client Install Service\Clients
