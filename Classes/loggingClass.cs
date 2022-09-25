@@ -9,8 +9,8 @@ namespace testInstallServer.Classes
     {
         private static Logger _logger;
 
-        private static string applicationName = "TEPS Automated Client Install Service " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
-        private readonly string logFileName = $@"C:\ProgramData\New World Systems\IMS\Tyler Client Install Service\{applicationName}.json";
+        private static string applicationName = "TEPS Automated Client Install Agent " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
+        private readonly string logFileName = $@"C:\ProgramData\New World Systems\IMS\Tyler Client Install Agent\{applicationName}.json";
 
         //adds log messages to log collection (which is then seen via the internal log viewer view)
         public void logEntryWriter(string logMessage, string level)
