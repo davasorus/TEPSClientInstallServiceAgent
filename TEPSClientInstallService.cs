@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.ServiceProcess;
 using System.Timers;
@@ -53,7 +54,14 @@ namespace testInstallServer
                 File.Move(Path.Combine("C:\\Services\\Tyler-Client-Install-Agent", "TEPS Automated Agent Updater.exe"), Path.Combine("C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Updater", "TEPS Automated Agent Updater.exe"));
             }
 
-            installerClass.openProgram("C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Updater", "TEPS Automated Agent Updater.exe");
+            Process[] localbyName = Process.GetProcessesByName("TEPS Automated Agent Updater");
+            if (localbyName.Length > 0)
+            {
+            }
+            else
+            {
+                installerClass.openProgram("C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Updater", "TEPS Automated Agent Updater.exe");
+            }
         }
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
