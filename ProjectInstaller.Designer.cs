@@ -43,8 +43,8 @@ namespace testInstallServer
             // serviceInstaller1
             // 
             this.serviceInstaller1.Description = "Tyler Enterprise Public Safety Automated Client Install Agent - used to remotely manage TEPS clients and client pre reqs.";
-            this.serviceInstaller1.DisplayName = "TEPS Automated Client Install Agent ";
-            this.serviceInstaller1.ServiceName = "TEPS Automated Client Install Agent " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            this.serviceInstaller1.DisplayName = "TEPS Automated Client Install Agent " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            this.serviceInstaller1.ServiceName = "TEPS Automated Client Install Agent";
             this.serviceInstaller1.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
             // 
             // ProjectInstaller

@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B412019F-3F4A-4ABB-95ED-DED036DA2DE0}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>TEPSClientInstallAgent</RootNamespace>
-    <AssemblyName>TEPSClientInstallAgent</AssemblyName>
+    <RootNamespace>TEPSAutomatedClientInstallAgent</RootNamespace>
+    <AssemblyName>TEPSAutomatedClientInstallAgent</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

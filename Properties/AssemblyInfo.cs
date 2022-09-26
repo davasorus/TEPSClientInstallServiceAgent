@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("TEPSClientInstallAgent")]
+[assembly: AssemblyTitle("TEPSAutomatedClientInstallAgent")]
 [assembly: AssemblyDescription("TEPS Client Install Service Agent")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Tyler Enterprise Public Safety")]
@@ -31,5 +31,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.22.09.03")]
-[assembly: AssemblyFileVersion("1.22.09.03")]
+[assembly: AssemblyVersion("1.22.09.04")]
+[assembly: AssemblyFileVersion("1.22.09.04")]
