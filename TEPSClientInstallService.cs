@@ -50,7 +50,7 @@ namespace testInstallServer
 
             if (!File.Exists(Path.Combine("C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Updater", "TEPS Automated Agent Updater.exe")))
             {
-                File.Copy(Path.Combine("C:\\Services\\Tyler-Client-Install-Agent", "TEPS Automated Agent Updater.exe"), Path.Combine("C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Updater", "TEPS Automated Agent Updater.exe"));
+                File.Move(Path.Combine("C:\\Services\\Tyler-Client-Install-Agent", "TEPS Automated Agent Updater.exe"), Path.Combine("C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Updater", "TEPS Automated Agent Updater.exe"));
             }
 
             installerClass.openProgram("C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Updater", "TEPS Automated Agent Updater.exe");
