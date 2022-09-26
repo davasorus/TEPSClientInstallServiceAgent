@@ -1089,13 +1089,13 @@ namespace testInstallServer.Classes
         {
             try
             {
-                string logEntry1 = "Accessing file at " + location; ;
+                string logEntry1 = "Accessing at " + Path.Combine(location, process);
 
                 loggingClass.logEntryWriter(logEntry1, "info");
 
-                var proc = Process.Start(process, location);
+                var proc = Process.Start(Path.Combine(location, process));
 
-                proc.WaitForExit();
+                //proc.WaitForExit();
             }
             catch (Exception ex)
             {
