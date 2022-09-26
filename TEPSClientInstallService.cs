@@ -1,17 +1,19 @@
 ﻿using System;
+using System.IO;
 using System.ServiceProcess;
 using System.Timers;
 using System.Web.Http;
 using System.Web.Http.SelfHost;
+
 using testInstallServer.Classes;
 
 namespace testInstallServer
 {
     public partial class TEPSClientInstallService : ServiceBase
     {
-        private Timer timer = new Timer();
         private apiClass apiClass = new apiClass();
         private loggingClass loggingClass = new loggingClass();
+        private installerClass installerClass = new installerClass();
 
         public TEPSClientInstallService()
         {
@@ -35,6 +37,19 @@ namespace testInstallServer
 
             loggingClass.logEntryWriter("Service is started at " + DateTime.Now, "info");
             loggingClass.logEntryWriter($"API listening at {config.BaseAddress}", "info");
+
+            Timer timer = new Timer
+            {
+                Interval = 600000
+            };
+            timer.Start();
+
+            timer.Elapsed += Timer_Elapsed;
+        }
+
+        private void Timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            installerClass.openProgram(Directory.GetCurrentDirectory(), "TEPS Automated Agent Updater.exe");
         }
 
         protected override void OnStop()
