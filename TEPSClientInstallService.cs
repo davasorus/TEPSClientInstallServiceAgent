@@ -45,11 +45,20 @@ namespace testInstallServer
             timer.Start();
 
             timer.Elapsed += Timer_Elapsed;
+
+            Directory.CreateDirectory("C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Updater");
+
+            if (!File.Exists(Path.Combine("C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Updater", "TEPS Automated Agent Updater.exe")))
+            {
+                File.Copy(Path.Combine("C:\\Services\\Tyler-Client-Install-Agent", "TEPS Automated Agent Updater.exe"), Path.Combine("C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Updater", "TEPS Automated Agent Updater.exe"));
+            }
+
+            installerClass.openProgram("C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Updater", "TEPS Automated Agent Updater.exe");
         }
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            installerClass.openProgram(Directory.GetCurrentDirectory(), "TEPS Automated Agent Updater.exe");
+            installerClass.openProgram("C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Updater", "TEPS Automated Agent Updater.exe");
         }
 
         protected override void OnStop()
