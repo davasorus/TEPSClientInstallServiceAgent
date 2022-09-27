@@ -240,64 +240,6 @@ namespace testInstallServer.Classes
                         response.Add("novaPDF 8 SDK COM (x64) - Uninstalled");
                     }
 
-                    var uninstall917 = await uninstallerClass.uninstallProgramAsync("New World MSP Client");
-                    var uninstall918 = await uninstallerClass.uninstallProgramAsync("New World Aegis MSP Client");
-                    var uninstall919 = await uninstallerClass.uninstallProgramAsync("New World Aegis Client");
-
-                    if (uninstall917.Equals(true))
-                    {
-                        response.Add("MSP - Uninstalled");
-                    }
-                    if (uninstall918.Equals(true))
-                    {
-                        response.Add("MSP- Uninstalled");
-                    }
-                    if (uninstall919.Equals(true))
-                    {
-                        response.Add("MSP - Uninstalled");
-                    }
-
-                    var uninstall920 = await uninstallerClass.uninstallProgramAsync("New World Enterprise CAD Client");
-                    var uninstall921 = await uninstallerClass.uninstallProgramAsync("Enterprise CAD Client");
-
-                    if (uninstall920.Equals(true))
-                    {
-                        response.Add("CAD - Uninstalled");
-                    }
-                    if (uninstall921.Equals(true))
-                    {
-                        response.Add("CAD - Uninstalled");
-                    }
-
-                    var uninstall922 = await uninstallerClass.uninstallProgramAsync("Fire Mobile");
-                    var uninstall923 = await uninstallerClass.uninstallProgramAsync("Law Enforcement Mobile");
-                    var uninstall924 = await uninstallerClass.uninstallProgramAsync("Mobile Merge");
-
-                    if (uninstall922.Equals(true))
-                    {
-                        response.Add("Fire Mobile - Uninstalled");
-                    }
-                    if (uninstall923.Equals(true))
-                    {
-                        response.Add("Law Enforcement Mobile - Uninstalled");
-                    }
-                    if (uninstall924.Equals(true))
-                    {
-                        response.Add("Mobile Merge - Uninstalled");
-                    }
-
-                    var uninstall925 = await uninstallerClass.uninstallProgramAsync("Enterprise CAD Incident Observer Client");
-                    var uninstall926 = await uninstallerClass.uninstallProgramAsync("New World Enterprise CAD Incident Observer Client");
-
-                    if (uninstall925.Equals(true))
-                    {
-                        response.Add("Enterprise CAD Incident Observer Client - Uninstalled");
-                    }
-                    if (uninstall926.Equals(true))
-                    {
-                        response.Add("New World Enterprise CAD Incident Observer Client - Uninstalled");
-                    }
-
                     break;
 
                 default:

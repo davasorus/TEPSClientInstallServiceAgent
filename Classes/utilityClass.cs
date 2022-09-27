@@ -18,6 +18,11 @@ namespace TEPSClientInstallService.Classes
             dynamic jsonObj = JsonConvert.DeserializeObject(body);
 
             serverConfigObj.MobileServer = jsonObj["MobileServer"];
+            serverConfigObj.ESSServer = jsonObj["ESSServer"];
+            serverConfigObj.MSPServer = jsonObj["MSPServer"];
+            serverConfigObj.CADServer = jsonObj["CADServer"];
+            serverConfigObj.GISServer = jsonObj["GISServer"];
+            serverConfigObj.GISInstance = jsonObj["GISInstance"];
 
             parseORI(body);
 
