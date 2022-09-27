@@ -24,5 +24,5 @@ Agent service that does the actual software management on a end users machine
 - navigate to the debug (or release) folder of repo 
   - EX C:\Services\Tyler-Client-Install-Agent
 - type in installutil.exe -u (PATH TO SERVICE EXECUTABLE IN YOUR DEBUG OR RELEASE DIR)\TEPSAutomatedClientInstallAgent.exe
-  - EX install.exe -u C:\Services\Tyler-Client-Install-Agent\TEPSAutomatedClientInstallAgent.exe
+  - EX installutil.exe -u C:\Services\Tyler-Client-Install-Agent\TEPSAutomatedClientInstallAgent.exe
 - press enter 
