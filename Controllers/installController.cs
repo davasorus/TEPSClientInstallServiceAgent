@@ -295,6 +295,13 @@ namespace testInstallServer.Classes
                         response.Add($"MSP failed to install values passed - MSP Server: {serverConfigObj.MSPServer} | ESS Server: {serverConfigObj.ESSServer}");
                     }
 
+                mspreset1:
+
+                    if (utilityClass.getProcessByName("msiexec").Equals(true))
+                    {
+                        goto mspreset1;
+                    }
+
                     break;
 
                 case 2:
@@ -309,6 +316,13 @@ namespace testInstallServer.Classes
                     else
                     {
                         response.Add($"CAD failed to install values passed - CAD Server: {serverConfigObj.CADServer} | ESS Server: {serverConfigObj.ESSServer} | GIS Server {serverConfigObj.GISServer} | GIS Instance {serverConfigObj.GISInstance}");
+                    }
+
+                cadReset1:
+
+                    if (utilityClass.getProcessByName("msiexec").Equals(true))
+                    {
+                        goto cadReset1;
                     }
 
                     break;

@@ -1296,6 +1296,7 @@ namespace testInstallServer.Classes
             return value;
         }
 
+        //this will run powershell scripts within the application
         public bool powerShellScriptRun(string command)
         {
             bool value = false;
