@@ -344,6 +344,13 @@ namespace testInstallServer.Classes
                         response.Add($"MSP failed to install values passed - MSP Server: {serverConfigObj.MSPServer} | ESS Server: {serverConfigObj.ESSServer}");
                     }
 
+                mspreset:
+
+                    if (utilityClass.getProcessByName("msiexec").Equals(true))
+                    {
+                        goto mspreset;
+                    }
+
                     string command11 = $"msiexec /i \"{clientRun}\\NewWorld.Enterprise.CAD.Client.x64.msi\" DISPATCH_SERVER=\"{serverConfigObj.CADServer}\" MEMBERSHIP_SERVER=\"{serverConfigObj.ESSServer}\" GIS_SERVER_NAME=\"{serverConfigObj.GISServer}\" GIS_INSTANCE=\"{serverConfigObj.GISInstance}\" NWS_CHECKBOX_PICTOMETRY_ENABLE=\"0\" /q /L*V \"C:\\TEMP\\CAD.log\"";
 
                     if (installerClass.CAD(command11).Result.Equals(true))
@@ -353,6 +360,13 @@ namespace testInstallServer.Classes
                     else
                     {
                         response.Add($"CAD failed to install values passed - CAD Server: {serverConfigObj.CADServer} | ESS Server: {serverConfigObj.ESSServer} | GIS Server {serverConfigObj.GISServer} | GIS Instance {serverConfigObj.GISInstance}");
+                    }
+
+                cadReset:
+
+                    if (utilityClass.getProcessByName("msiexec").Equals(true))
+                    {
+                        goto cadReset;
                     }
 
                     if (serviceClass.getServiceStatus("NewWorldUpdaterService") == "Running")
