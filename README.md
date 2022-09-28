@@ -16,7 +16,7 @@ Agent service that does the actual software management on a end users machine
    - TEPS testing pre reqs https://tylersftp.tylertech.com/w/f-9141c57b-f4b0-4d7f-b76d-40d62769c99d
   
 ## Install the service
-- download the tool from the most recent official release [of the agent updating tool](https://github.com/davasorus/TEPSClientInstallService-UpdateUtility/releases/tag/1.22.10.1)
+- download the tool from the most recent official release [of the agent updating tool](https://github.com/davasorus/TEPSClientInstallService-UpdateUtility/tags)
   
 ## Uninstall the service
 -  open up a command prompt terminal in admin mode
@@ -24,5 +24,5 @@ Agent service that does the actual software management on a end users machine
 - navigate to the debug (or release) folder of repo 
   - EX C:\Services\Tyler-Client-Install-Agent
 - type in installutil.exe -u (PATH TO SERVICE EXECUTABLE IN YOUR DEBUG OR RELEASE DIR)\TEPSAutomatedClientInstallAgent.exe
-  - EX install.exe -u C:\Services\Tyler-Client-Install-Agent\TEPSAutomatedClientInstallAgent.exe
+  - EX installutil.exe -u C:\Services\Tyler-Client-Install-Agent\TEPSAutomatedClientInstallAgent.exe
 - press enter 
