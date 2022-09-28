@@ -2,6 +2,8 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading;
 using System.Threading.Tasks;
 using testInstallServer.Classes;
 
@@ -109,6 +111,22 @@ namespace TEPSClientInstallService.Classes
             }
 
             return "";
+        }
+
+        public bool getProcessByName(string processName)
+        {
+            Process[] localbyName = Process.GetProcessesByName(processName);
+
+            bool val = false;
+
+            if (localbyName.Length > 1)
+            {
+                val = true;
+            }
+
+            Thread.Sleep(750);
+
+            return val;
         }
     }
 }

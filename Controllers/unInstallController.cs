@@ -57,18 +57,29 @@ namespace testInstallServer.Classes
 
                 case 5:
 
-                    var uninstall6 = await uninstallerClass.uninstallProgramAsync("New World Automatic Updater");
-
-                    var uninstall61 = await uninstallerClass.uninstallProgramAsync("Enterprise Updater");
-
-                    if (uninstall6.Equals(true))
-                    {
-                        response.Add("New World Automatic Updater - Uninstalled");
-                    }
-                    if (uninstall61.Equals(true))
+                    if (uninstallerClass.uninstallProgramAsync("Enterprise Updater").Result.Equals(true))
                     {
                         response.Add("Enterprise Updater - Uninstalled");
                     }
+                    else
+                    {
+                        if (uninstallerClass.uninstallProgramAsync("New World Automatic Updater").Result.Equals(true))
+                        {
+                            response.Add("New World Automatic Updater - Uninstalled");
+                        }
+                    }
+
+                    //var uninstall61 = await uninstallerClass.uninstallProgramAsync("Enterprise Updater");
+                    //var uninstall6 = await uninstallerClass.uninstallProgramAsync("New World Automatic Updater");
+
+                    //if (uninstall6.Equals(true))
+                    //{
+                    //    response.Add("New World Automatic Updater - Uninstalled");
+                    //}
+                    //if (uninstall61.Equals(true))
+                    //{
+                    //    response.Add("Enterprise Updater - Uninstalled");
+                    //}
 
                     break;
 
@@ -172,17 +183,29 @@ namespace testInstallServer.Classes
                         response.Add("New World GIS Components x86 - Uninstalled");
                     }
 
-                    var uninstall96 = await uninstallerClass.uninstallProgramAsync("New World Automatic Updater");
-                    var uninstall961 = await uninstallerClass.uninstallProgramAsync("Enterprise Updater");
-
-                    if (uninstall96.Equals(true))
-                    {
-                        response.Add("New World Automatic Updater - Uninstalled");
-                    }
-                    if (uninstall961.Equals(true))
+                    if (uninstallerClass.uninstallProgramAsync("Enterprise Updater").Result.Equals(true))
                     {
                         response.Add("Enterprise Updater - Uninstalled");
                     }
+                    else
+                    {
+                        if (uninstallerClass.uninstallProgramAsync("New World Automatic Updater").Result.Equals(true))
+                        {
+                            response.Add("New World Automatic Updater - Uninstalled");
+                        }
+                    }
+
+                    //var uninstall61 = await uninstallerClass.uninstallProgramAsync("Enterprise Updater");
+                    //var uninstall6 = await uninstallerClass.uninstallProgramAsync("New World Automatic Updater");
+
+                    //if (uninstall6.Equals(true))
+                    //{
+                    //    response.Add("New World Automatic Updater - Uninstalled");
+                    //}
+                    //if (uninstall61.Equals(true))
+                    //{
+                    //    response.Add("Enterprise Updater - Uninstalled");
+                    //}
 
                     var uninstall97 = await uninstallerClass.uninstallProgramAsync("ScenePD 6 ActiveX Control");
                     var uninstall98 = await uninstallerClass.uninstallProgramAsync("ScenePD 6 Desktop Edition");
@@ -258,36 +281,69 @@ namespace testInstallServer.Classes
             switch (ID)
             {
                 case 1:
-                    var uninstall17 = await uninstallerClass.uninstallProgramAsync("New World MSP Client");
-                    var uninstall18 = await uninstallerClass.uninstallProgramAsync("New World Aegis MSP Client");
-                    var uninstall19 = await uninstallerClass.uninstallProgramAsync("New World Aegis Client");
 
-                    if (uninstall17.Equals(true))
+                    if (uninstallerClass.uninstallProgramAsync("New World MSP Client").Result.Equals(true))
                     {
                         response.Add("MSP - Uninstalled");
                     }
-                    if (uninstall18.Equals(true))
-                    {
-                        response.Add("MSP- Uninstalled");
-                    }
-                    if (uninstall19.Equals(true))
+                    else if (uninstallerClass.uninstallProgramAsync("New World Aegis MSP Client").Result.Equals(true))
                     {
                         response.Add("MSP - Uninstalled");
                     }
+                    else
+                    {
+                        var uninstall19 = await uninstallerClass.uninstallProgramAsync("New World Aegis Client");
+                        if (uninstall19.Equals(true))
+                        {
+                            response.Add("MSP - Uninstalled");
+                        }
+                    }
+
+                    //var uninstall17 = await uninstallerClass.uninstallProgramAsync("New World MSP Client");
+                    //var uninstall18 = await uninstallerClass.uninstallProgramAsync("New World Aegis MSP Client");
+                    //var uninstall19 = await uninstallerClass.uninstallProgramAsync("New World Aegis Client");
+
+                    //if (uninstall17.Equals(true))
+                    //{
+                    //     response.Add("MSP - Uninstalled");
+                    // }
+                    //if (uninstall18.Equals(true))
+                    //{
+                    //    response.Add("MSP- Uninstalled");
+                    //}
+                    //if (uninstall19.Equals(true))
+                    //{
+                    //    response.Add("MSP - Uninstalled");
+                    //}
                     break;
 
                 case 2:
-                    var uninstall20 = await uninstallerClass.uninstallProgramAsync("New World Enterprise CAD Client");
-                    var uninstall21 = await uninstallerClass.uninstallProgramAsync("Enterprise CAD Client");
 
-                    if (uninstall20.Equals(true))
+                    if (uninstallerClass.uninstallProgramAsync("Enterprise CAD Client").Result.Equals(true))
                     {
                         response.Add("CAD - Uninstalled");
                     }
-                    if (uninstall21.Equals(true))
+                    else
                     {
-                        response.Add("CAD - Uninstalled");
+                        var uninstall20 = await uninstallerClass.uninstallProgramAsync("New World Enterprise CAD Client");
+
+                        if (uninstall20.Equals(true))
+                        {
+                            response.Add("CAD - Uninstalled");
+                        }
                     }
+
+                    //var uninstall21 = await uninstallerClass.uninstallProgramAsync("Enterprise CAD Client");
+                    //var uninstall20 = await uninstallerClass.uninstallProgramAsync("New World Enterprise CAD Client");
+
+                    //if (uninstall20.Equals(true))
+                    //{
+                    //    response.Add("CAD - Uninstalled");
+                    // }
+                    //if (uninstall21.Equals(true))
+                    // {
+                    //     response.Add("CAD - Uninstalled");
+                    //}
 
                     break;
 
@@ -312,50 +368,96 @@ namespace testInstallServer.Classes
                     break;
 
                 case 4:
-                    var uninstall25 = await uninstallerClass.uninstallProgramAsync("Enterprise CAD Incident Observer Client");
-                    var uninstall26 = await uninstallerClass.uninstallProgramAsync("New World Enterprise CAD Incident Observer Client");
 
-                    if (uninstall25.Equals(true))
+                    if (uninstallerClass.uninstallProgramAsync("Enterprise CAD Incident Observer Client").Result.Equals(true))
                     {
                         response.Add("Enterprise CAD Incident Observer Client - Uninstalled");
                     }
-                    if (uninstall26.Equals(true))
+                    else
                     {
-                        response.Add("New World Enterprise CAD Incident Observer Client - Uninstalled");
+                        var uninstall26 = await uninstallerClass.uninstallProgramAsync("New World Enterprise CAD Incident Observer Client");
+
+                        if (uninstall26.Equals(true))
+                        {
+                            response.Add("New World Enterprise CAD Incident Observer Client - Uninstalled");
+                        }
                     }
+
+                    //var uninstall25 = await uninstallerClass.uninstallProgramAsync("Enterprise CAD Incident Observer Client");
+                    //var uninstall26 = await uninstallerClass.uninstallProgramAsync("New World Enterprise CAD Incident Observer Client");
+
+                    //if (uninstall25.Equals(true))
+                    //{
+                    //    response.Add("Enterprise CAD Incident Observer Client - Uninstalled");
+                    // }
+                    //if (uninstall26.Equals(true))
+                    // {
+                    //     response.Add("New World Enterprise CAD Incident Observer Client - Uninstalled");
+                    // }
 
                     break;
 
                 case 99:
 
-                    var uninstall917 = await uninstallerClass.uninstallProgramAsync("New World MSP Client");
-                    var uninstall918 = await uninstallerClass.uninstallProgramAsync("New World Aegis MSP Client");
-                    var uninstall919 = await uninstallerClass.uninstallProgramAsync("New World Aegis Client");
-
-                    if (uninstall917.Equals(true))
+                    if (uninstallerClass.uninstallProgramAsync("New World MSP Client").Result.Equals(true))
                     {
                         response.Add("MSP - Uninstalled");
                     }
-                    if (uninstall918.Equals(true))
-                    {
-                        response.Add("MSP- Uninstalled");
-                    }
-                    if (uninstall919.Equals(true))
+                    else if (uninstallerClass.uninstallProgramAsync("New World Aegis MSP Client").Result.Equals(true))
                     {
                         response.Add("MSP - Uninstalled");
                     }
+                    else
+                    {
+                        var uninstall19 = await uninstallerClass.uninstallProgramAsync("New World Aegis Client");
+                        if (uninstall19.Equals(true))
+                        {
+                            response.Add("MSP - Uninstalled");
+                        }
+                    }
 
-                    var uninstall920 = await uninstallerClass.uninstallProgramAsync("New World Enterprise CAD Client");
-                    var uninstall921 = await uninstallerClass.uninstallProgramAsync("Enterprise CAD Client");
+                    //var uninstall17 = await uninstallerClass.uninstallProgramAsync("New World MSP Client");
+                    //var uninstall18 = await uninstallerClass.uninstallProgramAsync("New World Aegis MSP Client");
+                    //var uninstall19 = await uninstallerClass.uninstallProgramAsync("New World Aegis Client");
 
-                    if (uninstall920.Equals(true))
+                    //if (uninstall17.Equals(true))
+                    //{
+                    //     response.Add("MSP - Uninstalled");
+                    // }
+                    //if (uninstall18.Equals(true))
+                    //{
+                    //    response.Add("MSP- Uninstalled");
+                    //}
+                    //if (uninstall19.Equals(true))
+                    //{
+                    //    response.Add("MSP - Uninstalled");
+                    //}
+
+                    if (uninstallerClass.uninstallProgramAsync("Enterprise CAD Client").Result.Equals(true))
                     {
                         response.Add("CAD - Uninstalled");
                     }
-                    if (uninstall921.Equals(true))
+                    else
                     {
-                        response.Add("CAD - Uninstalled");
+                        var uninstall20 = await uninstallerClass.uninstallProgramAsync("New World Enterprise CAD Client");
+
+                        if (uninstall20.Equals(true))
+                        {
+                            response.Add("CAD - Uninstalled");
+                        }
                     }
+
+                    //var uninstall21 = await uninstallerClass.uninstallProgramAsync("Enterprise CAD Client");
+                    //var uninstall20 = await uninstallerClass.uninstallProgramAsync("New World Enterprise CAD Client");
+
+                    //if (uninstall20.Equals(true))
+                    //{
+                    //    response.Add("CAD - Uninstalled");
+                    // }
+                    //if (uninstall21.Equals(true))
+                    // {
+                    //     response.Add("CAD - Uninstalled");
+                    //}
 
                     var uninstall922 = await uninstallerClass.uninstallProgramAsync("Fire Mobile");
                     var uninstall923 = await uninstallerClass.uninstallProgramAsync("Law Enforcement Mobile");
@@ -374,17 +476,31 @@ namespace testInstallServer.Classes
                         response.Add("Mobile Merge - Uninstalled");
                     }
 
-                    var uninstall925 = await uninstallerClass.uninstallProgramAsync("Enterprise CAD Incident Observer Client");
-                    var uninstall926 = await uninstallerClass.uninstallProgramAsync("New World Enterprise CAD Incident Observer Client");
-
-                    if (uninstall925.Equals(true))
+                    if (uninstallerClass.uninstallProgramAsync("Enterprise CAD Incident Observer Client").Result.Equals(true))
                     {
                         response.Add("Enterprise CAD Incident Observer Client - Uninstalled");
                     }
-                    if (uninstall926.Equals(true))
+                    else
                     {
-                        response.Add("New World Enterprise CAD Incident Observer Client - Uninstalled");
+                        var uninstall26 = await uninstallerClass.uninstallProgramAsync("New World Enterprise CAD Incident Observer Client");
+
+                        if (uninstall26.Equals(true))
+                        {
+                            response.Add("New World Enterprise CAD Incident Observer Client - Uninstalled");
+                        }
                     }
+
+                    //var uninstall25 = await uninstallerClass.uninstallProgramAsync("Enterprise CAD Incident Observer Client");
+                    //var uninstall26 = await uninstallerClass.uninstallProgramAsync("New World Enterprise CAD Incident Observer Client");
+
+                    //if (uninstall25.Equals(true))
+                    //{
+                    //    response.Add("Enterprise CAD Incident Observer Client - Uninstalled");
+                    // }
+                    //if (uninstall26.Equals(true))
+                    // {
+                    //     response.Add("New World Enterprise CAD Incident Observer Client - Uninstalled");
+                    // }
 
                     break;
 
