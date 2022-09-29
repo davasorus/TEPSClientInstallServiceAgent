@@ -58,9 +58,9 @@ namespace testInstallServer.Classes
         }
 
         // GET api/values/5
-        // TODO #2 this needs to be replaced with something more useful -- change the name to Get returns the files present locally in the sub directories
+        // TODO #2 this needs to be replaced with something more useful -- change the name to GetPresentFiles() returns the files present locally in the sub directories
         // C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Agent\Clients AND \PreReqs AND \Addons Folders
-        public string GetStringbyID(int id)
+        public string GetStringbyID()
         {
             List<tupleData> tupleList = new List<tupleData>();
 
