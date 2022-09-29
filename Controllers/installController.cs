@@ -21,18 +21,19 @@ namespace testInstallServer.Classes
         {
             utilityClass.parseRequestBodyAsync(Request.Content.ReadAsStringAsync().Result);
 
-            List<string> response = new List<string>();
+            List<tupleData> tupleList = new List<tupleData>();
             switch (id)
             {
                 case 1:
 
                     if (installerClass.dotNetAsync("").Result.Equals("true"))
                     {
-                        response.Add("DotNet Installed");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "DotNet Installed" });
                     }
                     else
                     {
-                        response.Add("DotNet failed to install");
+                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "DotNet failed to install" });
+
                         loggingClass.logEntryWriter("DotNet failed to install", "error");
                     }
                     break;
@@ -41,11 +42,12 @@ namespace testInstallServer.Classes
 
                     if (installerClass.sqlCe35Async(true, "").Result.Equals("true"))
                     {
-                        response.Add("SQL Compact 3.5 installed");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "SQL Compact 3.5 installed" });
                     }
                     else
                     {
-                        response.Add("SQL Compact 3.5 failed to install");
+                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "SQL Compact 3.5 failed to install" });
+
                         loggingClass.logEntryWriter("SQL Compact 3.5 failed to install", "error");
                     }
 
@@ -55,11 +57,12 @@ namespace testInstallServer.Classes
 
                     if (installerClass.gisAsync(true, "").Result.Equals("true"))
                     {
-                        response.Add("GIS Components Installed");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "GIS Components Installed" });
                     }
                     else
                     {
-                        response.Add("GIS Components failed to install");
+                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "GIS Components failed to install" });
+
                         loggingClass.logEntryWriter("GIS Components failed to install", "error");
                     }
                     break;
@@ -68,11 +71,12 @@ namespace testInstallServer.Classes
 
                     if (installerClass.dbProviderServiceAsync(true, "").Result.Equals("true"))
                     {
-                        response.Add("DB Providers Installed");
+                        tupleList.Add(new tupleData { responseCode = "200 ok", message = "DB Providers Installed" });
                     }
                     else
                     {
-                        response.Add("DB Providers failed to install");
+                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "DB Providers failed to install" });
+
                         loggingClass.logEntryWriter("DB Providers failed to install", "error");
                     }
                     break;
@@ -81,11 +85,12 @@ namespace testInstallServer.Classes
 
                     if (installerClass.updaterInstallerAsync("").Result.Equals("true"))
                     {
-                        response.Add("Updater Installed");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "Updater Installed" });
                     }
                     else
                     {
-                        response.Add("Updater failed to install");
+                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "Updater failed to install" });
+
                         loggingClass.logEntryWriter("Updater failed to install", "error");
                     }
                     break;
@@ -108,11 +113,12 @@ namespace testInstallServer.Classes
 
                     if (installerClass.sqlCe40Async(true, "").Result.Equals("true"))
                     {
-                        response.Add("SQL Compact 4.0 Installed");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "SQL Compact 4.0 Installed" });
                     }
                     else
                     {
-                        response.Add("SQL Compact 4.0 failed to install");
+                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "SQL Compact 4.0 failed to install" });
+
                         loggingClass.logEntryWriter("SQL Compact 4.0 failed to install", "error");
                     }
                     break;
@@ -121,11 +127,12 @@ namespace testInstallServer.Classes
 
                     if (installerClass.vs2010Async("").Result.Equals("true"))
                     {
-                        response.Add("Visual Studio 2010 Types Installed");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "Visual Studio 2010 Types Installed" });
                     }
                     else
                     {
-                        response.Add("Visual Studio 2010 Types failed to install");
+                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "Visual Studio 2010 Types failed to install" });
+
                         loggingClass.logEntryWriter("Visual Studio 2010 Types failed to install", "error");
                     }
                     break;
@@ -134,80 +141,81 @@ namespace testInstallServer.Classes
 
                     if (installerClass.sqlClr2008Async("").Result.Equals("true"))
                     {
-                        response.Add("SQL 2008 CLR Types Installed");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "SQL 2008 CLR Types Installed" });
                     }
                     else
                     {
-                        response.Add("SQL 2008 CLR Types failed to install");
+                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "SQL 2008 CLR Types failed to install" });
+
                         loggingClass.logEntryWriter("SQL 2008 CLR Types failed to install", "error");
                     }
 
                     if (installerClass.sqlClr2012Async("").Result.Equals("true"))
                     {
-                        response.Add("SQL 2012 CLR Types Installed");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "SQL 2012 CLR Types Installed" });
                     }
                     else
                     {
-                        response.Add("SQL 2012 CLR Types failed to install");
+                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "SQL 2012 CLR Types failed to install" });
+
                         loggingClass.logEntryWriter("SQL 2012 CLR Types failed to install", "error");
                     }
-
-                    break;
-
-                case 10:
-                    response.Add("\"None Defined, nothing installed");
-                    break;
 
                     break;
 
                 case 99:
                     if (installerClass.dotNetAsync("").Result.Equals("true"))
                     {
-                        response.Add("DotNet Installed");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "DotNet Installed" });
                     }
                     else
                     {
-                        response.Add("DotNet failed to install");
+                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "DotNet failed to install" });
+
                         loggingClass.logEntryWriter("DotNet failed to install", "error");
                     }
 
                     if (installerClass.sqlCe35Async(true, "").Result.Equals("true"))
                     {
-                        response.Add("SQL Compact 3.5 installed");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "SQL Compact 3.5 installed" });
                     }
                     else
                     {
-                        response.Add("SQL Compact 3.5 failed to install");
+                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "SQL Compact 3.5 failed to install" });
+
                         loggingClass.logEntryWriter("SQL Compact 3.5 failed to install", "error");
                     }
 
                     if (installerClass.gisAsync(true, "").Result.Equals("true"))
                     {
-                        response.Add("GIS Components Installed");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "GIS Components Installed" });
                     }
                     else
                     {
-                        response.Add("GIS Components failed to install");
+                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "GIS Components failed to install" });
+
                         loggingClass.logEntryWriter("GIS Components failed to install", "error");
                     }
 
                     if (installerClass.dbProviderServiceAsync(true, "").Result.Equals("true"))
                     {
-                        response.Add("DB Providers Installed");
+                        tupleList.Add(new tupleData { responseCode = "200 ok", message = "DB Providers Installed" });
                     }
                     else
                     {
-                        response.Add("DB Providers failed to install");
+                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "DB Providers failed to install" });
+
                         loggingClass.logEntryWriter("DB Providers failed to install", "error");
                     }
 
                     if (installerClass.updaterInstallerAsync("").Result.Equals("true"))
                     {
-                        response.Add("Updater Installed");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "Updater Installed" });
                     }
                     else
                     {
-                        response.Add("Updater failed to install");
+                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "Updater failed to install" });
+
                         loggingClass.logEntryWriter("Updater failed to install", "error");
                     }
 
@@ -223,41 +231,45 @@ namespace testInstallServer.Classes
 
                     if (installerClass.sqlCe40Async(true, "").Result.Equals("true"))
                     {
-                        response.Add("SQL Compact 4.0 Installed");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "SQL Compact 4.0 Installed" });
                     }
                     else
                     {
-                        response.Add("SQL Compact 4.0 failed to install");
+                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "SQL Compact 4.0 failed to install" });
+
                         loggingClass.logEntryWriter("SQL Compact 4.0 failed to install", "error");
                     }
 
                     if (installerClass.vs2010Async("").Result.Equals("true"))
                     {
-                        response.Add("Visual Studio 2010 Types Installed");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "Visual Studio 2010 Types Installed" });
                     }
                     else
                     {
-                        response.Add("Visual Studio 2010 Types failed to install");
+                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "Visual Studio 2010 Types failed to install" });
+
                         loggingClass.logEntryWriter("Visual Studio 2010 Types failed to install", "error");
                     }
 
                     if (installerClass.sqlClr2008Async("").Result.Equals("true"))
                     {
-                        response.Add("SQL 2008 CLR Types Installed");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "SQL 2008 CLR Types Installed" });
                     }
                     else
                     {
-                        response.Add("SQL 2008 CLR Types failed to install");
+                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "SQL 2008 CLR Types failed to install" });
+
                         loggingClass.logEntryWriter("SQL 2008 CLR Types failed to install", "error");
                     }
 
                     if (installerClass.sqlClr2012Async("").Result.Equals("true"))
                     {
-                        response.Add("SQL 2012 CLR Types Installed");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "SQL 2012 CLR Types Installed" });
                     }
                     else
                     {
-                        response.Add("SQL 2012 CLR Types failed to install");
+                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "SQL 2012 CLR Types failed to install" });
+
                         loggingClass.logEntryWriter("SQL 2012 CLR Types failed to install", "error");
                     }
 
@@ -267,7 +279,7 @@ namespace testInstallServer.Classes
                     break;
             }
 
-            var jsonReturn = JsonConvert.SerializeObject(response);
+            var jsonReturn = JsonConvert.SerializeObject(tupleList);
 
             return jsonReturn;
         }
@@ -276,7 +288,7 @@ namespace testInstallServer.Classes
         {
             utilityClass.parseRequestBodyAsync(Request.Content.ReadAsStringAsync().Result);
 
-            List<string> response = new List<string>();
+            List<tupleData> tupleList = new List<tupleData>();
 
             switch (id)
             {
@@ -288,11 +300,11 @@ namespace testInstallServer.Classes
 
                     if (installerClass.MSP(command).Result.Equals(true))
                     {
-                        response.Add($"MSP Installed successfully values passed - MSP Server: {serverConfigObj.MSPServer} | ESS Server: {serverConfigObj.ESSServer}");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = $"MSP Installed successfully values passed - MSP Server: {serverConfigObj.MSPServer} | ESS Server: {serverConfigObj.ESSServer}" });
                     }
                     else
                     {
-                        response.Add($"MSP failed to install values passed - MSP Server: {serverConfigObj.MSPServer} | ESS Server: {serverConfigObj.ESSServer}");
+                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = $"MSP failed to install values passed - MSP Server: {serverConfigObj.MSPServer} | ESS Server: {serverConfigObj.ESSServer}" });
                     }
 
                 mspreset1:
@@ -311,11 +323,11 @@ namespace testInstallServer.Classes
 
                     if (installerClass.CAD(command1).Result.Equals(true))
                     {
-                        response.Add($"CAD Installed successfully values passed - CAD Server: {serverConfigObj.CADServer} | ESS Server: {serverConfigObj.ESSServer} | GIS Server {serverConfigObj.GISServer} | GIS Instance {serverConfigObj.GISInstance}");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = $"CAD Installed successfully values passed - CAD Server: {serverConfigObj.CADServer} | ESS Server: {serverConfigObj.ESSServer} | GIS Server {serverConfigObj.GISServer} | GIS Instance {serverConfigObj.GISInstance}" });
                     }
                     else
                     {
-                        response.Add($"CAD failed to install values passed - CAD Server: {serverConfigObj.CADServer} | ESS Server: {serverConfigObj.ESSServer} | GIS Server {serverConfigObj.GISServer} | GIS Instance {serverConfigObj.GISInstance}");
+                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = $"CAD failed to install values passed - CAD Server: {serverConfigObj.CADServer} | ESS Server: {serverConfigObj.ESSServer} | GIS Server {serverConfigObj.GISServer} | GIS Instance {serverConfigObj.GISInstance}" });
                     }
 
                 cadReset1:
@@ -335,11 +347,12 @@ namespace testInstallServer.Classes
 
                         loggingClass.logEntryWriter(logEntry1, "info");
 
-                        response.Add("CAD Incident Observer Installed");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "CAD Incident Observer Installed" });
                     }
                     else
                     {
-                        response.Add("CAD Incident Observer failed to install");
+                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "CAD Incident Observer failed to install" });
+
                         loggingClass.logEntryWriter("CAD Incident Observer failed to install", "error");
                     }
 
@@ -351,11 +364,11 @@ namespace testInstallServer.Classes
 
                     if (installerClass.MSP(command00).Result.Equals(true))
                     {
-                        response.Add($"MSP Installed successfully values passed - MSP Server: {serverConfigObj.MSPServer} | ESS Server: {serverConfigObj.ESSServer}");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = $"MSP Installed successfully values passed - MSP Server: {serverConfigObj.MSPServer} | ESS Server: {serverConfigObj.ESSServer}" });
                     }
                     else
                     {
-                        response.Add($"MSP failed to install values passed - MSP Server: {serverConfigObj.MSPServer} | ESS Server: {serverConfigObj.ESSServer}");
+                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = $"MSP failed to install values passed - MSP Server: {serverConfigObj.MSPServer} | ESS Server: {serverConfigObj.ESSServer}" });
                     }
 
                 mspreset:
@@ -369,11 +382,11 @@ namespace testInstallServer.Classes
 
                     if (installerClass.CAD(command11).Result.Equals(true))
                     {
-                        response.Add($"CAD Installed successfully values passed - CAD Server: {serverConfigObj.CADServer} | ESS Server: {serverConfigObj.ESSServer} | GIS Server {serverConfigObj.GISServer} | GIS Instance {serverConfigObj.GISInstance}");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = $"CAD Installed successfully values passed - CAD Server: {serverConfigObj.CADServer} | ESS Server: {serverConfigObj.ESSServer} | GIS Server {serverConfigObj.GISServer} | GIS Instance {serverConfigObj.GISInstance}" });
                     }
                     else
                     {
-                        response.Add($"CAD failed to install values passed - CAD Server: {serverConfigObj.CADServer} | ESS Server: {serverConfigObj.ESSServer} | GIS Server {serverConfigObj.GISServer} | GIS Instance {serverConfigObj.GISInstance}");
+                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = $"CAD failed to install values passed - CAD Server: {serverConfigObj.CADServer} | ESS Server: {serverConfigObj.ESSServer} | GIS Server {serverConfigObj.GISServer} | GIS Instance {serverConfigObj.GISInstance}" });
                     }
 
                 cadReset:
@@ -399,7 +412,7 @@ namespace testInstallServer.Classes
 
                         updaterConfigClass.oriSub(item.ORI, serverConfigObj.MobileServer);
 
-                        response.Add($"ORI {item.ORI} added with mobile server {serverConfigObj.MobileServer}");
+                        tupleList.Add(new tupleData { responseCode = "200 ok", message = $"ORI {item.ORI} added with mobile server {serverConfigObj.MobileServer}" });
                     }
 
                     foreach (var item in serverConfigObj.configFileFDIDObjs)
@@ -408,7 +421,7 @@ namespace testInstallServer.Classes
 
                         updaterConfigClass.fdidSub(item.FDID, serverConfigObj.MobileServer);
 
-                        response.Add($"FDID {item.FDID} added with mobile server {serverConfigObj.MobileServer}");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = $"FDID {item.FDID} added with mobile server {serverConfigObj.MobileServer}" });
                     }
 
                     updaterConfigClass.policeClientSub(serverConfigObj.MobileServer);
@@ -417,7 +430,7 @@ namespace testInstallServer.Classes
 
                     updaterConfigClass.mergeClientSub(serverConfigObj.MobileServer);
 
-                    response.Add("Police Client, Fire Client, Merge Client added with mobile server " + serverConfigObj.MobileServer);
+                    tupleList.Add(new tupleData { responseCode = "200 OK", message = "Police Client, Fire Client, Merge Client added with mobile server " + serverConfigObj.MobileServer });
 
                     Thread.Sleep(1000);
 
@@ -452,7 +465,7 @@ namespace testInstallServer.Classes
                     break;
             }
 
-            var jsonReturn = JsonConvert.SerializeObject(response);
+            var jsonReturn = JsonConvert.SerializeObject(tupleList);
 
             return Task.FromResult(jsonReturn);
         }
@@ -461,7 +474,7 @@ namespace testInstallServer.Classes
         {
             utilityClass.parseRequestBodyAsync(Request.Content.ReadAsStringAsync().Result);
 
-            List<string> response = new List<string>();
+            List<tupleData> tupleList = new List<tupleData>();
 
             switch (id)
             {
@@ -484,12 +497,12 @@ namespace testInstallServer.Classes
 
                         updaterConfigClass.oriSub(item.ORI, serverConfigObj.MobileServer);
 
-                        response.Add($"ORI {item.ORI} added with mobile server {serverConfigObj.MobileServer}");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = $"ORI {item.ORI} added with mobile server " + serverConfigObj.MobileServer });
                     }
 
                     updaterConfigClass.policeClientSub(serverConfigObj.MobileServer);
 
-                    response.Add("Police Client added with mobile server " + serverConfigObj.MobileServer);
+                    tupleList.Add(new tupleData { responseCode = "200 OK", message = "Police Client added with mobile server " + serverConfigObj.MobileServer });
 
                     Thread.Sleep(1000);
 
@@ -539,12 +552,12 @@ namespace testInstallServer.Classes
 
                         updaterConfigClass.fdidSub(item.FDID, serverConfigObj.MobileServer);
 
-                        response.Add($"FDID {item.FDID} added with mobile server {serverConfigObj.MobileServer}");
+                        tupleList.Add(new tupleData { responseCode = "200 ok", message = $"FDID {item.FDID} added with mobile server {serverConfigObj.MobileServer}" });
                     }
 
                     updaterConfigClass.fireClientSub(serverConfigObj.MobileServer);
 
-                    response.Add("Fire Client added with mobile server " + serverConfigObj.MobileServer);
+                    tupleList.Add(new tupleData { responseCode = "200 OK", message = "Fire Client added with mobile server " + serverConfigObj.MobileServer });
 
                     Thread.Sleep(1000);
 
@@ -594,12 +607,12 @@ namespace testInstallServer.Classes
 
                         updaterConfigClass.oriSub(item.ORI, serverConfigObj.MobileServer);
 
-                        response.Add($"ORI {item.ORI} added with mobile server {serverConfigObj.MobileServer}");
+                        tupleList.Add(new tupleData { message = "200 ok", responseCode = $"ORI {item.ORI} added with mobile server {serverConfigObj.MobileServer}" });
                     }
 
                     updaterConfigClass.mergeClientSub(serverConfigObj.MobileServer);
 
-                    response.Add("Merge Client added with mobile server " + serverConfigObj.MobileServer);
+                    tupleList.Add(new tupleData { responseCode = "200 OK", message = "Merge Client added with mobile server " + serverConfigObj.MobileServer });
 
                     Thread.Sleep(1000);
 
@@ -647,7 +660,7 @@ namespace testInstallServer.Classes
 
                         updaterConfigClass.oriSub(item.ORI, serverConfigObj.MobileServer);
 
-                        response.Add($"ORI {item.ORI} added with mobile server {serverConfigObj.MobileServer}");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = $"ORI {item.ORI} added with mobile server {serverConfigObj.MobileServer}" });
                     }
 
                     foreach (var item in serverConfigObj.configFileFDIDObjs)
@@ -656,7 +669,7 @@ namespace testInstallServer.Classes
 
                         updaterConfigClass.fdidSub(item.FDID, serverConfigObj.MobileServer);
 
-                        response.Add($"FDID {item.FDID} added with mobile server {serverConfigObj.MobileServer}");
+                        tupleList.Add(new tupleData { message = "200 OK", responseCode = $"FDID {item.FDID} added with mobile server {serverConfigObj.MobileServer}" });
                     }
 
                     updaterConfigClass.policeClientSub(serverConfigObj.MobileServer);
@@ -665,7 +678,7 @@ namespace testInstallServer.Classes
 
                     updaterConfigClass.mergeClientSub(serverConfigObj.MobileServer);
 
-                    response.Add("Police Client, Fire Client, Merge Client added with mobile server " + serverConfigObj.MobileServer);
+                    tupleList.Add(new tupleData { message = "200 OK", responseCode = "Police Client, Fire Client, Merge Client added with mobile server " + serverConfigObj.MobileServer });
 
                     Thread.Sleep(1000);
 
@@ -700,9 +713,17 @@ namespace testInstallServer.Classes
                     break;
             }
 
-            var jsonReturn = JsonConvert.SerializeObject(response);
+            //var jsonReturn = JsonConvert.SerializeObject(response);
+
+            var jsonReturn = JsonConvert.SerializeObject(tupleList);
 
             return Task.FromResult(jsonReturn);
         }
     }
+}
+
+internal class tupleData
+{
+    public string responseCode { get; set; }
+    public string message { get; set; }
 }

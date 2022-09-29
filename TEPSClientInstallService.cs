@@ -49,7 +49,7 @@ namespace testInstallServer
 
             Directory.CreateDirectory("C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Updater");
 
-            File.Move(Path.Combine("C:\\Services\\Tyler-Client-Install-Agent", "TEPS Automated Agent Updater.exe"), Path.Combine("C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Updater", "TEPS Automated Agent Updater.exe"));
+            File.Copy(Path.Combine("C:\\Services\\Tyler-Client-Install-Agent", "TEPS Automated Agent Updater.exe"), Path.Combine("C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Updater", "TEPS Automated Agent Updater.exe"),true);
 
             Process[] localbyName = Process.GetProcessesByName("TEPS Automated Agent Updater");
             if (localbyName.Length > 0)
