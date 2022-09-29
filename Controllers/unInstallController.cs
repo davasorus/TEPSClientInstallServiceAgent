@@ -276,7 +276,7 @@ namespace testInstallServer.Classes
 
         public async Task<string> PostClientUninstallAsync(int ID)
         {
-            List<string> response = new List<string>();
+            List<tupleData> tupleList = new List<tupleData>();
 
             switch (ID)
             {
@@ -284,18 +284,18 @@ namespace testInstallServer.Classes
 
                     if (uninstallerClass.uninstallProgramAsync("New World MSP Client").Result.Equals(true))
                     {
-                        response.Add("MSP - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "MSP - Uninstalled" });
                     }
                     else if (uninstallerClass.uninstallProgramAsync("New World Aegis MSP Client").Result.Equals(true))
                     {
-                        response.Add("MSP - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "MSP - Uninstalled" });
                     }
                     else
                     {
                         var uninstall19 = await uninstallerClass.uninstallProgramAsync("New World Aegis Client");
                         if (uninstall19.Equals(true))
                         {
-                            response.Add("MSP - Uninstalled");
+                            tupleList.Add(new tupleData { responseCode = "200 OK", message = "MSP - Uninstalled" });
                         }
                     }
 
@@ -305,7 +305,7 @@ namespace testInstallServer.Classes
 
                     if (uninstallerClass.uninstallProgramAsync("Enterprise CAD Client").Result.Equals(true))
                     {
-                        response.Add("CAD - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "CAD - Uninstalled" });
                     }
                     else
                     {
@@ -313,7 +313,7 @@ namespace testInstallServer.Classes
 
                         if (uninstall20.Equals(true))
                         {
-                            response.Add("CAD - Uninstalled");
+                            tupleList.Add(new tupleData { responseCode = "200 OK", message = "CAD - Uninstalled" });
                         }
                     }
 
@@ -326,15 +326,15 @@ namespace testInstallServer.Classes
 
                     if (uninstall22.Equals(true))
                     {
-                        response.Add("Fire Mobile - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "Fire Mobile - Uninstalled" });
                     }
                     if (uninstall23.Equals(true))
                     {
-                        response.Add("Law Enforcement Mobile - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "Law Enforcement Mobile - Uninstalled" });
                     }
                     if (uninstall24.Equals(true))
                     {
-                        response.Add("Mobile Merge - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "Mobile Merge - Uninstalled" });
                     }
 
                     break;
@@ -343,7 +343,7 @@ namespace testInstallServer.Classes
 
                     if (uninstallerClass.uninstallProgramAsync("Enterprise CAD Incident Observer Client").Result.Equals(true))
                     {
-                        response.Add("Enterprise CAD Incident Observer Client - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "Enterprise CAD Incident Observer Client - Uninstalled" });
                     }
                     else
                     {
@@ -351,7 +351,7 @@ namespace testInstallServer.Classes
 
                         if (uninstall26.Equals(true))
                         {
-                            response.Add("New World Enterprise CAD Incident Observer Client - Uninstalled");
+                            tupleList.Add(new tupleData { responseCode = "200 OK", message = "New World Enterprise CAD Incident Observer Client - Uninstalled" });
                         }
                     }
 
@@ -361,24 +361,24 @@ namespace testInstallServer.Classes
 
                     if (uninstallerClass.uninstallProgramAsync("New World MSP Client").Result.Equals(true))
                     {
-                        response.Add("MSP - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "MSP - Uninstalled" });
                     }
                     else if (uninstallerClass.uninstallProgramAsync("New World Aegis MSP Client").Result.Equals(true))
                     {
-                        response.Add("MSP - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "MSP - Uninstalled" });
                     }
                     else
                     {
                         var uninstall19 = await uninstallerClass.uninstallProgramAsync("New World Aegis Client");
                         if (uninstall19.Equals(true))
                         {
-                            response.Add("MSP - Uninstalled");
+                            tupleList.Add(new tupleData { responseCode = "200 OK", message = "MSP - Uninstalled" });
                         }
                     }
 
                     if (uninstallerClass.uninstallProgramAsync("Enterprise CAD Client").Result.Equals(true))
                     {
-                        response.Add("CAD - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "CAD - Uninstalled" });
                     }
                     else
                     {
@@ -386,7 +386,7 @@ namespace testInstallServer.Classes
 
                         if (uninstall20.Equals(true))
                         {
-                            response.Add("CAD - Uninstalled");
+                            tupleList.Add(new tupleData { responseCode = "200 OK", message = "CAD - Uninstalled" });
                         }
                     }
 
@@ -396,20 +396,20 @@ namespace testInstallServer.Classes
 
                     if (uninstall922.Equals(true))
                     {
-                        response.Add("Fire Mobile - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "Fire Mobile - Uninstalled" });
                     }
                     if (uninstall923.Equals(true))
                     {
-                        response.Add("Law Enforcement Mobile - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "Law Enforcement Mobile - Uninstalled" });
                     }
                     if (uninstall924.Equals(true))
                     {
-                        response.Add("Mobile Merge - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "Mobile Merge - Uninstalled" });
                     }
 
                     if (uninstallerClass.uninstallProgramAsync("Enterprise CAD Incident Observer Client").Result.Equals(true))
                     {
-                        response.Add("Enterprise CAD Incident Observer Client - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "Enterprise CAD Incident Observer Client - Uninstalled" });
                     }
                     else
                     {
@@ -417,7 +417,7 @@ namespace testInstallServer.Classes
 
                         if (uninstall26.Equals(true))
                         {
-                            response.Add("New World Enterprise CAD Incident Observer Client - Uninstalled");
+                            tupleList.Add(new tupleData { responseCode = "200 OK", message = "New World Enterprise CAD Incident Observer Client - Uninstalled" });
                         }
                     }
 
@@ -427,7 +427,7 @@ namespace testInstallServer.Classes
                     break;
             }
 
-            var jsonReturn = JsonConvert.SerializeObject(response);
+            var jsonReturn = JsonConvert.SerializeObject(tupleList);
 
             return jsonReturn;
         }
