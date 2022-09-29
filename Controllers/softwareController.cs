@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Web.Http;
 
 namespace testInstallServer.Classes
@@ -37,49 +38,41 @@ namespace testInstallServer.Classes
         private readonly string incidentObserv1 = "Enterprise CAD Incident Observer Client";
         private readonly string incidentObserv2 = "New World Enterprise CAD Incident Observer Client";
 
+        private readonly string preReqRun = @"C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Agent\PreReqs";
+        private readonly string nwsAddonLocalRun = @"C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Agent\Addons";
+        private readonly string clientRun = @"C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Agent\Clients";
+        private static string applicationName = "TEPS Automated Client Install Agent " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
+        private readonly string logFileName = $@"C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Agent\Logging\{applicationName}.json";
+
         // GET api/values
+        // TODO #1 this needs to be replaced with something more useful -- maybe change name to GetHealthCheck()
+        // this will allow a simple endpoint to check connectivity, also it could check the logfile for the agent and update for the text "ERROR"
+        // counting up from the bottom of the file 50 or so lines
         public string GetString()
         {
-            loggingClass.logEntryWriter("GetString end point hit, values returned", "info");
+            List<tupleData> tupleList = new List<tupleData>();
 
-            List<string> knownSoftwareList = new List<string>()
-        {
-            sqlCE3532Name,sqlCE3564Name, sqlCE4064Name, nwpsGis32Name, nwpsGis64Name,nwpsUpdateName, sqlClr32Name, sqlClr64Name,
-            SCPD6Name,SCPD4Name, fireMobileName,policeMobileName, mergeName, printerName, printerDriverName, x86COM, x64COM, nwUpdater,
-            tepsUpdater, LERMS1, LERMS2, LERMS3, CAD1, CAD2, incidentObserv1, incidentObserv2
-        };
-
-            foreach (string knownSoftware in knownSoftwareList)
-            {
-                loggingClass.logEntryWriter($"{knownSoftware} returned in list", "info");
-            }
-
-            var jsonReturn = JsonConvert.SerializeObject(knownSoftwareList);
+            var jsonReturn = JsonConvert.SerializeObject(tupleList);
 
             return jsonReturn;
         }
 
         // GET api/values/5
+        // TODO #2 this needs to be replaced with something more useful -- change the name to Get returns the files present locally in the sub directories
+        // C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Agent\Clients AND \PreReqs AND \Addons Folders
         public string GetStringbyID(int id)
         {
-            loggingClass.logEntryWriter("GetStringbyID end point hit, value returned", "info");
+            List<tupleData> tupleList = new List<tupleData>();
 
-            List<string> knownSoftwareList = new List<string>()
-        {
-            sqlCE3532Name,sqlCE3564Name, sqlCE4064Name, nwpsGis32Name, nwpsGis64Name,nwpsUpdateName, sqlClr32Name, sqlClr64Name,
-            SCPD6Name,SCPD4Name, fireMobileName,policeMobileName, mergeName, printerName, printerDriverName, x86COM, x64COM, nwUpdater,
-            tepsUpdater, LERMS1, LERMS2, LERMS3, CAD1, CAD2, incidentObserv1, incidentObserv2
-        };
-
-            loggingClass.logEntryWriter($"{knownSoftwareList[id]} returned for int {id}", "info");
-
-            var jsonReturn = JsonConvert.SerializeObject(knownSoftwareList[id]);
+            var jsonReturn = JsonConvert.SerializeObject(tupleList);
 
             return jsonReturn;
         }
 
         public string GetInstalledSoftware()
         {
+            List<tupleData> tupleList = new List<tupleData>();
+
             List<string> knownSoftwareList = new List<string>()
         {
             sqlCE3532Name,sqlCE3564Name, sqlCE4064Name, nwpsGis32Name, nwpsGis64Name,nwpsUpdateName, sqlClr32Name, sqlClr64Name,
@@ -87,19 +80,17 @@ namespace testInstallServer.Classes
             tepsUpdater, LERMS1, LERMS2, LERMS3, CAD1, CAD2, incidentObserv1, incidentObserv2
         };
 
-            List<string> installedSoftware = new List<string>();
-
             foreach (string s in knownSoftwareList)
             {
                 if (preReqStatusClass.preReqCheckerAsync(s).Result.Equals(true))
                 {
-                    installedSoftware.Add(s);
-
                     loggingClass.logEntryWriter($"{s} returned in list", "info");
+
+                    tupleList.Add(new tupleData { responseCode = "200 OK", message = $"{s} returned in list" });
                 }
             }
 
-            var jsonReturn = JsonConvert.SerializeObject(installedSoftware);
+            var jsonReturn = JsonConvert.SerializeObject(tupleList);
 
             return jsonReturn;
         }
