@@ -28,5 +28,5 @@ jobs:
         labels: ready
         blocking_labels: do not merge
         checks_enabled: false
-        method: squash
+        method: merge
         delete_source_branch: false
