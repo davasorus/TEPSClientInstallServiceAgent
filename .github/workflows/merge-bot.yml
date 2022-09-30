@@ -24,9 +24,9 @@ jobs:
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         test: true
-        reviewers: false
+        reviewers: true
         labels: automerge
         blocking_labels: do not merge
-        checks_enabled: false
+        checks_enabled: true
         method: merge
         delete_source_branch: false
