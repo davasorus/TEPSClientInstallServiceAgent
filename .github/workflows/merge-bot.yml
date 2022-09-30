@@ -24,5 +24,4 @@ jobs:
         test: true
         reviewers: true
         labels: automatic,automerge
-        checks_enabled: true
         method: merge
