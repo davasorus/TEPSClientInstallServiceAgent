@@ -40,6 +40,7 @@ jobs:
   merge:
     runs-on: ubuntu-latest
     name: Merge
+    needs: build
     steps:
     - name: Integration check
       uses: squalrus/merge-bot@v0.4.5
