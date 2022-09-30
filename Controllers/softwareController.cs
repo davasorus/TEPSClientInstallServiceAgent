@@ -44,7 +44,7 @@ namespace testInstallServer.Classes
         private static string applicationName = "TEPS Automated Client Install Agent " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
         private readonly string logFileName = $@"C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Agent\Logging\{applicationName}.json";
 
-        // GET api/values
+        // GET
         // TODO #1 this needs to be replaced with something more useful -- maybe change name to GetHealthCheck()
         // this will allow a simple endpoint to check connectivity, also it could check the logfile for the agent and update for the text "ERROR"
         // counting up from the bottom of the file 50 or so lines
@@ -57,7 +57,7 @@ namespace testInstallServer.Classes
             return jsonReturn;
         }
 
-        // GET api/values/5
+        // GET
         // TODO #2 this needs to be replaced with something more useful -- change the name to GetPresentFiles() returns the files present locally in the sub directories
         // C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Agent\Clients AND \PreReqs AND \Addons Folders
         public string GetStringbyID()
@@ -69,6 +69,8 @@ namespace testInstallServer.Classes
             return jsonReturn;
         }
 
+        //GET
+        //this searches through all of TEPS software (pre reqs, and Clients) to see what is installed/not installed
         public string GetInstalledSoftware()
         {
             List<tupleData> tupleList = new List<tupleData>();
