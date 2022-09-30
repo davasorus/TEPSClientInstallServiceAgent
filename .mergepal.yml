@@ -1,4 +1,7 @@
 whitelist:
   - automerge
 
+backlist:
+  - test
+
 method: merge
