@@ -112,7 +112,7 @@ namespace testInstallServer.Classes
 
                 case 7:
 
-                    if (installerClass.sqlCe40Async(true, "").Result.Equals("true"))
+                    if (installerClass.sqlCe40Async(true, "").Result.Equals("True"))
                     {
                         tupleList.Add(new tupleData { responseCode = "200 OK", message = "SQL Compact 4.0 Installed" });
                     }
