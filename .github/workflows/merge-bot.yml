@@ -11,7 +11,6 @@ on:
       - unlabeled
   pull_request_review:
     types:
-      - dismissed
       - submitted
 
 jobs:
@@ -24,7 +23,7 @@ jobs:
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         test: false
-        reviewers: true
+        reviewers: false
         labels: automerge
         blocking_labels: do not merge
         checks_enabled: true
