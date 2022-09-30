@@ -84,15 +84,9 @@ namespace testInstallServer.Classes
             {
                 if (preReqStatusClass.preReqCheckerAsync(s).Result.Equals(true))
                 {
-                    loggingClass.logEntryWriter($"{s} found on machine", "info");
+                    loggingClass.logEntryWriter($"{s} returned in list", "info");
 
-                    tupleList.Add(new tupleData { responseCode = "200 OK", message = $"{s} found on machine" });
-                }
-                else
-                {
-                    loggingClass.logEntryWriter($"{s} not found on machine", "Error");
-
-                    tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = $"{s} not found on machine" });
+                    tupleList.Add(new tupleData { responseCode = "200 OK", message = $"{s} returned in list" });
                 }
             }
 

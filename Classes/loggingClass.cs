@@ -27,9 +27,7 @@ namespace testInstallServer.Classes
             var target =
                 new FileTarget
                 {
-                    FileName = logFileName,
-                    ArchiveAboveSize = 5000000,
-                    ArchiveNumbering = ArchiveNumberingMode.Sequence
+                    FileName = logFileName
                 };
 
             config.AddTarget("logfile", target);
