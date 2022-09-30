@@ -2,6 +2,7 @@ name: Merge Bot
 
 on:
   pull_request:
+    branches: [ dev-branch, josh-branch, jacob-branch ]
     types:
       - labeled
       - ready_for_review
