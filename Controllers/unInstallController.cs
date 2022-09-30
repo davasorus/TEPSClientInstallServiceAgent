@@ -13,24 +13,20 @@ namespace testInstallServer.Classes
 
         public async Task<string> PostPreReqUninstallAsync(int id)
         {
-            List<string> response = new List<string>();
+            List<tupleData> tupleList = new List<tupleData>();
             switch (id)
             {
-                case 1:
-                    response.Add("None Defined, nothing uninstalled");
-                    break;
-
                 case 2:
                     var uninstall1 = await uninstallerClass.uninstallProgramAsync("Microsoft SQL Server Compact 3.5 SP2 x64 ENU");
                     var uninstall2 = await uninstallerClass.uninstallProgramAsync("Microsoft SQL Server Compact 3.5 SP2 ENU");
 
                     if (uninstall1.Equals(true))
                     {
-                        response.Add("Microsoft SQL Server Compact 3.5 SP2 x64 ENU - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "Microsoft SQL Server Compact 3.5 SP2 x64 ENU - Uninstalled" });
                     }
                     if (uninstall2.Equals(true))
                     {
-                        response.Add("Microsoft SQL Server Compact 3.5 SP2 x64 ENU - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "Microsoft SQL Server Compact 3.5 SP2 x64 ENU - Uninstalled" });
                     }
 
                     break;
@@ -41,17 +37,12 @@ namespace testInstallServer.Classes
 
                     if (uninstall3.Equals(true))
                     {
-                        response.Add("New World GIS Components x64 - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "New World GIS Components x64 - Uninstalled" });
                     }
                     if (uninstall4.Equals(true))
                     {
-                        response.Add("New World GIS Components x86 - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "New World GIS Components x86 - Uninstalled" });
                     }
-
-                    break;
-
-                case 4:
-                    response.Add("None Defined, nothing uninstalled");
 
                     break;
 
@@ -59,13 +50,13 @@ namespace testInstallServer.Classes
 
                     if (uninstallerClass.uninstallProgramAsync("Enterprise Updater").Result.Equals(true))
                     {
-                        response.Add("Enterprise Updater - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "Enterprise Updater - Uninstalled" });
                     }
                     else
                     {
                         if (uninstallerClass.uninstallProgramAsync("New World Automatic Updater").Result.Equals(true))
                         {
-                            response.Add("New World Automatic Updater - Uninstalled");
+                            tupleList.Add(new tupleData { responseCode = "200 OK", message = "New World Automatic Updater - Uninstalled" });
                         }
                     }
 
@@ -90,11 +81,11 @@ namespace testInstallServer.Classes
 
                     if (uninstall7.Equals(true))
                     {
-                        response.Add("ScenePD 6 ActiveX Control - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "ScenePD 6 ActiveX Control - Uninstalled" });
                     }
                     if (uninstall8.Equals(true))
                     {
-                        response.Add("ScenePD 6 Desktop Edition - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "ScenePD 6 Desktop Edition - Uninstalled" });
                     }
 
                     break;
@@ -104,13 +95,8 @@ namespace testInstallServer.Classes
 
                     if (uninstall9.Equals(true))
                     {
-                        response.Add("Microsoft SQL Server Compact 4.0 x64 ENU - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "Microsoft SQL Server Compact 4.0 x64 ENU - Uninstalled" });
                     }
-
-                    break;
-
-                case 8:
-                    response.Add("None Defined, nothing uninstalled");
 
                     break;
 
@@ -120,11 +106,11 @@ namespace testInstallServer.Classes
 
                     if (uninstall11.Equals(true))
                     {
-                        response.Add("Microsoft SQL Server System CLR Types (x64) - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "Microsoft SQL Server System CLR Types (x64) - Uninstalled" });
                     }
                     if (uninstall12.Equals(true))
                     {
-                        response.Add("Microsoft SQL Server System CLR Types - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "Microsoft SQL Server System CLR Types - Uninstalled" });
                     }
 
                     break;
@@ -141,19 +127,19 @@ namespace testInstallServer.Classes
 
                     if (uninstall13.Equals(true))
                     {
-                        response.Add("NWPS Enterprise Mobile PDF Printer - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "NWPS Enterprise Mobile PDF Printer - Uninstalled" });
                     }
                     if (uninstall14.Equals(true))
                     {
-                        response.Add("novaPDF 8 Printer Driver - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "novaPDF 8 Printer Driver - Uninstalled" });
                     }
                     if (uninstall15.Equals(true))
                     {
-                        response.Add("novaPDF 8 SDK COM (x86) - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "novaPDF 8 SDK COM (x86) - Uninstalled" });
                     }
                     if (uninstall16.Equals(true))
                     {
-                        response.Add("novaPDF 8 SDK COM (x64) - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "novaPDF 8 SDK COM (x64) - Uninstalled" });
                     }
 
                     break;
@@ -164,11 +150,11 @@ namespace testInstallServer.Classes
 
                     if (uninstall91.Equals(true))
                     {
-                        response.Add("Microsoft SQL Server Compact 3.5 SP2 x64 ENU - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "Microsoft SQL Server Compact 3.5 SP2 x64 ENU - Uninstalled" });
                     }
                     if (uninstall92.Equals(true))
                     {
-                        response.Add("Microsoft SQL Server Compact 3.5 SP2 x64 ENU - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "Microsoft SQL Server Compact 3.5 SP2 x64 ENU - Uninstalled" });
                     }
 
                     var uninstall93 = await uninstallerClass.uninstallProgramAsync("New World GIS Components x64");
@@ -176,22 +162,22 @@ namespace testInstallServer.Classes
 
                     if (uninstall93.Equals(true))
                     {
-                        response.Add("New World GIS Components x64 - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "New World GIS Components x64 - Uninstalled" });
                     }
                     if (uninstall94.Equals(true))
                     {
-                        response.Add("New World GIS Components x86 - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "New World GIS Components x86 - Uninstalled" });
                     }
 
                     if (uninstallerClass.uninstallProgramAsync("Enterprise Updater").Result.Equals(true))
                     {
-                        response.Add("Enterprise Updater - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "Enterprise Updater - Uninstalled" });
                     }
                     else
                     {
                         if (uninstallerClass.uninstallProgramAsync("New World Automatic Updater").Result.Equals(true))
                         {
-                            response.Add("New World Automatic Updater - Uninstalled");
+                            tupleList.Add(new tupleData { responseCode = "200 OK", message = "New World Automatic Updater - Uninstalled" });
                         }
                     }
 
@@ -212,18 +198,18 @@ namespace testInstallServer.Classes
 
                     if (uninstall97.Equals(true))
                     {
-                        response.Add("ScenePD 6 ActiveX Control - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "ScenePD 6 ActiveX Control - Uninstalled" });
                     }
                     if (uninstall98.Equals(true))
                     {
-                        response.Add("ScenePD 6 Desktop Edition - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "ScenePD 6 Desktop Edition - Uninstalled" });
                     }
 
                     var uninstall99 = await uninstallerClass.uninstallProgramAsync("Microsoft SQL Server Compact 4.0 x64 ENU");
 
                     if (uninstall99.Equals(true))
                     {
-                        response.Add("Microsoft SQL Server Compact 4.0 x64 ENU - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "Microsoft SQL Server Compact 4.0 x64 ENU - Uninstalled" });
                     }
 
                     var uninstall911 = await uninstallerClass.uninstallProgramAsync("Microsoft SQL Server System CLR Types (x64)");
@@ -231,11 +217,11 @@ namespace testInstallServer.Classes
 
                     if (uninstall911.Equals(true))
                     {
-                        response.Add("Microsoft SQL Server System CLR Types (x64) - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "Microsoft SQL Server System CLR Types (x64) - Uninstalled" });
                     }
                     if (uninstall912.Equals(true))
                     {
-                        response.Add("Microsoft SQL Server System CLR Types - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "Microsoft SQL Server System CLR Types - Uninstalled" });
                     }
 
                     var uninstall913 = await uninstallerClass.uninstallProgramAsync("NWPS Enterprise Mobile PDF Printer");
@@ -248,19 +234,19 @@ namespace testInstallServer.Classes
 
                     if (uninstall913.Equals(true))
                     {
-                        response.Add("NWPS Enterprise Mobile PDF Printer - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "NWPS Enterprise Mobile PDF Printer - Uninstalled" });
                     }
                     if (uninstall914.Equals(true))
                     {
-                        response.Add("novaPDF 8 Printer Driver - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "novaPDF 8 Printer Driver - Uninstalled" });
                     }
                     if (uninstall915.Equals(true))
                     {
-                        response.Add("novaPDF 8 SDK COM (x86) - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "novaPDF 8 SDK COM (x86) - Uninstalled" });
                     }
                     if (uninstall916.Equals(true))
                     {
-                        response.Add("novaPDF 8 SDK COM (x64) - Uninstalled");
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "novaPDF 8 SDK COM (x64) - Uninstalled" });
                     }
 
                     break;
@@ -269,7 +255,7 @@ namespace testInstallServer.Classes
                     break;
             }
 
-            var jsonReturn = JsonConvert.SerializeObject(response);
+            var jsonReturn = JsonConvert.SerializeObject(tupleList);
 
             return jsonReturn;
         }
