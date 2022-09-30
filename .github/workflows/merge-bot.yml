@@ -13,16 +13,20 @@ on:
     types:
       - dismissed
       - submitted
+
 jobs:
   merge:
     runs-on: ubuntu-latest
     name: Merge
     steps:
     - name: Integration check
-      uses: squalrus/merge-bot@v0.1.0
+      uses: squalrus/merge-bot@master
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        test: true
-        reviewers: true
-        labels: automatic,automerge
-        method: merge
+        test: false
+        reviewers: false
+        labels: ready
+        blocking_labels: do not merge
+        checks_enabled: false
+        method: squash
+        delete_source_branch: false
