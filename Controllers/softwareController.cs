@@ -88,12 +88,6 @@ namespace testInstallServer.Classes
 
                     tupleList.Add(new tupleData { responseCode = "200 OK", message = $"{s} found on machine" });
                 }
-                else
-                {
-                    loggingClass.logEntryWriter($"{s} not found on machine", "Error");
-
-                    tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = $"{s} not found on machine" });
-                }
             }
 
             var jsonReturn = JsonConvert.SerializeObject(tupleList);
