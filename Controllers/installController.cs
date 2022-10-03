@@ -432,142 +432,122 @@ namespace testInstallServer.Classes
         #region mobile updater config
 
         //configures the updater for law mobile and ORIs
-        public async Task<IHttpActionResult> PostLawMobileConfig(int id, [FromBody] string bodyContent)
+        public async Task<IHttpActionResult> PostLawMobileConfig([FromBody] string bodyContent)
         {
             utilityClass.parseRequestBodyAsync(Request.Content.ReadAsStringAsync().Result);
 
             List<tupleData> tupleList = new List<tupleData>();
 
-            switch (id)
+            if (serviceClass.getServiceStatus("NewWorldUpdaterService") == "Running")
             {
-                //police mobile
-                case 1:
-
-                    if (serviceClass.getServiceStatus("NewWorldUpdaterService") == "Running")
-                    {
-                        serviceClass.stopService("NewWorldUpdaterService");
-                    }
-
-                    if (serviceClass.getServiceStatus("EnterpriseUpdaterService") == "Running")
-                    {
-                        serviceClass.stopService("EnterpriseUpdaterService");
-                    }
-
-                    foreach (var item in serverConfigObj.configFileORIObjs)
-                    {
-                        updaterConfigClass.seeIfNodesExist(item.ORI);
-
-                        updaterConfigClass.oriSub(item.ORI, serverConfigObj.MobileServer);
-
-                        tupleList.Add(new tupleData { responseCode = "200 OK", message = $"ORI {item.ORI} added with mobile server " + serverConfigObj.MobileServer });
-                    }
-
-                    updaterConfigClass.policeClientSub(serverConfigObj.MobileServer);
-
-                    tupleList.Add(new tupleData { responseCode = "200 OK", message = "Police Client added with mobile server " + serverConfigObj.MobileServer });
-
-                    Thread.Sleep(1000);
-
-                    if (serviceClass.getServiceStatus("NewWorldUpdaterService") == "Stopped")
-                    {
-                        serviceClass.startService("NewWorldUpdaterService");
-                    }
-                    else if (serviceClass.getServiceStatus("NewWorldUpdaterService") == "Stopping")
-                    {
-                        Thread.Sleep(2000);
-                        serviceClass.startService("NewWorldUpdaterService");
-                    }
-                    else if (serviceClass.getServiceStatus("EnterpriseUpdaterService") == "Stopped")
-                    {
-                        serviceClass.startService("EnterpriseUpdaterService");
-                    }
-                    else if (serviceClass.getServiceStatus("EnterpriseUpdaterService") == "Stopping")
-                    {
-                        Thread.Sleep(2000);
-                        serviceClass.startService("EnterpriseUpdaterService");
-                    }
-                    else
-                    {
-                        loggingClass.logEntryWriter("Updater not Installed, cannot change the status of a service that is not installed", "error");
-
-                        //updateSnackBar("Updater service not installed, but config was changed. Install updater");
-                    }
-
-                    break;
-
-                default:
-                    break;
+                serviceClass.stopService("NewWorldUpdaterService");
             }
+
+            if (serviceClass.getServiceStatus("EnterpriseUpdaterService") == "Running")
+            {
+                serviceClass.stopService("EnterpriseUpdaterService");
+            }
+
+            foreach (var item in serverConfigObj.configFileORIObjs)
+            {
+                updaterConfigClass.seeIfNodesExist(item.ORI);
+
+                updaterConfigClass.oriSub(item.ORI, serverConfigObj.MobileServer);
+
+                tupleList.Add(new tupleData { responseCode = "200 OK", message = $"ORI {item.ORI} added with mobile server " + serverConfigObj.MobileServer });
+            }
+
+            updaterConfigClass.policeClientSub(serverConfigObj.MobileServer);
+
+            tupleList.Add(new tupleData { responseCode = "200 OK", message = "Police Client added with mobile server " + serverConfigObj.MobileServer });
+
+            Thread.Sleep(1000);
+
+            if (serviceClass.getServiceStatus("NewWorldUpdaterService") == "Stopped")
+            {
+                serviceClass.startService("NewWorldUpdaterService");
+            }
+            else if (serviceClass.getServiceStatus("NewWorldUpdaterService") == "Stopping")
+            {
+                Thread.Sleep(2000);
+                serviceClass.startService("NewWorldUpdaterService");
+            }
+            else if (serviceClass.getServiceStatus("EnterpriseUpdaterService") == "Stopped")
+            {
+                serviceClass.startService("EnterpriseUpdaterService");
+            }
+            else if (serviceClass.getServiceStatus("EnterpriseUpdaterService") == "Stopping")
+            {
+                Thread.Sleep(2000);
+                serviceClass.startService("EnterpriseUpdaterService");
+            }
+            else
+            {
+                loggingClass.logEntryWriter("Updater not Installed, cannot change the status of a service that is not installed", "error");
+
+                //updateSnackBar("Updater service not installed, but config was changed. Install updater");
+            }
+
+            
 
             return Json(tupleList);
         }
 
         //configures the updater for fire mobile and FDIDs
-        public async Task<IHttpActionResult> PostFireMobileConfig(int id, [FromBody] string bodyContent)
+        public async Task<IHttpActionResult> PostFireMobileConfig([FromBody] string bodyContent)
         {
             utilityClass.parseRequestBodyAsync(Request.Content.ReadAsStringAsync().Result);
 
             List<tupleData> tupleList = new List<tupleData>();
 
-            switch (id)
+            if (serviceClass.getServiceStatus("NewWorldUpdaterService") == "Running")
             {
-                //Fire mobile
-                case 2:
+                serviceClass.stopService("NewWorldUpdaterService");
+            }
 
-                    if (serviceClass.getServiceStatus("NewWorldUpdaterService") == "Running")
-                    {
-                        serviceClass.stopService("NewWorldUpdaterService");
-                    }
+            if (serviceClass.getServiceStatus("EnterpriseUpdaterService") == "Running")
+            {
+                serviceClass.stopService("EnterpriseUpdaterService");
+            }
 
-                    if (serviceClass.getServiceStatus("EnterpriseUpdaterService") == "Running")
-                    {
-                        serviceClass.stopService("EnterpriseUpdaterService");
-                    }
+            foreach (var item in serverConfigObj.configFileFDIDObjs)
+            {
+                updaterConfigClass.seeIfNodesExist(item.FDID);
 
-                    foreach (var item in serverConfigObj.configFileFDIDObjs)
-                    {
-                        updaterConfigClass.seeIfNodesExist(item.FDID);
+                updaterConfigClass.fdidSub(item.FDID, serverConfigObj.MobileServer);
 
-                        updaterConfigClass.fdidSub(item.FDID, serverConfigObj.MobileServer);
+                tupleList.Add(new tupleData { responseCode = "200 ok", message = $"FDID {item.FDID} added with mobile server {serverConfigObj.MobileServer}" });
+            }
 
-                        tupleList.Add(new tupleData { responseCode = "200 ok", message = $"FDID {item.FDID} added with mobile server {serverConfigObj.MobileServer}" });
-                    }
+            updaterConfigClass.fireClientSub(serverConfigObj.MobileServer);
 
-                    updaterConfigClass.fireClientSub(serverConfigObj.MobileServer);
+            tupleList.Add(new tupleData { responseCode = "200 OK", message = "Fire Client added with mobile server " + serverConfigObj.MobileServer });
 
-                    tupleList.Add(new tupleData { responseCode = "200 OK", message = "Fire Client added with mobile server " + serverConfigObj.MobileServer });
+            Thread.Sleep(1000);
 
-                    Thread.Sleep(1000);
+            if (serviceClass.getServiceStatus("NewWorldUpdaterService") == "Stopped")
+            {
+                serviceClass.startService("NewWorldUpdaterService");
+            }
+            else if (serviceClass.getServiceStatus("NewWorldUpdaterService") == "Stopping")
+            {
+                Thread.Sleep(2000);
+                serviceClass.startService("NewWorldUpdaterService");
+            }
+            else if (serviceClass.getServiceStatus("EnterpriseUpdaterService") == "Stopped")
+            {
+                serviceClass.startService("EnterpriseUpdaterService");
+            }
+            else if (serviceClass.getServiceStatus("EnterpriseUpdaterService") == "Stopping")
+            {
+                Thread.Sleep(2000);
+                serviceClass.startService("EnterpriseUpdaterService");
+            }
+            else
+            {
+                loggingClass.logEntryWriter("Updater not Installed, cannot change the status of a service that is not installed", "error");
 
-                    if (serviceClass.getServiceStatus("NewWorldUpdaterService") == "Stopped")
-                    {
-                        serviceClass.startService("NewWorldUpdaterService");
-                    }
-                    else if (serviceClass.getServiceStatus("NewWorldUpdaterService") == "Stopping")
-                    {
-                        Thread.Sleep(2000);
-                        serviceClass.startService("NewWorldUpdaterService");
-                    }
-                    else if (serviceClass.getServiceStatus("EnterpriseUpdaterService") == "Stopped")
-                    {
-                        serviceClass.startService("EnterpriseUpdaterService");
-                    }
-                    else if (serviceClass.getServiceStatus("EnterpriseUpdaterService") == "Stopping")
-                    {
-                        Thread.Sleep(2000);
-                        serviceClass.startService("EnterpriseUpdaterService");
-                    }
-                    else
-                    {
-                        loggingClass.logEntryWriter("Updater not Installed, cannot change the status of a service that is not installed", "error");
-
-                        //updateSnackBar("Updater service not installed, but config was changed. Install updater");
-                    }
-
-                    break;
-
-                default:
-                    break;
+                //updateSnackBar("Updater service not installed, but config was changed. Install updater");
             }
 
             return Json(tupleList);
