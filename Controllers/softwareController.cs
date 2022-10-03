@@ -73,7 +73,7 @@ namespace testInstallServer.Classes
             List<string> knownSoftwareList = new List<string>()
         {
             sqlCE3532Name,sqlCE3564Name, sqlCE4064Name, nwpsGis32Name, nwpsGis64Name,nwpsUpdateName, sqlClr32Name, sqlClr64Name,
-            SCPD6Name,SCPD4Name, fireMobileName,policeMobileName, mergeName, printerName, printerDriverName, x86COM, x64COM,tepsUpdater, 
+            SCPD6Name,SCPD4Name, fireMobileName,policeMobileName, mergeName, printerName, printerDriverName, x86COM, x64COM,tepsUpdater,
             LERMS1, LERMS2, LERMS3, CAD1, CAD2, incidentObserv1, incidentObserv2
         };
 
