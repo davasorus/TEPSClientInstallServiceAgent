@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,7 +17,7 @@ namespace testInstallServer.Classes
 
         private readonly string clientRun = @"C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Agent\Clients";
 
-        public string PostPreReqInstall(int id)
+        public async Task<IHttpActionResult> PostPreReqInstall(int id)
         {
             utilityClass.parseRequestBodyAsync(Request.Content.ReadAsStringAsync().Result);
 
@@ -280,12 +279,10 @@ namespace testInstallServer.Classes
                     break;
             }
 
-            var jsonReturn = JsonConvert.SerializeObject(tupleList);
-
-            return jsonReturn;
+            return Json(tupleList);
         }
 
-        public Task<string> PostClientInstall(int id, [FromBody] string bodyContent)
+        public async Task<IHttpActionResult> PostClientInstall(int id, [FromBody] string bodyContent)
         {
             utilityClass.parseRequestBodyAsync(Request.Content.ReadAsStringAsync().Result);
 
@@ -297,7 +294,7 @@ namespace testInstallServer.Classes
 
                     //installMSP
 
-                    string command = $"msiexec /i \"{clientRun}\\NewWorldMSPClient.msi\" addlocal=\"AegisClientBase,F_VB6RedistRuntime,Maintenance,Corrections,LERMS\" MSPSERVERNAME=\"{serverConfigObj.MSPServer}\" AUTHSERVERNAME=\"{serverConfigObj.ESSServer}\" /q /L*V \"C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Logging\\MSP_Install_"+ DateTime.Now.ToString("dddd,dd_MMMM_yyyy_HH_mm_ss") + ".log\"";
+                    string command = $"msiexec /i \"{clientRun}\\NewWorldMSPClient.msi\" addlocal=\"AegisClientBase,F_VB6RedistRuntime,Maintenance,Corrections,LERMS\" MSPSERVERNAME=\"{serverConfigObj.MSPServer}\" AUTHSERVERNAME=\"{serverConfigObj.ESSServer}\" /q /L*V \"C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Logging\\MSP_Install_" + DateTime.Now.ToString("dddd,dd_MMMM_yyyy_HH_mm_ss") + ".log\"";
 
                     if (installerClass.MSP(command).Result.Equals(true))
                     {
@@ -320,7 +317,7 @@ namespace testInstallServer.Classes
                 case 2:
                     //installCAD
 
-                    string command1 = $"msiexec /i \"{clientRun}\\NewWorld.Enterprise.CAD.Client.x64.msi\" DISPATCH_SERVER=\"{serverConfigObj.CADServer}\" MEMBERSHIP_SERVER=\"{serverConfigObj.ESSServer}\" GIS_SERVER_NAME=\"{serverConfigObj.GISServer}\" GIS_INSTANCE=\"{serverConfigObj.GISInstance}\" NWS_CHECKBOX_PICTOMETRY_ENABLE=\"0\" /q /L*V \"C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Logging\\CAD_Install_"+ DateTime.Now.ToString("dddd,dd_MMMM_yyyy_HH_mm_ss") + ".log\"";
+                    string command1 = $"msiexec /i \"{clientRun}\\NewWorld.Enterprise.CAD.Client.x64.msi\" DISPATCH_SERVER=\"{serverConfigObj.CADServer}\" MEMBERSHIP_SERVER=\"{serverConfigObj.ESSServer}\" GIS_SERVER_NAME=\"{serverConfigObj.GISServer}\" GIS_INSTANCE=\"{serverConfigObj.GISInstance}\" NWS_CHECKBOX_PICTOMETRY_ENABLE=\"0\" /q /L*V \"C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Logging\\CAD_Install_" + DateTime.Now.ToString("dddd,dd_MMMM_yyyy_HH_mm_ss") + ".log\"";
 
                     if (installerClass.CAD(command1).Result.Equals(true))
                     {
@@ -361,7 +358,7 @@ namespace testInstallServer.Classes
 
                 case 99:
 
-                    string command00 = $"msiexec /i \"{clientRun}\\NewWorldMSPClient.msi\" addlocal=\"AegisClientBase,F_VB6RedistRuntime,Maintenance,Corrections,LERMS\" MSPSERVERNAME=\"{serverConfigObj.MSPServer}\" AUTHSERVERNAME=\"{serverConfigObj.ESSServer}\" /q /L*V \"C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Logging\\MSP_Install_"+ DateTime.Now.ToString("dddd,dd_MMMM_yyyy_HH_mm_ss") + ".log\"";
+                    string command00 = $"msiexec /i \"{clientRun}\\NewWorldMSPClient.msi\" addlocal=\"AegisClientBase,F_VB6RedistRuntime,Maintenance,Corrections,LERMS\" MSPSERVERNAME=\"{serverConfigObj.MSPServer}\" AUTHSERVERNAME=\"{serverConfigObj.ESSServer}\" /q /L*V \"C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Logging\\MSP_Install_" + DateTime.Now.ToString("dddd,dd_MMMM_yyyy_HH_mm_ss") + ".log\"";
 
                     if (installerClass.MSP(command00).Result.Equals(true))
                     {
@@ -379,7 +376,7 @@ namespace testInstallServer.Classes
                         goto mspreset;
                     }
 
-                    string command11 = $"msiexec /i \"{clientRun}\\NewWorld.Enterprise.CAD.Client.x64.msi\" DISPATCH_SERVER=\"{serverConfigObj.CADServer}\" MEMBERSHIP_SERVER=\"{serverConfigObj.ESSServer}\" GIS_SERVER_NAME=\"{serverConfigObj.GISServer}\" GIS_INSTANCE=\"{serverConfigObj.GISInstance}\" NWS_CHECKBOX_PICTOMETRY_ENABLE=\"0\" /q /L*V \"C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Logging\\CAD_Install_"+ DateTime.Now.ToString("dddd,dd_MMMM_yyyy_HH_mm_ss") + ".log\"";
+                    string command11 = $"msiexec /i \"{clientRun}\\NewWorld.Enterprise.CAD.Client.x64.msi\" DISPATCH_SERVER=\"{serverConfigObj.CADServer}\" MEMBERSHIP_SERVER=\"{serverConfigObj.ESSServer}\" GIS_SERVER_NAME=\"{serverConfigObj.GISServer}\" GIS_INSTANCE=\"{serverConfigObj.GISInstance}\" NWS_CHECKBOX_PICTOMETRY_ENABLE=\"0\" /q /L*V \"C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Logging\\CAD_Install_" + DateTime.Now.ToString("dddd,dd_MMMM_yyyy_HH_mm_ss") + ".log\"";
 
                     if (installerClass.CAD(command11).Result.Equals(true))
                     {
@@ -466,12 +463,10 @@ namespace testInstallServer.Classes
                     break;
             }
 
-            var jsonReturn = JsonConvert.SerializeObject(tupleList);
-
-            return Task.FromResult(jsonReturn);
+            return Json(tupleList);
         }
 
-        public Task<string> PostMobileConfig(int id, [FromBody] string bodyContent)
+        public async Task<IHttpActionResult> PostMobileConfig(int id, [FromBody] string bodyContent)
         {
             utilityClass.parseRequestBodyAsync(Request.Content.ReadAsStringAsync().Result);
 
@@ -714,11 +709,7 @@ namespace testInstallServer.Classes
                     break;
             }
 
-            //var jsonReturn = JsonConvert.SerializeObject(response);
-
-            var jsonReturn = JsonConvert.SerializeObject(tupleList);
-
-            return Task.FromResult(jsonReturn);
+            return Json(tupleList);
         }
     }
 }

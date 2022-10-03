@@ -1,6 +1,6 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace testInstallServer.Classes
@@ -28,7 +28,6 @@ namespace testInstallServer.Classes
         private readonly string printerDriverName = "novaPDF 8 Printer Driver";
         private readonly string x86COM = "novaPDF 8 SDK COM (x86)";
         private readonly string x64COM = "novaPDF 8 SDK COM (x64)";
-        private readonly string nwUpdater = "New World Automatic Updater";
         private readonly string tepsUpdater = "Enterprise Updater";
         private readonly string LERMS1 = "New World MSP Client";
         private readonly string LERMS2 = "New World Aegis MSP Client";
@@ -48,38 +47,34 @@ namespace testInstallServer.Classes
         // TODO #1 this needs to be replaced with something more useful -- maybe change name to GetHealthCheck()
         // this will allow a simple endpoint to check connectivity, also it could check the logfile for the agent and update for the text "ERROR"
         // counting up from the bottom of the file 50 or so lines
-        public string GetString()
+        public async Task<IHttpActionResult> GetString()
         {
             List<tupleData> tupleList = new List<tupleData>();
 
-            var jsonReturn = JsonConvert.SerializeObject(tupleList);
-
-            return jsonReturn;
+            return Json(tupleList);
         }
 
         // GET
         // TODO #2 this needs to be replaced with something more useful -- change the name to GetPresentFiles() returns the files present locally in the sub directories
         // C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Agent\Clients AND \PreReqs AND \Addons Folders
-        public string GetStringbyID()
+        public async Task<IHttpActionResult> GetStringbyID()
         {
             List<tupleData> tupleList = new List<tupleData>();
 
-            var jsonReturn = JsonConvert.SerializeObject(tupleList);
-
-            return jsonReturn;
+            return Json(tupleList);
         }
 
         //GET
         //this searches through all of TEPS software (pre reqs, and Clients) to see what is installed/not installed
-        public string GetInstalledSoftware()
+        public async Task<IHttpActionResult> GetInstalledSoftware()
         {
             List<tupleData> tupleList = new List<tupleData>();
 
             List<string> knownSoftwareList = new List<string>()
         {
             sqlCE3532Name,sqlCE3564Name, sqlCE4064Name, nwpsGis32Name, nwpsGis64Name,nwpsUpdateName, sqlClr32Name, sqlClr64Name,
-            SCPD6Name,SCPD4Name, fireMobileName,policeMobileName, mergeName, printerName, printerDriverName, x86COM, x64COM, nwUpdater,
-            tepsUpdater, LERMS1, LERMS2, LERMS3, CAD1, CAD2, incidentObserv1, incidentObserv2
+            SCPD6Name,SCPD4Name, fireMobileName,policeMobileName, mergeName, printerName, printerDriverName, x86COM, x64COM,tepsUpdater, 
+            LERMS1, LERMS2, LERMS3, CAD1, CAD2, incidentObserv1, incidentObserv2
         };
 
             foreach (string s in knownSoftwareList)
@@ -98,9 +93,7 @@ namespace testInstallServer.Classes
                 }
             }
 
-            var jsonReturn = JsonConvert.SerializeObject(tupleList);
-
-            return jsonReturn;
+            return Json(tupleList);
         }
     }
 }
