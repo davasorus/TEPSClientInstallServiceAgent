@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -11,7 +10,7 @@ namespace testInstallServer.Classes
         private installerClass installerClass = new installerClass();
         private uninstallerClass uninstallerClass = new uninstallerClass();
 
-        public async Task<string> PostPreReqUninstallAsync(int id)
+        public async Task<IHttpActionResult> PostPreReqUninstallAsync(int id)
         {
             List<tupleData> tupleList = new List<tupleData>();
             switch (id)
@@ -255,12 +254,10 @@ namespace testInstallServer.Classes
                     break;
             }
 
-            var jsonReturn = JsonConvert.SerializeObject(tupleList);
-
-            return jsonReturn;
+            return Json(tupleList);
         }
 
-        public async Task<string> PostClientUninstallAsync(int ID)
+        public async Task<IHttpActionResult> PostClientUninstallAsync(int ID)
         {
             List<tupleData> tupleList = new List<tupleData>();
 
@@ -413,9 +410,7 @@ namespace testInstallServer.Classes
                     break;
             }
 
-            var jsonReturn = JsonConvert.SerializeObject(tupleList);
-
-            return jsonReturn;
+            return Json(tupleList);
         }
     }
 }
