@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("TEPS Client Install Service Agent")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Tyler Enterprise Public Safety")]
-[assembly: AssemblyProduct("TEPSClientInstallService")]
+[assembly: AssemblyProduct("TEPSClientInstallAgent")]
 [assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("Tyler Technologies")]
 [assembly: AssemblyCulture("")]
