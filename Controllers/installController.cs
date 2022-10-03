@@ -22,8 +22,6 @@ namespace testInstallServer.Classes
         //installs DotNet
         public async Task<IHttpActionResult> PostDotNetInstall()
         {
-            utilityClass.parseRequestBodyAsync(Request.Content.ReadAsStringAsync().Result);
-
             List<tupleData> tupleList = new List<tupleData>();
             if (installerClass.dotNetAsync("").Result.Equals("true"))
             {
@@ -42,8 +40,6 @@ namespace testInstallServer.Classes
         //installs SQL Compact 3.5
         public async Task<IHttpActionResult> PostSQLCE35Install()
         {
-            utilityClass.parseRequestBodyAsync(Request.Content.ReadAsStringAsync().Result);
-
             List<tupleData> tupleList = new List<tupleData>();
 
             if (installerClass.sqlCe35Async(true, "").Result.Equals("true"))
@@ -63,8 +59,6 @@ namespace testInstallServer.Classes
         //installs GIS components
         public async Task<IHttpActionResult> PostGISInstall()
         {
-            utilityClass.parseRequestBodyAsync(Request.Content.ReadAsStringAsync().Result);
-
             List<tupleData> tupleList = new List<tupleData>();
 
             if (installerClass.gisAsync(true, "").Result.Equals("true"))
@@ -84,8 +78,6 @@ namespace testInstallServer.Classes
         //installs DB providers
         public async Task<IHttpActionResult> PostDBProviderInstall()
         {
-            utilityClass.parseRequestBodyAsync(Request.Content.ReadAsStringAsync().Result);
-
             List<tupleData> tupleList = new List<tupleData>();
             if (installerClass.dbProviderServiceAsync(true, "").Result.Equals("true"))
             {
@@ -104,8 +96,6 @@ namespace testInstallServer.Classes
         //installs the updater
         public async Task<IHttpActionResult> PostUpdaterInstall()
         {
-            utilityClass.parseRequestBodyAsync(Request.Content.ReadAsStringAsync().Result);
-
             List<tupleData> tupleList = new List<tupleData>();
 
             if (installerClass.updaterInstallerAsync("").Result.Equals("true"))
@@ -125,8 +115,6 @@ namespace testInstallServer.Classes
         //installs ScenePD - needs debugging
         public async Task<IHttpActionResult> PostScenePDInstall()
         {
-            utilityClass.parseRequestBodyAsync(Request.Content.ReadAsStringAsync().Result);
-
             List<tupleData> tupleList = new List<tupleData>();
 
             if (installerClass.scenePDAsync("").Result.Equals("true"))
@@ -145,8 +133,6 @@ namespace testInstallServer.Classes
         //installs SQL Compact 4.0
         public async Task<IHttpActionResult> PostSQLCE40Install()
         {
-            utilityClass.parseRequestBodyAsync(Request.Content.ReadAsStringAsync().Result);
-
             List<tupleData> tupleList = new List<tupleData>();
             if (installerClass.sqlCe40Async(true, "").Result.Equals("True"))
             {
@@ -165,8 +151,6 @@ namespace testInstallServer.Classes
         // installs VS tool 2010
         public async Task<IHttpActionResult> Postvs2010Install()
         {
-            utilityClass.parseRequestBodyAsync(Request.Content.ReadAsStringAsync().Result);
-
             List<tupleData> tupleList = new List<tupleData>();
             if (installerClass.vs2010Async("").Result.Equals("true"))
             {
@@ -185,8 +169,6 @@ namespace testInstallServer.Classes
         //installs SQL CLR 2008
         public async Task<IHttpActionResult> PostSQLCLR2008Install()
         {
-            utilityClass.parseRequestBodyAsync(Request.Content.ReadAsStringAsync().Result);
-
             List<tupleData> tupleList = new List<tupleData>();
             if (installerClass.sqlClr2008Async("").Result.Equals("true"))
             {
@@ -205,8 +187,6 @@ namespace testInstallServer.Classes
         //installs SQL CLR 2012
         public async Task<IHttpActionResult> PostSQLCLR2012Install()
         {
-            utilityClass.parseRequestBodyAsync(Request.Content.ReadAsStringAsync().Result);
-
             List<tupleData> tupleList = new List<tupleData>();
 
             if (installerClass.sqlClr2012Async("").Result.Equals("true"))
@@ -226,8 +206,6 @@ namespace testInstallServer.Classes
         //for testing, remove before deployment
         public async Task<IHttpActionResult> Post99TESTPreReqInstall()
         {
-            utilityClass.parseRequestBodyAsync(Request.Content.ReadAsStringAsync().Result);
-
             List<tupleData> tupleList = new List<tupleData>();
             if (installerClass.dotNetAsync("").Result.Equals("true"))
             {
