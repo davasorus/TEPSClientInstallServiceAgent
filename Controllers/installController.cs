@@ -17,270 +17,331 @@ namespace testInstallServer.Classes
 
         private readonly string clientRun = @"C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Agent\Clients";
 
-        public async Task<IHttpActionResult> PostPreReqInstall(int id)
+        #region pre req install
+
+        //installs DotNet
+        public async Task<IHttpActionResult> PostDotNetInstall()
         {
             utilityClass.parseRequestBodyAsync(Request.Content.ReadAsStringAsync().Result);
 
             List<tupleData> tupleList = new List<tupleData>();
-            switch (id)
+            if (installerClass.dotNetAsync("").Result.Equals("true"))
             {
-                case 1:
+                tupleList.Add(new tupleData { responseCode = "200 OK", message = "DotNet Installed" });
+            }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "DotNet failed to install" });
 
-                    if (installerClass.dotNetAsync("").Result.Equals("true"))
-                    {
-                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "DotNet Installed" });
-                    }
-                    else
-                    {
-                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "DotNet failed to install" });
-
-                        loggingClass.logEntryWriter("DotNet failed to install", "error");
-                    }
-                    break;
-
-                case 2:
-
-                    if (installerClass.sqlCe35Async(true, "").Result.Equals("true"))
-                    {
-                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "SQL Compact 3.5 installed" });
-                    }
-                    else
-                    {
-                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "SQL Compact 3.5 failed to install" });
-
-                        loggingClass.logEntryWriter("SQL Compact 3.5 failed to install", "error");
-                    }
-
-                    break;
-
-                case 3:
-
-                    if (installerClass.gisAsync(true, "").Result.Equals("true"))
-                    {
-                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "GIS Components Installed" });
-                    }
-                    else
-                    {
-                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "GIS Components failed to install" });
-
-                        loggingClass.logEntryWriter("GIS Components failed to install", "error");
-                    }
-                    break;
-
-                case 4:
-
-                    if (installerClass.dbProviderServiceAsync(true, "").Result.Equals("true"))
-                    {
-                        tupleList.Add(new tupleData { responseCode = "200 ok", message = "DB Providers Installed" });
-                    }
-                    else
-                    {
-                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "DB Providers failed to install" });
-
-                        loggingClass.logEntryWriter("DB Providers failed to install", "error");
-                    }
-                    break;
-
-                case 5:
-
-                    if (installerClass.updaterInstallerAsync("").Result.Equals("true"))
-                    {
-                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "Updater Installed" });
-                    }
-                    else
-                    {
-                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "Updater failed to install" });
-
-                        loggingClass.logEntryWriter("Updater failed to install", "error");
-                    }
-                    break;
-
-                case 6:
-
-                    //if (installerClass.scenePDAsync("").Result.Equals("true"))
-                    //{
-                    //    response.Add("ScenePD Installed");
-                    //}
-                    //else
-                    //{
-                    //    response.Add("ScenePD failed to install");
-                    //    loggingClass.logEntryWriter("ScenePD failed to install", "error");
-                    //}
-
-                    break;
-
-                case 7:
-
-                    if (installerClass.sqlCe40Async(true, "").Result.Equals("True"))
-                    {
-                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "SQL Compact 4.0 Installed" });
-                    }
-                    else
-                    {
-                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "SQL Compact 4.0 failed to install" });
-
-                        loggingClass.logEntryWriter("SQL Compact 4.0 failed to install", "error");
-                    }
-                    break;
-
-                case 8:
-
-                    if (installerClass.vs2010Async("").Result.Equals("true"))
-                    {
-                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "Visual Studio 2010 Types Installed" });
-                    }
-                    else
-                    {
-                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "Visual Studio 2010 Types failed to install" });
-
-                        loggingClass.logEntryWriter("Visual Studio 2010 Types failed to install", "error");
-                    }
-                    break;
-
-                case 9:
-
-                    if (installerClass.sqlClr2008Async("").Result.Equals("true"))
-                    {
-                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "SQL 2008 CLR Types Installed" });
-                    }
-                    else
-                    {
-                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "SQL 2008 CLR Types failed to install" });
-
-                        loggingClass.logEntryWriter("SQL 2008 CLR Types failed to install", "error");
-                    }
-
-                    if (installerClass.sqlClr2012Async("").Result.Equals("true"))
-                    {
-                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "SQL 2012 CLR Types Installed" });
-                    }
-                    else
-                    {
-                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "SQL 2012 CLR Types failed to install" });
-
-                        loggingClass.logEntryWriter("SQL 2012 CLR Types failed to install", "error");
-                    }
-
-                    break;
-
-                case 99:
-                    if (installerClass.dotNetAsync("").Result.Equals("true"))
-                    {
-                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "DotNet Installed" });
-                    }
-                    else
-                    {
-                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "DotNet failed to install" });
-
-                        loggingClass.logEntryWriter("DotNet failed to install", "error");
-                    }
-
-                    if (installerClass.sqlCe35Async(true, "").Result.Equals("true"))
-                    {
-                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "SQL Compact 3.5 installed" });
-                    }
-                    else
-                    {
-                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "SQL Compact 3.5 failed to install" });
-
-                        loggingClass.logEntryWriter("SQL Compact 3.5 failed to install", "error");
-                    }
-
-                    if (installerClass.gisAsync(true, "").Result.Equals("true"))
-                    {
-                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "GIS Components Installed" });
-                    }
-                    else
-                    {
-                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "GIS Components failed to install" });
-
-                        loggingClass.logEntryWriter("GIS Components failed to install", "error");
-                    }
-
-                    if (installerClass.dbProviderServiceAsync(true, "").Result.Equals("true"))
-                    {
-                        tupleList.Add(new tupleData { responseCode = "200 ok", message = "DB Providers Installed" });
-                    }
-                    else
-                    {
-                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "DB Providers failed to install" });
-
-                        loggingClass.logEntryWriter("DB Providers failed to install", "error");
-                    }
-
-                    if (installerClass.updaterInstallerAsync("").Result.Equals("true"))
-                    {
-                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "Updater Installed" });
-                    }
-                    else
-                    {
-                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "Updater failed to install" });
-
-                        loggingClass.logEntryWriter("Updater failed to install", "error");
-                    }
-
-                    //if (installerClass.scenePDAsync("").Result.Equals("true"))
-                    //{
-                    //    response.Add("ScenePD Installed");
-                    // }
-                    // else
-                    // {
-                    //     response.Add("ScenePD failed to install");
-                    //     loggingClass.logEntryWriter("ScenePD failed to install", "error");
-                    // }
-
-                    if (installerClass.sqlCe40Async(true, "").Result.Equals("true"))
-                    {
-                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "SQL Compact 4.0 Installed" });
-                    }
-                    else
-                    {
-                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "SQL Compact 4.0 failed to install" });
-
-                        loggingClass.logEntryWriter("SQL Compact 4.0 failed to install", "error");
-                    }
-
-                    if (installerClass.vs2010Async("").Result.Equals("true"))
-                    {
-                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "Visual Studio 2010 Types Installed" });
-                    }
-                    else
-                    {
-                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "Visual Studio 2010 Types failed to install" });
-
-                        loggingClass.logEntryWriter("Visual Studio 2010 Types failed to install", "error");
-                    }
-
-                    if (installerClass.sqlClr2008Async("").Result.Equals("true"))
-                    {
-                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "SQL 2008 CLR Types Installed" });
-                    }
-                    else
-                    {
-                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "SQL 2008 CLR Types failed to install" });
-
-                        loggingClass.logEntryWriter("SQL 2008 CLR Types failed to install", "error");
-                    }
-
-                    if (installerClass.sqlClr2012Async("").Result.Equals("true"))
-                    {
-                        tupleList.Add(new tupleData { responseCode = "200 OK", message = "SQL 2012 CLR Types Installed" });
-                    }
-                    else
-                    {
-                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "SQL 2012 CLR Types failed to install" });
-
-                        loggingClass.logEntryWriter("SQL 2012 CLR Types failed to install", "error");
-                    }
-
-                    break;
-
-                default:
-                    break;
+                loggingClass.logEntryWriter("DotNet failed to install", "error");
             }
 
             return Json(tupleList);
         }
+
+        //installs SQL Compact 3.5
+        public async Task<IHttpActionResult> PostSQLCE35Install()
+        {
+            utilityClass.parseRequestBodyAsync(Request.Content.ReadAsStringAsync().Result);
+
+            List<tupleData> tupleList = new List<tupleData>();
+
+            if (installerClass.sqlCe35Async(true, "").Result.Equals("true"))
+            {
+                tupleList.Add(new tupleData { responseCode = "200 OK", message = "SQL Compact 3.5 installed" });
+            }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "SQL Compact 3.5 failed to install" });
+
+                loggingClass.logEntryWriter("SQL Compact 3.5 failed to install", "error");
+            }
+
+            return Json(tupleList);
+        }
+
+        //installs GIS components
+        public async Task<IHttpActionResult> PostGISInstall()
+        {
+            utilityClass.parseRequestBodyAsync(Request.Content.ReadAsStringAsync().Result);
+
+            List<tupleData> tupleList = new List<tupleData>();
+
+            if (installerClass.gisAsync(true, "").Result.Equals("true"))
+            {
+                tupleList.Add(new tupleData { responseCode = "200 OK", message = "GIS Components Installed" });
+            }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "GIS Components failed to install" });
+
+                loggingClass.logEntryWriter("GIS Components failed to install", "error");
+            }
+
+            return Json(tupleList);
+        }
+
+        //installs DB providers
+        public async Task<IHttpActionResult> PostDBProviderInstall()
+        {
+            utilityClass.parseRequestBodyAsync(Request.Content.ReadAsStringAsync().Result);
+
+            List<tupleData> tupleList = new List<tupleData>();
+            if (installerClass.dbProviderServiceAsync(true, "").Result.Equals("true"))
+            {
+                tupleList.Add(new tupleData { responseCode = "200 ok", message = "DB Providers Installed" });
+            }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "DB Providers failed to install" });
+
+                loggingClass.logEntryWriter("DB Providers failed to install", "error");
+            }
+
+            return Json(tupleList);
+        }
+
+        //installs the updater
+        public async Task<IHttpActionResult> PostUpdaterInstall()
+        {
+            utilityClass.parseRequestBodyAsync(Request.Content.ReadAsStringAsync().Result);
+
+            List<tupleData> tupleList = new List<tupleData>();
+
+            if (installerClass.updaterInstallerAsync("").Result.Equals("true"))
+            {
+                tupleList.Add(new tupleData { responseCode = "200 OK", message = "Updater Installed" });
+            }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "Updater failed to install" });
+
+                loggingClass.logEntryWriter("Updater failed to install", "error");
+            }
+
+            return Json(tupleList);
+        }
+
+        //installs ScenePD - needs debugging
+        public async Task<IHttpActionResult> PostScenePDInstall()
+        {
+            utilityClass.parseRequestBodyAsync(Request.Content.ReadAsStringAsync().Result);
+
+            List<tupleData> tupleList = new List<tupleData>();
+
+            if (installerClass.scenePDAsync("").Result.Equals("true"))
+            {
+                tupleList.Add(new tupleData { responseCode = "200 OK", message = "ScenePD Installed" });
+            }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "ScenePD failed to install" });
+                loggingClass.logEntryWriter("ScenePD failed to install", "error");
+            }
+
+            return Json(tupleList);
+        }
+
+        //installs SQL Compact 4.0
+        public async Task<IHttpActionResult> PostSQLCE40Install()
+        {
+            utilityClass.parseRequestBodyAsync(Request.Content.ReadAsStringAsync().Result);
+
+            List<tupleData> tupleList = new List<tupleData>();
+            if (installerClass.sqlCe40Async(true, "").Result.Equals("True"))
+            {
+                tupleList.Add(new tupleData { responseCode = "200 OK", message = "SQL Compact 4.0 Installed" });
+            }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "SQL Compact 4.0 failed to install" });
+
+                loggingClass.logEntryWriter("SQL Compact 4.0 failed to install", "error");
+            }
+
+            return Json(tupleList);
+        }
+
+        // installs VS tool 2010
+        public async Task<IHttpActionResult> Postvs2010Install()
+        {
+            utilityClass.parseRequestBodyAsync(Request.Content.ReadAsStringAsync().Result);
+
+            List<tupleData> tupleList = new List<tupleData>();
+            if (installerClass.vs2010Async("").Result.Equals("true"))
+            {
+                tupleList.Add(new tupleData { responseCode = "200 OK", message = "Visual Studio 2010 Types Installed" });
+            }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "Visual Studio 2010 Types failed to install" });
+
+                loggingClass.logEntryWriter("Visual Studio 2010 Types failed to install", "error");
+            }
+
+            return Json(tupleList);
+        }
+
+        //installs SQL CLR 2008
+        public async Task<IHttpActionResult> PostSQLCLR2008Install()
+        {
+            utilityClass.parseRequestBodyAsync(Request.Content.ReadAsStringAsync().Result);
+
+            List<tupleData> tupleList = new List<tupleData>();
+            if (installerClass.sqlClr2008Async("").Result.Equals("true"))
+            {
+                tupleList.Add(new tupleData { responseCode = "200 OK", message = "SQL 2008 CLR Types Installed" });
+            }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "SQL 2008 CLR Types failed to install" });
+
+                loggingClass.logEntryWriter("SQL 2008 CLR Types failed to install", "error");
+            }
+
+            return Json(tupleList);
+        }
+
+        //installs SQL CLR 2012
+        public async Task<IHttpActionResult> PostSQLCLR2012Install()
+        {
+            utilityClass.parseRequestBodyAsync(Request.Content.ReadAsStringAsync().Result);
+
+            List<tupleData> tupleList = new List<tupleData>();
+
+            if (installerClass.sqlClr2012Async("").Result.Equals("true"))
+            {
+                tupleList.Add(new tupleData { responseCode = "200 OK", message = "SQL 2012 CLR Types Installed" });
+            }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "SQL 2012 CLR Types failed to install" });
+
+                loggingClass.logEntryWriter("SQL 2012 CLR Types failed to install", "error");
+            }
+
+            return Json(tupleList);
+        }
+
+        //for testing, remove before deployment
+        public async Task<IHttpActionResult> Post99TESTInstall()
+        {
+            utilityClass.parseRequestBodyAsync(Request.Content.ReadAsStringAsync().Result);
+
+            List<tupleData> tupleList = new List<tupleData>();
+            if (installerClass.dotNetAsync("").Result.Equals("true"))
+            {
+                tupleList.Add(new tupleData { responseCode = "200 OK", message = "DotNet Installed" });
+            }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "DotNet failed to install" });
+
+                loggingClass.logEntryWriter("DotNet failed to install", "error");
+            }
+
+            if (installerClass.sqlCe35Async(true, "").Result.Equals("true"))
+            {
+                tupleList.Add(new tupleData { responseCode = "200 OK", message = "SQL Compact 3.5 installed" });
+            }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "SQL Compact 3.5 failed to install" });
+
+                loggingClass.logEntryWriter("SQL Compact 3.5 failed to install", "error");
+            }
+
+            if (installerClass.gisAsync(true, "").Result.Equals("true"))
+            {
+                tupleList.Add(new tupleData { responseCode = "200 OK", message = "GIS Components Installed" });
+            }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "GIS Components failed to install" });
+
+                loggingClass.logEntryWriter("GIS Components failed to install", "error");
+            }
+
+            if (installerClass.dbProviderServiceAsync(true, "").Result.Equals("true"))
+            {
+                tupleList.Add(new tupleData { responseCode = "200 ok", message = "DB Providers Installed" });
+            }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "DB Providers failed to install" });
+
+                loggingClass.logEntryWriter("DB Providers failed to install", "error");
+            }
+
+            if (installerClass.updaterInstallerAsync("").Result.Equals("true"))
+            {
+                tupleList.Add(new tupleData { responseCode = "200 OK", message = "Updater Installed" });
+            }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "Updater failed to install" });
+
+                loggingClass.logEntryWriter("Updater failed to install", "error");
+            }
+
+            //if (installerClass.scenePDAsync("").Result.Equals("true"))
+            //{
+            //    response.Add("ScenePD Installed");
+            // }
+            // else
+            // {
+            //     response.Add("ScenePD failed to install");
+            //     loggingClass.logEntryWriter("ScenePD failed to install", "error");
+            // }
+
+            if (installerClass.sqlCe40Async(true, "").Result.Equals("true"))
+            {
+                tupleList.Add(new tupleData { responseCode = "200 OK", message = "SQL Compact 4.0 Installed" });
+            }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "SQL Compact 4.0 failed to install" });
+
+                loggingClass.logEntryWriter("SQL Compact 4.0 failed to install", "error");
+            }
+
+            if (installerClass.vs2010Async("").Result.Equals("true"))
+            {
+                tupleList.Add(new tupleData { responseCode = "200 OK", message = "Visual Studio 2010 Types Installed" });
+            }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "Visual Studio 2010 Types failed to install" });
+
+                loggingClass.logEntryWriter("Visual Studio 2010 Types failed to install", "error");
+            }
+
+            if (installerClass.sqlClr2008Async("").Result.Equals("true"))
+            {
+                tupleList.Add(new tupleData { responseCode = "200 OK", message = "SQL 2008 CLR Types Installed" });
+            }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "SQL 2008 CLR Types failed to install" });
+
+                loggingClass.logEntryWriter("SQL 2008 CLR Types failed to install", "error");
+            }
+
+            if (installerClass.sqlClr2012Async("").Result.Equals("true"))
+            {
+                tupleList.Add(new tupleData { responseCode = "200 OK", message = "SQL 2012 CLR Types Installed" });
+            }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "SQL 2012 CLR Types failed to install" });
+
+                loggingClass.logEntryWriter("SQL 2012 CLR Types failed to install", "error");
+            }
+
+            return Json(tupleList);
+        }
+
+        #endregion pre req install
 
         public async Task<IHttpActionResult> PostClientInstall(int id, [FromBody] string bodyContent)
         {
