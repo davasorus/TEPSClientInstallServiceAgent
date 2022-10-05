@@ -632,22 +632,8 @@ namespace testInstallServer.Classes
                     }
                     else
                     {
-                        try
-                        {
-                            //copyClass.preReqRename("SSCERuntime_x64-ENU.exe", sqlCE4064, "SQL Compact Edition 4.0", uiObject.FolderPath);
-                            //copyClass.preReqRename("SSCERuntime_x86-ENU.exe", sqlCE4032, "SQL Compact Edition 4.0", uiObject.FolderPath);
-
-                            returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), sqlCE4064);
-                        }
-                        catch (Exception ex)
-                        {
-                            string logEntry = ex.Message.ToString();
-                            loggingClass.logEntryWriter(logEntry, "error");
-
-                            //await loggingClass.remoteErrorReporting("Client Admin Tool", Assembly.GetExecutingAssembly().GetName().Version.ToString(), ex.ToString(), "Automated Error Reported by " + Environment.UserName);
-
-                            returnedValue = "false";
-                        }
+                        //returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), sqlClr201232);
+                        throw new FileNotFoundException($"File Not found in {Path.Combine(preReqRun, sqlCE4064)}");
                     }
                 }
                 catch (Exception ex)
@@ -661,34 +647,7 @@ namespace testInstallServer.Classes
                     returnedValue = "false";
                 }
             }
-            else
-            {
-                loggingClass.logEntryWriter("Running 32bit SQL Compact 4.0 Runtime", "info");
-
-                try
-                {
-                    if (File.Exists(Path.Combine(preReqRun, sqlCE4032)))
-                    {
-                        returnedValue = await runProgramAsync(sqlCE4032, preReqRun);
-                    }
-                    else
-                    {
-                        copyClass.preReqRename("SSCERuntime_x86-ENU.exe", sqlCE4032, "SQL Compact Edition 4.0", installerPath);
-
-                        returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), sqlCE4064);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    string logEntry = ex.ToString();
-
-                    loggingClass.logEntryWriter(logEntry, "error");
-
-                    //await loggingClass.remoteErrorReporting("Client Admin Tool", Assembly.GetExecutingAssembly().GetName().Version.ToString(), ex.ToString(), "Automated Error Reported by " + Environment.UserName);
-
-                    returnedValue = "false";
-                }
-            }
+            
 
             return returnedValue;
         }
@@ -774,7 +733,8 @@ namespace testInstallServer.Classes
                 }
                 else
                 {
-                    returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), sqlClr201232);
+                    //returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), sqlClr201232);
+                    throw new FileNotFoundException($"File Not found in {Path.Combine(preReqRun, sqlClr201232)}");
                 }
 
                 if (File.Exists(Path.Combine(preReqRun, sqlClr201264)))
@@ -783,7 +743,8 @@ namespace testInstallServer.Classes
                 }
                 else
                 {
-                    returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), sqlClr201264);
+                    //returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), sqlClr201232);
+                    throw new FileNotFoundException($"File Not found in {Path.Combine(preReqRun, sqlClr201264)}");
                 }
             }
             catch (Exception ex)
