@@ -516,7 +516,7 @@ namespace testInstallServer.Classes
 
                 updaterConfigClass.fdidSub(item.FDID, serverConfigObj.MobileServer);
 
-                tupleList.Add(new tupleData { responseCode = "200 ok", message = $"FDID {item.FDID} added with mobile server {serverConfigObj.MobileServer}" });
+                tupleList.Add(new tupleData { responseCode = "200 OK", message = $"FDID {item.FDID} added with mobile server {serverConfigObj.MobileServer}" });
             }
 
             updaterConfigClass.fireClientSub(serverConfigObj.MobileServer);
@@ -576,7 +576,7 @@ namespace testInstallServer.Classes
 
                 updaterConfigClass.oriSub(item.ORI, serverConfigObj.MobileServer);
 
-                tupleList.Add(new tupleData { message = "200 ok", responseCode = $"ORI {item.ORI} added with mobile server {serverConfigObj.MobileServer}" });
+                tupleList.Add(new tupleData { responseCode =  "200 ok", message = $"ORI {item.ORI} added with mobile server {serverConfigObj.MobileServer}" });
             }
 
             updaterConfigClass.mergeClientSub(serverConfigObj.MobileServer);
@@ -645,7 +645,7 @@ namespace testInstallServer.Classes
 
                 updaterConfigClass.fdidSub(item.FDID, serverConfigObj.MobileServer);
 
-                tupleList.Add(new tupleData { message = "200 OK", responseCode = $"FDID {item.FDID} added with mobile server {serverConfigObj.MobileServer}" });
+                tupleList.Add(new tupleData {responseCode =  "200 OK", message = $"FDID {item.FDID} added with mobile server {serverConfigObj.MobileServer}" });
             }
 
             updaterConfigClass.policeClientSub(serverConfigObj.MobileServer);
@@ -654,7 +654,7 @@ namespace testInstallServer.Classes
 
             updaterConfigClass.mergeClientSub(serverConfigObj.MobileServer);
 
-            tupleList.Add(new tupleData { message = "200 OK", responseCode = "Police Client, Fire Client, Merge Client added with mobile server " + serverConfigObj.MobileServer });
+            tupleList.Add(new tupleData { responseCode = "200 OK", message = "Police Client, Fire Client, Merge Client added with mobile server " + serverConfigObj.MobileServer });
 
             Thread.Sleep(1000);
 
