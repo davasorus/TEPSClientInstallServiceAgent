@@ -634,7 +634,6 @@ namespace testInstallServer.Classes
                     {
                         //returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), sqlClr201232);
                         throw new FileNotFoundException($"File Not found in {Path.Combine(preReqRun, sqlCE4064)}");
-                        returnedValue = "false";
                     }
                 }
                 catch (Exception ex)
@@ -736,7 +735,6 @@ namespace testInstallServer.Classes
                 {
                     //returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), sqlClr201232);
                     throw new FileNotFoundException($"File Not found in {Path.Combine(preReqRun, sqlClr201232)}");
-                    returnedValue = "false";
                 }
 
                 if (File.Exists(Path.Combine(preReqRun, sqlClr201264)))
@@ -747,7 +745,6 @@ namespace testInstallServer.Classes
                 {
                     //returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), sqlClr201232);
                     throw new FileNotFoundException($"File Not found in {Path.Combine(preReqRun, sqlClr201264)}");
-                    returnedValue = "false";
                 }
             }
             catch (Exception ex)
