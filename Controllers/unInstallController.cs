@@ -135,7 +135,7 @@ namespace testInstallServer.Classes
         }
 
         //uninstalls SQL CLR
-        public async Task<IHttpActionResult> PostUninstallSQLCLRAsync()
+        public async Task<IHttpActionResult> PostUninstallSQLCLR2008Async()
         {
             List<tupleData> tupleList = new List<tupleData>();
             var uninstall11 = await uninstallerClass.uninstallProgramAsync("Microsoft SQL Server System CLR Types (x64)");
@@ -156,6 +156,33 @@ namespace testInstallServer.Classes
             else
             {
                 tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "Microsoft SQL Server System CLR Types not found on machine" });
+            }
+
+            return Json(tupleList);
+        }
+
+        //uninstalls SQL CLR
+        public async Task<IHttpActionResult> PostUninstallSQLCLR2012Async()
+        {
+            List<tupleData> tupleList = new List<tupleData>();
+            var uninstall11 = await uninstallerClass.uninstallProgramAsync("Microsoft System CLR Types 2012 (x64)");
+            var uninstall12 = await uninstallerClass.uninstallProgramAsync("Microsoft System CLR Types 2012");
+
+            if (uninstall11.Equals(true))
+            {
+                tupleList.Add(new tupleData { responseCode = "200 OK", message = "Microsoft System CLR Types 2012 (x64) - Uninstalled" });
+            }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "Microsoft System CLR Types 2012 (x64) not found on machine" });
+            }
+            if (uninstall12.Equals(true))
+            {
+                tupleList.Add(new tupleData { responseCode = "200 OK", message = "Microsoft System CLR Types 2012 - Uninstalled" });
+            }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "Microsoft System CLR Types 2012 Types not found on machine" });
             }
 
             return Json(tupleList);
@@ -230,6 +257,26 @@ namespace testInstallServer.Classes
             if (uninstall912.Equals(true))
             {
                 tupleList.Add(new tupleData { responseCode = "200 OK", message = "Microsoft SQL Server System CLR Types - Uninstalled" });
+            }
+
+            var uninstall921 = await uninstallerClass.uninstallProgramAsync("Microsoft System CLR Types 2012 (x64)");
+            var uninstall922 = await uninstallerClass.uninstallProgramAsync("Microsoft System CLR Types 2012");
+
+            if (uninstall921.Equals(true))
+            {
+                tupleList.Add(new tupleData { responseCode = "200 OK", message = "Microsoft System CLR Types 2012 (x64) - Uninstalled" });
+            }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "Microsoft System CLR Types 2012 (x64) not found on machine" });
+            }
+            if (uninstall922.Equals(true))
+            {
+                tupleList.Add(new tupleData { responseCode = "200 OK", message = "Microsoft System CLR Types 2012 Types - Uninstalled" });
+            }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "Microsoft System CLR Types 2012 Types not found on machine" });
             }
 
             return Json(tupleList);
