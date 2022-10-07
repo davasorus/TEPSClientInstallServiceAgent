@@ -647,7 +647,6 @@ namespace testInstallServer.Classes
                     returnedValue = "false";
                 }
             }
-            
 
             return returnedValue;
         }
