@@ -165,8 +165,8 @@ namespace testInstallServer.Classes
         public async Task<IHttpActionResult> PostUninstallSQLCLR2012Async()
         {
             List<tupleData> tupleList = new List<tupleData>();
-            var uninstall11 = await uninstallerClass.uninstallProgramAsync("Microsoft System CLR Types 2012 (x64)");
-            var uninstall12 = await uninstallerClass.uninstallProgramAsync("Microsoft System CLR Types 2012");
+            var uninstall11 = await uninstallerClass.uninstallProgramAsync("Microsoft System CLR Types for SQL Server 2012 (x64)");
+            var uninstall12 = await uninstallerClass.uninstallProgramAsync("Microsoft System CLR Types for SQL Server 2012");
 
             if (uninstall11.Equals(true))
             {
@@ -259,8 +259,8 @@ namespace testInstallServer.Classes
                 tupleList.Add(new tupleData { responseCode = "200 OK", message = "Microsoft SQL Server System CLR Types - Uninstalled" });
             }
 
-            var uninstall921 = await uninstallerClass.uninstallProgramAsync("Microsoft System CLR Types 2012 (x64)");
-            var uninstall922 = await uninstallerClass.uninstallProgramAsync("Microsoft System CLR Types 2012");
+            var uninstall921 = await uninstallerClass.uninstallProgramAsync("Microsoft System CLR Types for SQL Server 2012 (x64)");
+            var uninstall922 = await uninstallerClass.uninstallProgramAsync("Microsoft System CLR Types for SQL Server 2012");
 
             if (uninstall921.Equals(true))
             {
