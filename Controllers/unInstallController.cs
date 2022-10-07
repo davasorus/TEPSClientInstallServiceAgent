@@ -23,9 +23,17 @@ namespace testInstallServer.Classes
             {
                 tupleList.Add(new tupleData { responseCode = "200 OK", message = "Microsoft SQL Server Compact 3.5 SP2 x64 ENU - Uninstalled" });
             }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "Microsoft SQL Server Compact 3.5 SP2 x64 ENU not found on machine" });
+            }
             if (uninstall2.Equals(true))
             {
-                tupleList.Add(new tupleData { responseCode = "200 OK", message = "Microsoft SQL Server Compact 3.5 SP2 x64 ENU - Uninstalled" });
+                tupleList.Add(new tupleData { responseCode = "200 OK", message = "Microsoft SQL Server Compact 3.5 SP2 ENU - Uninstalled" });
+            }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = $"Microsoft SQL Server Compact 3.5 SP2 x64 ENU not found on machine" });
             }
 
             return Json(tupleList);
@@ -42,9 +50,17 @@ namespace testInstallServer.Classes
             {
                 tupleList.Add(new tupleData { responseCode = "200 OK", message = "New World GIS Components x64 - Uninstalled" });
             }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "New World GIS Components x64 not found on machine" });
+            }
             if (uninstall4.Equals(true))
             {
                 tupleList.Add(new tupleData { responseCode = "200 OK", message = "New World GIS Components x86 - Uninstalled" });
+            }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "New World GIS Components x86 not found on machine" });
             }
 
             return Json(tupleList);
@@ -64,6 +80,10 @@ namespace testInstallServer.Classes
                 {
                     tupleList.Add(new tupleData { responseCode = "200 OK", message = "New World Automatic Updater - Uninstalled" });
                 }
+                else
+                {
+                    tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "Updater not found on machine" });
+                }
             }
 
             return Json(tupleList);
@@ -80,9 +100,17 @@ namespace testInstallServer.Classes
             {
                 tupleList.Add(new tupleData { responseCode = "200 OK", message = "ScenePD 6 ActiveX Control - Uninstalled" });
             }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "ScenePD 6 ActiveX Control not found on machine" });
+            }
             if (uninstall8.Equals(true))
             {
                 tupleList.Add(new tupleData { responseCode = "200 OK", message = "ScenePD 6 Desktop Edition - Uninstalled" });
+            }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "ScenePD 6 Desktop Edition not found on machine" });
             }
 
             return Json(tupleList);
@@ -97,6 +125,10 @@ namespace testInstallServer.Classes
             if (uninstall9.Equals(true))
             {
                 tupleList.Add(new tupleData { responseCode = "200 OK", message = "Microsoft SQL Server Compact 4.0 x64 ENU - Uninstalled" });
+            }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "Microsoft SQL Server Compact 4.0 x64 ENU not found on machine" });
             }
 
             return Json(tupleList);
@@ -113,9 +145,17 @@ namespace testInstallServer.Classes
             {
                 tupleList.Add(new tupleData { responseCode = "200 OK", message = "Microsoft SQL Server System CLR Types (x64) - Uninstalled" });
             }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "Microsoft SQL Server System CLR Types (x64) not found on machine" });
+            }
             if (uninstall12.Equals(true))
             {
                 tupleList.Add(new tupleData { responseCode = "200 OK", message = "Microsoft SQL Server System CLR Types - Uninstalled" });
+            }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "Microsoft SQL Server System CLR Types not found on machine" });
             }
 
             return Json(tupleList);
@@ -134,7 +174,7 @@ namespace testInstallServer.Classes
             }
             if (uninstall92.Equals(true))
             {
-                tupleList.Add(new tupleData { responseCode = "200 OK", message = "Microsoft SQL Server Compact 3.5 SP2 x64 ENU - Uninstalled" });
+                tupleList.Add(new tupleData { responseCode = "200 OK", message = "Microsoft SQL Server Compact 3.5 SP2 ENU - Uninstalled" });
             }
 
             var uninstall93 = await uninstallerClass.uninstallProgramAsync("New World GIS Components x64");
@@ -219,6 +259,10 @@ namespace testInstallServer.Classes
                 {
                     tupleList.Add(new tupleData { responseCode = "200 OK", message = "MSP - Uninstalled" });
                 }
+                else
+                {
+                    tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "MSP not found on machine" });
+                }
             }
 
             return Json(tupleList);
@@ -241,6 +285,10 @@ namespace testInstallServer.Classes
                 {
                     tupleList.Add(new tupleData { responseCode = "200 OK", message = "CAD - Uninstalled" });
                 }
+                else
+                {
+                    tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "CAD not found on machine" });
+                }
             }
 
             return Json(tupleList);
@@ -259,13 +307,25 @@ namespace testInstallServer.Classes
             {
                 tupleList.Add(new tupleData { responseCode = "200 OK", message = "Fire Mobile - Uninstalled" });
             }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "Fire Mobile not found on machine" });
+            }
             if (uninstall23.Equals(true))
             {
                 tupleList.Add(new tupleData { responseCode = "200 OK", message = "Law Enforcement Mobile - Uninstalled" });
             }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "Law Enforcement Mobile not found on machine" });
+            }
             if (uninstall24.Equals(true))
             {
                 tupleList.Add(new tupleData { responseCode = "200 OK", message = "Mobile Merge - Uninstalled" });
+            }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "Mobile Merge not found on machine" });
             }
 
             return Json(tupleList);
@@ -287,6 +347,10 @@ namespace testInstallServer.Classes
                 if (uninstall26.Equals(true))
                 {
                     tupleList.Add(new tupleData { responseCode = "200 OK", message = "New World Enterprise CAD Incident Observer Client - Uninstalled" });
+                }
+                else
+                {
+                    tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "CAD Incident Observer not found on machine" });
                 }
             }
 
@@ -313,6 +377,10 @@ namespace testInstallServer.Classes
                 {
                     tupleList.Add(new tupleData { responseCode = "200 OK", message = "MSP - Uninstalled" });
                 }
+                else
+                {
+                    tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "MSP not found on machine" });
+                }
             }
 
             if (uninstallerClass.uninstallProgramAsync("Enterprise CAD Client").Result.Equals(true))
@@ -327,6 +395,10 @@ namespace testInstallServer.Classes
                 {
                     tupleList.Add(new tupleData { responseCode = "200 OK", message = "CAD - Uninstalled" });
                 }
+                else
+                {
+                    tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "CAD not found on machine" });
+                }
             }
 
             var uninstall922 = await uninstallerClass.uninstallProgramAsync("Fire Mobile");
@@ -337,26 +409,44 @@ namespace testInstallServer.Classes
             {
                 tupleList.Add(new tupleData { responseCode = "200 OK", message = "Fire Mobile - Uninstalled" });
             }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "Fire Mobile not found on machine" });
+            }
             if (uninstall923.Equals(true))
             {
                 tupleList.Add(new tupleData { responseCode = "200 OK", message = "Law Enforcement Mobile - Uninstalled" });
+            }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "Law Enforcement Mobile not found on machine" });
             }
             if (uninstall924.Equals(true))
             {
                 tupleList.Add(new tupleData { responseCode = "200 OK", message = "Mobile Merge - Uninstalled" });
             }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "Mobile Merge not found on machine" });
+            }
 
-            if (uninstallerClass.uninstallProgramAsync("Enterprise CAD Incident Observer Client").Result.Equals(true))
+            var uninstall925 = await uninstallerClass.uninstallProgramAsync("Enterprise CAD Incident Observer Client");
+
+            if (uninstall925.Equals(true))
             {
                 tupleList.Add(new tupleData { responseCode = "200 OK", message = "Enterprise CAD Incident Observer Client - Uninstalled" });
             }
             else
             {
-                var uninstall26 = await uninstallerClass.uninstallProgramAsync("New World Enterprise CAD Incident Observer Client");
+                var uninstall926 = await uninstallerClass.uninstallProgramAsync("New World Enterprise CAD Incident Observer Client");
 
-                if (uninstall26.Equals(true))
+                if (uninstall926.Equals(true))
                 {
                     tupleList.Add(new tupleData { responseCode = "200 OK", message = "New World Enterprise CAD Incident Observer Client - Uninstalled" });
+                }
+                else
+                {
+                    tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "CAD Incident Observer not found on machine" });
                 }
             }
 
