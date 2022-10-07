@@ -81,7 +81,7 @@ namespace testInstallServer.Classes
             List<tupleData> tupleList = new List<tupleData>();
             if (installerClass.dbProviderServiceAsync(true, "").Result.Equals("true"))
             {
-                tupleList.Add(new tupleData { responseCode = "200 ok", message = "DB Providers Installed" });
+                tupleList.Add(new tupleData { responseCode = "200 OK", message = "DB Providers Installed" });
             }
             else
             {
@@ -242,7 +242,7 @@ namespace testInstallServer.Classes
 
             if (installerClass.dbProviderServiceAsync(true, "").Result.Equals("true"))
             {
-                tupleList.Add(new tupleData { responseCode = "200 ok", message = "DB Providers Installed" });
+                tupleList.Add(new tupleData { responseCode = "200 OK", message = "DB Providers Installed" });
             }
             else
             {
@@ -576,7 +576,7 @@ namespace testInstallServer.Classes
 
                 updaterConfigClass.oriSub(item.ORI, serverConfigObj.MobileServer);
 
-                tupleList.Add(new tupleData { responseCode =  "200 ok", message = $"ORI {item.ORI} added with mobile server {serverConfigObj.MobileServer}" });
+                tupleList.Add(new tupleData { responseCode =  "200 OK", message = $"ORI {item.ORI} added with mobile server {serverConfigObj.MobileServer}" });
             }
 
             updaterConfigClass.mergeClientSub(serverConfigObj.MobileServer);
