@@ -30,7 +30,7 @@ namespace testInstallServer.Classes
         private readonly string nwpsUpdate = "NewWorld.Management.Updater.msi";
         private readonly string sqlClr32 = "SQLSysClrTypesx86.msi";
         private readonly string sqlClr64 = "SQLSysClrTypesx64.msi";
-        private readonly string sqlClr201232 = "SQLSysClrTypesx2012.msi";
+        private readonly string sqlClr201232 = "SQLSysClrTypes2012.msi";
         private readonly string sqlClr201264 = "SQLSysClrTypesx642012.msi";
         private readonly string SCPD6 = "SPD6-4-8993.exe";
         private readonly string SCPD6AX = "SPDX6-4-3091.exe";
