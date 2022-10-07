@@ -30,11 +30,9 @@ namespace testInstallServer.Classes
         private readonly string x64COM = "novaPDF 8 SDK COM (x64)";
         private readonly string tepsUpdater = "Enterprise Updater";
         private readonly string LERMS1 = "New World MSP Client";
-        
-        
+
         private readonly string CAD2 = "Enterprise CAD Client";
         private readonly string incidentObserv1 = "Enterprise CAD Incident Observer Client";
-        
 
         private readonly string preReqRun = @"C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Agent\PreReqs";
         private readonly string nwsAddonLocalRun = @"C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Agent\Addons";
