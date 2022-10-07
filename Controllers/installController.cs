@@ -134,7 +134,7 @@ namespace testInstallServer.Classes
         public async Task<IHttpActionResult> PostSQLCE40Install()
         {
             List<tupleData> tupleList = new List<tupleData>();
-            if (installerClass.sqlCe40Async(true, "").Result.Equals("True"))
+            if (installerClass.sqlCe40Async("").Result.Equals("True"))
             {
                 tupleList.Add(new tupleData { responseCode = "200 OK", message = "SQL Compact 4.0 Installed" });
             }
@@ -272,9 +272,10 @@ namespace testInstallServer.Classes
             //     loggingClass.logEntryWriter("ScenePD failed to install", "error");
             // }
 
-            if (installerClass.sqlCe40Async(true, "").Result.Equals("true"))
+            if (installerClass.sqlCe40Async("").Result.Equals("True"))
             {
                 tupleList.Add(new tupleData { responseCode = "200 OK", message = "SQL Compact 4.0 Installed" });
+                loggingClass.logEntryWriter("SQL Compact 4.0 Installed", "debug");
             }
             else
             {
