@@ -80,8 +80,6 @@ namespace testInstallServer
 
         protected override void OnStop()
         {
-            Environment.Exit(0);
-
             loggingClass.logEntryWriter("Service is stopped at " + DateTime.Now, "info");
 
             loggingClass.logEntryWriter($"API no longer listening", "info");
