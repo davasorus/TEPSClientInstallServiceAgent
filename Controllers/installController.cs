@@ -382,6 +382,26 @@ namespace testInstallServer.Classes
             return Json(tupleList);
         }
 
+        public async Task<IHttpActionResult> PostIncidentObserverInstall([FromBody] string bodyContent)
+        {
+            utilityClass.parseRequestBodyAsync(Request.Content.ReadAsStringAsync().Result);
+
+            List<tupleData> tupleList = new List<tupleData>();
+
+            if (installerClass.incidentObserverAsync("").Result.Equals("true"))
+            {
+                tupleList.Add(new tupleData { responseCode = "200 OK", message = "Incident Observer Installed" });
+            }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "Incident Observer failed to install" });
+
+                loggingClass.logEntryWriter("Incident Observer failed to install", "error");
+            }
+
+            return Json(tupleList);
+        }
+
         //for testing, remove before deployment
         public async Task<IHttpActionResult> Post99TESTClientInstall([FromBody] string bodyContent)
         {
@@ -424,6 +444,17 @@ namespace testInstallServer.Classes
             {
                 goto cadReset;
             }
+
+            if (installerClass.incidentObserverAsync("").Result.Equals("true"))
+            {
+                tupleList.Add(new tupleData { responseCode = "200 OK", message = "Incident Observer Installed" });
+            }
+            else
+            {
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "Incident Observer failed to install" });
+
+                loggingClass.logEntryWriter("Incident Observer failed to install", "error");
+            }   
 
             return Json(tupleList);
         }
