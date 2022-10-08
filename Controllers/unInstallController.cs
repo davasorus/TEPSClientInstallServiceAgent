@@ -497,6 +497,24 @@ namespace testInstallServer.Classes
                 }
             }
 
+            if (uninstallerClass.uninstallProgramAsync("Enterprise CAD Incident Observer Client").Result.Equals(true))
+            {
+                tupleList.Add(new tupleData { responseCode = "200 OK", message = "Enterprise CAD Incident Observer Client - Uninstalled" });
+            }
+            else
+            {
+                var uninstall26 = await uninstallerClass.uninstallProgramAsync("New World Enterprise CAD Incident Observer Client");
+
+                if (uninstall26.Equals(true))
+                {
+                    tupleList.Add(new tupleData { responseCode = "200 OK", message = "New World Enterprise CAD Incident Observer Client - Uninstalled" });
+                }
+                else
+                {
+                    tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "CAD Incident Observer not found on machine" });
+                }
+            }
+
             return Json(tupleList);
         }
 
