@@ -20,6 +20,7 @@ Agent service that does the actual software management on a end users machine
     "GISServer" : "TEST4",
     "GISInstance" : "TEST5",
     "MobileServer" : "Test6",
+    "Instance": 2,
     "PoliceList": [
     {
       "FieldName": "ORI1",
