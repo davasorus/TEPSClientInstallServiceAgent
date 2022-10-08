@@ -30,7 +30,7 @@ namespace testInstallServer.Classes
         private readonly string nwpsUpdate = "NewWorld.Management.Updater.msi";
         private readonly string sqlClr32 = "SQLSysClrTypesx86.msi";
         private readonly string sqlClr64 = "SQLSysClrTypesx64.msi";
-        private readonly string sqlClr201232 = "SQLSysClrTypesx2012.msi";
+        private readonly string sqlClr201232 = "SQLSysClrTypes2012.msi";
         private readonly string sqlClr201264 = "SQLSysClrTypesx642012.msi";
         private readonly string SCPD6 = "SPD6-4-8993.exe";
         private readonly string SCPD6AX = "SPDX6-4-3091.exe";
@@ -618,36 +618,30 @@ namespace testInstallServer.Classes
         }
 
         //SQL Compact 4.0 installer
-        public async Task<string> sqlCe40Async(bool Is64Bit, string installerPath)
+        public async Task<string> sqlCe40Async(string installerPath)
         {
-            if (Is64Bit == true)
+            try
             {
-                loggingClass.logEntryWriter("Running 64 bit SQL 4.0 Runtime", "info");
-
-                try
+                if (File.Exists(Path.Combine(preReqRun, sqlCE4064)))
                 {
-                    if (File.Exists(Path.Combine(preReqRun, sqlCE4064)))
-                    {
-                        returnedValue = await runProgramAsync(sqlCE4064, preReqRun);
-                    }
-                    else
-                    {
-                        //returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), sqlClr201232);
-                        throw new FileNotFoundException($"File Not found in {Path.Combine(preReqRun, sqlCE4064)}");
-                    }
+                    returnedValue = await runProgramAsync(sqlCE4064, preReqRun);
                 }
-                catch (Exception ex)
+                else
                 {
-                    string logEntry = ex.ToString();
-
-                    loggingClass.logEntryWriter(logEntry, "error");
-
-                    //await loggingClass.remoteErrorReporting("Client Admin Tool", Assembly.GetExecutingAssembly().GetName().Version.ToString(), ex.ToString(), "Automated Error Reported by " + Environment.UserName);
-
-                    returnedValue = "false";
+                    //returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), sqlClr201232);
+                    throw new FileNotFoundException($"File Not found in {Path.Combine(preReqRun, sqlCE4064)}");
                 }
             }
-            
+            catch (Exception ex)
+            {
+                string logEntry = ex.ToString();
+
+                loggingClass.logEntryWriter(logEntry, "error");
+
+                //await loggingClass.remoteErrorReporting("Client Admin Tool", Assembly.GetExecutingAssembly().GetName().Version.ToString(), ex.ToString(), "Automated Error Reported by " + Environment.UserName);
+
+                returnedValue = "false";
+            }
 
             return returnedValue;
         }
