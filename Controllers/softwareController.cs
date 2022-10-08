@@ -17,8 +17,10 @@ namespace testInstallServer.Classes
         private readonly string nwpsGis32Name = "New World GIS Components x86";
         private readonly string nwpsGis64Name = "New World GIS Components x64";
         private readonly string nwpsUpdateName = "New World Automatic Updater";
-        private readonly string sqlClr32Name = "Microsoft SQL Server System CLR Types";
-        private readonly string sqlClr64Name = "Microsoft SQL Server System CLR Types (x64)";
+        private readonly string sql2008Clr32Name = "Microsoft SQL Server System CLR Types";
+        private readonly string sql2008Clr64Name = "Microsoft SQL Server System CLR Types (x64)";
+        private readonly string sql2012Clr32Name = "Microsoft SQL Server System CLR Types";
+        private readonly string sql2012Clr64Name = "Microsoft SQL Server System CLR Types (x64)";
         private readonly string SCPD6Name = "ScenePD 6 Desktop Edition";
         private readonly string SCPD4Name = "ScenePD 4";
         private readonly string fireMobileName = "Fire Mobile";
@@ -30,12 +32,8 @@ namespace testInstallServer.Classes
         private readonly string x64COM = "novaPDF 8 SDK COM (x64)";
         private readonly string tepsUpdater = "Enterprise Updater";
         private readonly string LERMS1 = "New World MSP Client";
-        private readonly string LERMS2 = "New World Aegis MSP Client";
-        private readonly string LERMS3 = "New World Aegis Client";
-        private readonly string CAD1 = "New World Enterprise CAD Client";
-        private readonly string CAD2 = "Enterprise CAD Client";
+        private readonly string CAD2 = "New World Enterprise CAD Client";
         private readonly string incidentObserv1 = "Enterprise CAD Incident Observer Client";
-        private readonly string incidentObserv2 = "New World Enterprise CAD Incident Observer Client";
 
         private readonly string preReqRun = @"C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Agent\PreReqs";
         private readonly string nwsAddonLocalRun = @"C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Agent\Addons";
@@ -72,9 +70,9 @@ namespace testInstallServer.Classes
 
             List<string> knownSoftwareList = new List<string>()
         {
-            sqlCE3532Name,sqlCE3564Name, sqlCE4064Name, nwpsGis32Name, nwpsGis64Name,nwpsUpdateName, sqlClr32Name, sqlClr64Name,
+            sqlCE3532Name,sqlCE3564Name, sqlCE4064Name, nwpsGis32Name, nwpsGis64Name,nwpsUpdateName, sql2008Clr32Name, sql2008Clr64Name,
             SCPD6Name,SCPD4Name, fireMobileName,policeMobileName, mergeName, printerName, printerDriverName, x86COM, x64COM,tepsUpdater,
-            LERMS1, LERMS2, LERMS3, CAD1, CAD2, incidentObserv1, incidentObserv2
+            LERMS1, CAD2, incidentObserv1, sql2012Clr32Name, sql2012Clr64Name
         };
 
             foreach (string s in knownSoftwareList)
