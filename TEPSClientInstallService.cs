@@ -4,6 +4,7 @@ using System.IO;
 using System.ServiceProcess;
 using System.Timers;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.SelfHost;
 
 using testInstallServer.Classes;
@@ -26,6 +27,10 @@ namespace testInstallServer
             loggingClass.initializeNLogLogger();
 
             var config = new HttpSelfHostConfiguration($"http://{Environment.MachineName}:8080");
+
+            var cors = new EnableCorsAttribute($"http://{Environment.MachineName}", "*", "*");
+
+            config.EnableCors();
 
             config.Routes.MapHttpRoute(
                 name: "API",
