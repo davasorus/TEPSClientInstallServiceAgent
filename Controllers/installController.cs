@@ -454,7 +454,7 @@ namespace testInstallServer.Classes
                 tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = "Incident Observer failed to install" });
 
                 loggingClass.logEntryWriter("Incident Observer failed to install", "error");
-            }   
+            }
 
             return Json(tupleList);
         }
