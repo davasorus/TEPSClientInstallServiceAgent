@@ -85,7 +85,6 @@ namespace testInstallServer.Classes
                             string logEntry = ex.ToString();
 
                             loggingClass.logEntryWriter(logEntry, "error");
-                            loggingClass.logEntryWriter($"The path on the primary tab is blank. Please put {nwpsUpdate} in {preReqRun} OR fill in the path. ", "debug");
 
                             returnedValue = "false";
                         }
@@ -124,7 +123,6 @@ namespace testInstallServer.Classes
                             string logEntry = ex.ToString();
 
                             loggingClass.logEntryWriter(logEntry, "error");
-                            loggingClass.logEntryWriter($"The path on the primary tab is blank. Please put {nwpsUpdate} in {preReqRun} OR fill in the path. ", "debug");
 
                             returnedValue = "false";
                         }
@@ -550,7 +548,6 @@ namespace testInstallServer.Classes
                     string logEntry = ex.ToString();
 
                     loggingClass.logEntryWriter(logEntry, "error");
-                    loggingClass.logEntryWriter($"The path on the primary tab is blank. Please put {nwpsUpdate} in {preReqRun} OR fill in the path. ", "debug");
 
                     returnedValue = "false";
                 }
