@@ -16,7 +16,6 @@ namespace testInstallServer.Classes
         private readonly string sqlCE4064Name = "Microsoft SQL Server Compact 4.0 x64 ENU";
         private readonly string nwpsGis32Name = "New World GIS Components x86";
         private readonly string nwpsGis64Name = "New World GIS Components x64";
-        private readonly string nwpsUpdateName = "New World Automatic Updater";
         private readonly string sql2008Clr32Name = "Microsoft SQL Server System CLR Types";
         private readonly string sql2008Clr64Name = "Microsoft SQL Server System CLR Types (x64)";
         private readonly string sql2012Clr32Name = "Microsoft SQL Server System CLR Types";
@@ -66,11 +65,13 @@ namespace testInstallServer.Classes
         //this searches through all of TEPS software (pre reqs, and Clients) to see what is installed/not installed
         public async Task<IHttpActionResult> GetInstalledSoftware()
         {
+            tupleData tupleOldUpdaterSuccess = new tupleData { responseCode = "200 OK", message = "New World Automatic Updater found on machine" };
+
             List<tupleData> tupleList = new List<tupleData>();
 
             List<string> knownSoftwareList = new List<string>()
         {
-            sqlCE3532Name,sqlCE3564Name, sqlCE4064Name, nwpsGis32Name, nwpsGis64Name,nwpsUpdateName, sql2008Clr32Name, sql2008Clr64Name,
+            sqlCE3532Name,sqlCE3564Name, sqlCE4064Name, nwpsGis32Name, nwpsGis64Name, sql2008Clr32Name, sql2008Clr64Name,
             SCPD6Name,SCPD4Name, fireMobileName,policeMobileName, mergeName, printerName, printerDriverName, x86COM, x64COM,tepsUpdater,
             LERMS1, CAD2, incidentObserv1, sql2012Clr32Name, sql2012Clr64Name
         };
@@ -85,7 +86,7 @@ namespace testInstallServer.Classes
                 }
                 else
                 {
-                    loggingClass.logEntryWriter($"{s} not found on machine", "Error");
+                    loggingClass.logEntryWriter($"{s} not found on machine", "error");
 
                     tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = $"{s} not found on machine" });
                 }
