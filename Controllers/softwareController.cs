@@ -82,9 +82,7 @@ namespace testInstallServer.Classes
         }
 
         // GET
-        // TODO #2 this needs to be replaced with something more useful -- change the name to GetPresentFiles() returns the files present locally in the sub directories
-        // C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Agent\Clients AND \PreReqs AND \Addons Folders
-        // for each for path, and name for prereqs, return them in a list
+       
         public async Task<IHttpActionResult> GetPresentFiles()
         {
             List<tupleData> tupleList = new List<tupleData>();
@@ -106,6 +104,14 @@ namespace testInstallServer.Classes
             List<string> custFilesAddon = new List<string>()
             {
             };
+
+            // TODO 2.1
+            //so it looks like our comparisons are still wonky
+            //you may want to do two foreach loops 
+            //     since we are checking one list to another list we would need to iterate through both lists.
+            //        hint: you could actually drop the list searching code into the Classes/UtilityClass.cs file and off load the computational work to background thread
+            //   
+            //this is the response that lead me to this conclusion {\"responseCode\":\"400 Bad Request\",\"message\":\"System.Collections.Generic.List`1[System.String] not found on machine\"},
 
             foreach (var file in filePreReq)
             {
