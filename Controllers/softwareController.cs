@@ -155,7 +155,7 @@ namespace testInstallServer.Classes
 
             List<string> knownSoftwareList = new List<string>()
         {
-            sqlCE3532Name,sqlCE3564Name, sqlCE4064Name, nwpsGis32Name, nwpsGis64Name,nwpsUpdateName, sql2008Clr32Name, sql2008Clr64Name,
+            sqlCE3532Name,sqlCE3564Name, sqlCE4064Name, nwpsGis32Name, nwpsGis64Name, sql2008Clr32Name, sql2008Clr64Name,
             SCPD6Name,SCPD4Name, fireMobileName,policeMobileName, mergeName, printerName, printerDriverName, x86COM, x64COM,tepsUpdater,
             LERMS1, CAD2, incidentObserv1, sql2012Clr32Name, sql2012Clr64Name
         };
@@ -170,7 +170,7 @@ namespace testInstallServer.Classes
                 }
                 else
                 {
-                    loggingClass.logEntryWriter($"{s} not found on machine", "Error");
+                    loggingClass.logEntryWriter($"{s} not found on machine", "error");
 
                     tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = $"{s} not found on machine" });
                 }
