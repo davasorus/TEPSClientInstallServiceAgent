@@ -1,5 +1,6 @@
 # TEPS Client Install Agent
 Agent service that does the actual software management on a end users machine
+ - [![DotNet Framework 4.8 Build Status](https://github.com/davasorus/TEPSClientInstallServiceAgent/actions/workflows/NetFXCI.yml/badge.svg)](https://github.com/davasorus/TEPSClientInstallServiceAgent/actions/workflows/NetFXCI.yml)
 
 
 ## Testing the API 
