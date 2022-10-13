@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -16,6 +17,7 @@ namespace testInstallServer.Classes
         private readonly string sqlCE4064Name = "Microsoft SQL Server Compact 4.0 x64 ENU";
         private readonly string nwpsGis32Name = "New World GIS Components x86";
         private readonly string nwpsGis64Name = "New World GIS Components x64";
+        private readonly string nwpsUpdateName = "New World Automatic Updater";
         private readonly string sql2008Clr32Name = "Microsoft SQL Server System CLR Types";
         private readonly string sql2008Clr64Name = "Microsoft SQL Server System CLR Types (x64)";
         private readonly string sql2012Clr32Name = "Microsoft SQL Server System CLR Types";
@@ -33,6 +35,34 @@ namespace testInstallServer.Classes
         private readonly string LERMS1 = "New World MSP Client";
         private readonly string CAD2 = "New World Enterprise CAD Client";
         private readonly string incidentObserv1 = "Enterprise CAD Incident Observer Client";
+
+        private readonly string dotNet47 = "dotNetFx471_Full_setup_Offline.exe";
+        private readonly string dotNet48 = "ndp48-x86-x64-allos-enu.exe";
+        private readonly string sqlCE3532 = "SSCERuntime_x86-ENU.msi";
+        private readonly string sqlCE3564 = "SSCERuntime_x64-ENU.msi";
+        private readonly string sqlCE4032 = "SSCERuntime_x86-ENU-4.0.exe";
+        private readonly string sqlCE4064 = "SSCERuntime_x64-ENU-4.0.exe";
+        private readonly string nwpsGis32 = "NewWorld.Gis.Components.x86.msi";
+        private readonly string nwpsGis64 = "NewWorld.Gis.Components.x64.msi";
+        private readonly string msSync64 = "Synchronization-v2.1-x64-ENU.msi";
+        private readonly string msProServ64 = "ProviderServices-v2.1-x64-ENU.msi";
+        private readonly string msDbPro64 = "DatabaseProviders-v3.1-x64-ENU.msi";
+        private readonly string msSync32 = "Synchronization-v2.1-x86-ENU.msi";
+        private readonly string msProServ32 = "ProviderServices-v2.1-x86-ENU.msi";
+        private readonly string msDbPro32 = "DatabaseProviders-v3.1-x86-ENU.msi";
+        private readonly string nwpsUpdate = "NewWorld.Management.Updater.msi";
+        private readonly string sqlClr32 = "SQLSysClrTypesx86.msi";
+        private readonly string sqlClr64 = "SQLSysClrTypesx64.msi";
+        private readonly string sqlClr201232 = "SQLSysClrTypes2012.msi";
+        private readonly string sqlClr201264 = "SQLSysClrTypesx642012.msi";
+        private readonly string SCPD6 = "SPD6-4-8993.exe";
+        private readonly string SCPD6AX = "SPDX6-4-3091.exe";
+        private readonly string SCPD4 = "SPD4-0-92.exe";
+        private readonly string mspClient = "NewWorldMSPClient.msi";
+        private readonly string cadClient64 = "NewWorld.Enterprise.CAD.Client.x64.msi";
+        private readonly string cadClient32 = "NewWorld.Enterprise.CAD.Client.x86.msi";
+        private readonly string cadIncObs64 = "NewWorld.Enterprise.CAD.IncidentObserver.x64.msi";
+        private string returnedValue = "";
 
         private readonly string preReqRun = @"C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Agent\PreReqs";
         private readonly string nwsAddonLocalRun = @"C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Agent\Addons";
@@ -54,9 +84,65 @@ namespace testInstallServer.Classes
         // GET
         // TODO #2 this needs to be replaced with something more useful -- change the name to GetPresentFiles() returns the files present locally in the sub directories
         // C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Agent\Clients AND \PreReqs AND \Addons Folders
-        public async Task<IHttpActionResult> GetStringbyID()
+        // for each for path, and name for prereqs, return them in a list
+        public async Task<IHttpActionResult> GetPresentFiles()
         {
             List<tupleData> tupleList = new List<tupleData>();
+            var filePreReq = Directory.GetFiles(preReqRun);
+            var fileAddOn = Directory.GetFiles(nwsAddonLocalRun);
+            var fileClient = Directory.GetFiles(clientRun);
+
+            List<string> custFilesPre = new List<string>()
+            {
+                dotNet47, dotNet48, sqlCE3532, sqlCE3564, sqlCE4032,sqlCE4064, nwpsGis32, nwpsGis64, msSync32,
+                msSync64, msProServ64, msDbPro64, msProServ32, msProServ32, msDbPro32, nwpsUpdate, sqlClr32, sqlClr64,
+                sqlClr32, sqlClr64, sqlClr201232, sqlClr201264, SCPD4, SCPD6, SCPD6AX
+            };
+            List<string> custFilesClient = new List<string>()
+            {
+                mspClient, cadClient32, cadClient64, cadIncObs64
+            };
+
+            List<string> custFilesAddon = new List<string>()
+            {
+            };
+
+            foreach (var file in filePreReq)
+            {
+                if (file.Equals(custFilesPre))
+                {
+                    tupleList.Add(new tupleData() { responseCode = "200 OK", message = $"{custFilesPre} found on machine" });
+                }
+                else
+                {
+                    tupleList.Add(new tupleData()
+                    { responseCode = "400 Bad Request", message = $"{custFilesPre} not found on machine" });
+                }
+            }
+
+            foreach (var file in fileAddOn)
+            {
+                if (file.Equals(custFilesAddon))
+                {
+                    tupleList.Add(new tupleData() { responseCode = "200 OK", message = $"{custFilesAddon} found on machine" });
+                }
+                else
+                {
+                    tupleList.Add(new tupleData() { responseCode = "400 Bad Request", message = $"{custFilesAddon} not found on machine" });
+                }
+            }
+
+            foreach (var file in fileClient)
+            {
+                if (file.Equals(custFilesClient))
+                {
+                    tupleList.Add(new tupleData() { responseCode = "200 OK", message = $"{custFilesClient} found on machine" });
+                }
+                else
+                {
+                    tupleList.Add(new tupleData() { responseCode = "400 Bad Request", message = $"{custFilesClient} not found on machine" });
+                }
+            }
 
             return Json(tupleList);
         }
@@ -65,8 +151,6 @@ namespace testInstallServer.Classes
         //this searches through all of TEPS software (pre reqs, and Clients) to see what is installed/not installed
         public async Task<IHttpActionResult> GetInstalledSoftware()
         {
-            tupleData tupleOldUpdaterSuccess = new tupleData { responseCode = "200 OK", message = "New World Automatic Updater found on machine" };
-
             List<tupleData> tupleList = new List<tupleData>();
 
             List<string> knownSoftwareList = new List<string>()
