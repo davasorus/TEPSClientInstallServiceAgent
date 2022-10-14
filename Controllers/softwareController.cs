@@ -106,7 +106,7 @@ namespace testInstallServer.Classes
             };
 
             // TODO 2.1
-            //so it looks like our comparisons are still wonky
+            //so it looks like our comparisons are still wonky   
             //you may want to do two foreach loops 
             //     since we are checking one list to another list we would need to iterate through both lists.
             //        hint: you could actually drop the list searching code into the Classes/UtilityClass.cs file and off load the computational work to background thread
