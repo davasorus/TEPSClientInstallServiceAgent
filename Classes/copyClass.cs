@@ -10,9 +10,7 @@ namespace testInstallServer.Classes
 {
     public class copyClass
     {
-        private readonly string preReqRun = @"C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Agent\PreReqs";
-        private readonly string nwsAddonLocalRun = @"C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Agent\Addons";
-        private readonly string clientRun = @"C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Agent\Clients";
+       
         private bool flag;
 
         private loggingClass loggingClass = new loggingClass();
@@ -27,7 +25,7 @@ namespace testInstallServer.Classes
             {
                 string filename = Path.GetFileName(FileNamePath);
 
-                string replace = Path.Combine(preReqRun, filename);
+                string replace = Path.Combine(configValues.preReqRun, filename);
 
                 File.Copy(FileNamePath, replace, true);
 
@@ -305,9 +303,9 @@ namespace testInstallServer.Classes
         {
             Directory.CreateDirectory(@"C:\Temp");
 
-            Directory.CreateDirectory(preReqRun);
-            Directory.CreateDirectory(nwsAddonLocalRun);
-            Directory.CreateDirectory(clientRun);
+            Directory.CreateDirectory(configValues.preReqRun);
+            Directory.CreateDirectory(configValues.nwsAddonLocalRun);
+            Directory.CreateDirectory(configValues.clientRun);
         }
 
         //Deletes folders by path and recursively deletes sub folders
