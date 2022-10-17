@@ -6,29 +6,6 @@ namespace testInstallServer.Classes
 {
     public class preReqStatusClass
     {
-        private readonly string nwpsUpdate = "NewWorld.Management.Updater.msi";
-        private readonly string sqlClr32 = "SQLSysClrTypesx86.msi";
-        private readonly string sqlClr64 = "SQLSysClrTypesx64.msi";
-        private readonly string SCPD6 = "SPD6-4-8993.exe";
-        private readonly string SCPD6AX = "SPDX6-4-3091.exe";
-        private readonly string SCPD4 = "SPD4-0-92.exe";
-        private readonly string sqlCE3532 = "SSCERuntime_x86-ENU.msi";
-        private readonly string sqlCE3564 = "SSCERuntime_x64-ENU.msi";
-        private readonly string sqlCE4064 = "SSCERuntime_x64-ENU-4.0.exe";
-        private readonly string nwpsGis32 = "NewWorld.Gis.Components.x86.msi";
-        private readonly string nwpsGis64 = "NewWorld.Gis.Components.x64.msi";
-
-        private readonly string sqlCE3532Name = "Microsoft SQL Server Compact 3.5 SP2 ENU";
-        private readonly string sqlCE3564Name = "Microsoft SQL Server Compact 3.5 SP2 x64 ENU";
-        private readonly string sqlCE4064Name = "Microsoft SQL Server Compact 4.0 x64 ENU";
-        private readonly string nwpsGis32Name = "New World GIS Components x86";
-        private readonly string nwpsGis64Name = "New World GIS Components x64";
-        private readonly string nwpsUpdateName = "New World Automatic Updater";
-        private readonly string sqlClr32Name = "Microsoft SQL Server System CLR Types";
-        private readonly string sqlClr64Name = "Microsoft SQL Server System CLR Types (x64)";
-        private readonly string SCPD6Name = "ScenePD 6 Desktop Edition";
-        private readonly string SCPD4Name = "ScenePD 4";
-
         private bool present;
         private bool present1;
 
@@ -65,14 +42,15 @@ namespace testInstallServer.Classes
         //used to modify the pre req checker tab from the Uninstall function
         public bool uninstallChecker(string programName)
         {
-            string[] preReqNames = { nwpsUpdateName, sqlCE4064Name, nwpsGis64Name,nwpsGis32Name,sqlClr64Name,sqlClr32Name, sqlCE3564Name, sqlCE3532Name
-                    , SCPD6Name,SCPD4Name };
+            string[] preReqNames = { masterPreReqList.nwpsUpdateName, masterPreReqList.sqlCE4064Name, masterPreReqList.nwpsGis64Name,masterPreReqList.nwpsGis32Name,
+            masterPreReqList.sql2008Clr64Name,masterPreReqList.sql2008Clr64Name, masterPreReqList.sqlCE3564Name, masterPreReqList.sqlCE3532Name, masterPreReqList.SCPD6Name,
+            masterPreReqList.SCPD4Name };
 
             foreach (string preReqName in preReqNames)
             {
                 if (programName == preReqName)
                 {
-                    if (programName.ToString() == nwpsUpdateName)
+                    if (programName.ToString() == masterPreReqList.nwpsUpdateName)
                     {
                         if (preReqStatusObj.Updater == "Uninstalled")
                         {
@@ -86,7 +64,7 @@ namespace testInstallServer.Classes
                         }
                     }
 
-                    if (programName.ToString() == sqlCE4064Name)
+                    if (programName.ToString() == masterPreReqList.sqlCE4064Name)
                     {
                         if (preReqStatusObj.SqlCompact4 == "Uninstalled")
                         {
@@ -100,7 +78,7 @@ namespace testInstallServer.Classes
                         }
                     }
 
-                    if (programName.ToString() == nwpsGis32Name)
+                    if (programName.ToString() == masterPreReqList.nwpsGis32Name)
                     {
                         if (preReqStatusObj.GISComp32 == "Uninstalled")
                         {
@@ -114,7 +92,7 @@ namespace testInstallServer.Classes
                         }
                     }
 
-                    if (programName.ToString() == nwpsGis64Name)
+                    if (programName.ToString() == masterPreReqList.nwpsGis64Name)
                     {
                         if (preReqStatusObj.GISComp64 == "Uninstalled")
                         {
@@ -128,7 +106,7 @@ namespace testInstallServer.Classes
                         }
                     }
 
-                    if (programName.ToString() == sqlClr32Name)
+                    if (programName.ToString() == masterPreReqList.sql2008Clr32Name)
                     {
                         if (preReqStatusObj.SQLCLR32 == "Uninstalled")
                         {
@@ -142,7 +120,7 @@ namespace testInstallServer.Classes
                         }
                     }
 
-                    if (programName.ToString() == sqlClr64Name)
+                    if (programName.ToString() == masterPreReqList.sql2008Clr64Name)
                     {
                         if (preReqStatusObj.SQLCLR64 == "Uninstalled")
                         {
@@ -156,7 +134,7 @@ namespace testInstallServer.Classes
                         }
                     }
 
-                    if (programName.ToString() == sqlCE3532Name)
+                    if (programName.ToString() == masterPreReqList.sqlCE3532Name)
                     {
                         if (preReqStatusObj.SQLCompact3532 == "Uninstalled")
                         {
@@ -170,7 +148,7 @@ namespace testInstallServer.Classes
                         }
                     }
 
-                    if (programName.ToString() == sqlCE3564Name)
+                    if (programName.ToString() == masterPreReqList.sqlCE3564Name)
                     {
                         if (preReqStatusObj.SQLCompact3564 == "Uninstalled")
                         {
@@ -184,7 +162,7 @@ namespace testInstallServer.Classes
                         }
                     }
 
-                    if (programName.ToString() == SCPD6Name)
+                    if (programName.ToString() == masterPreReqList.SCPD6Name)
                     {
                         if (preReqStatusObj.ScenePD == "Uninstalled")
                         {
@@ -198,7 +176,7 @@ namespace testInstallServer.Classes
                         }
                     }
 
-                    if (programName.ToString() == SCPD4Name)
+                    if (programName.ToString() == masterPreReqList.SCPD4Name)
                     {
                         if (preReqStatusObj.ScenePD == "Uninstalled")
                         {
@@ -224,14 +202,14 @@ namespace testInstallServer.Classes
         //designed to modify the pre req checker tab from the run/install function
         public bool installChecker(string programName)
         {
-            string[] preReqNames = { nwpsUpdate, sqlCE4064, nwpsGis64, nwpsGis32, sqlClr64, sqlClr32, sqlCE3564, sqlCE3532
-                    , SCPD6 , SCPD6AX , SCPD4 };
+            string[] preReqNames = { masterPreReqList.nwpsUpdate, masterPreReqList.sqlCE4064, masterPreReqList.nwpsGis64, masterPreReqList.nwpsGis32, masterPreReqList.sqlClr64,
+                masterPreReqList.sqlClr32, masterPreReqList.sqlCE3564, masterPreReqList.sqlCE3532, masterPreReqList.SCPD6 , masterPreReqList.SCPD6AX , masterPreReqList.SCPD4 };
 
             foreach (string preReqName in preReqNames)
             {
                 if (programName == preReqName)
                 {
-                    if (programName.ToString() == nwpsUpdate)
+                    if (programName.ToString() == masterPreReqList.nwpsUpdate)
                     {
                         if (preReqStatusObj.Updater == "Installed")
                         {
@@ -245,7 +223,7 @@ namespace testInstallServer.Classes
                         }
                     }
 
-                    if (programName.ToString() == sqlCE4064)
+                    if (programName.ToString() == masterPreReqList.sqlCE4064)
                     {
                         if (preReqStatusObj.SqlCompact4 == "Installed")
                         {
@@ -259,7 +237,7 @@ namespace testInstallServer.Classes
                         }
                     }
 
-                    if (programName.ToString() == nwpsGis32)
+                    if (programName.ToString() == masterPreReqList.nwpsGis32)
                     {
                         if (preReqStatusObj.GISComp32 == "Installed")
                         {
@@ -273,7 +251,7 @@ namespace testInstallServer.Classes
                         }
                     }
 
-                    if (programName.ToString() == nwpsGis64)
+                    if (programName.ToString() == masterPreReqList.nwpsGis64)
                     {
                         if (preReqStatusObj.GISComp64 == "Installed")
                         {
@@ -287,7 +265,7 @@ namespace testInstallServer.Classes
                         }
                     }
 
-                    if (programName.ToString() == sqlClr32)
+                    if (programName.ToString() == masterPreReqList.sqlClr32)
                     {
                         if (preReqStatusObj.SQLCLR32 == "Installed")
                         {
@@ -301,7 +279,7 @@ namespace testInstallServer.Classes
                         }
                     }
 
-                    if (programName.ToString() == sqlClr64)
+                    if (programName.ToString() == masterPreReqList.sqlClr64)
                     {
                         if (preReqStatusObj.SQLCLR64 == "Installed")
                         {
@@ -315,7 +293,7 @@ namespace testInstallServer.Classes
                         }
                     }
 
-                    if (programName.ToString() == sqlCE3532)
+                    if (programName.ToString() == masterPreReqList.sqlCE3532)
                     {
                         if (preReqStatusObj.SQLCompact3532 == "Installed")
                         {
@@ -329,7 +307,7 @@ namespace testInstallServer.Classes
                         }
                     }
 
-                    if (programName.ToString() == sqlCE3564)
+                    if (programName.ToString() == masterPreReqList.sqlCE3564)
                     {
                         if (preReqStatusObj.SQLCompact3564 == "Installed")
                         {
@@ -343,7 +321,7 @@ namespace testInstallServer.Classes
                         }
                     }
 
-                    if (programName.ToString() == SCPD6)
+                    if (programName.ToString() == masterPreReqList.SCPD6)
                     {
                         if (preReqStatusObj.ScenePD == "Installed")
                         {
@@ -357,7 +335,7 @@ namespace testInstallServer.Classes
                         }
                     }
 
-                    if (programName.ToString() == SCPD4)
+                    if (programName.ToString() == masterPreReqList.SCPD4)
                     {
                         if (preReqStatusObj.ScenePD == "Installed")
                         {
@@ -371,7 +349,7 @@ namespace testInstallServer.Classes
                         }
                     }
 
-                    if (programName.ToString() == SCPD6AX)
+                    if (programName.ToString() == masterPreReqList.SCPD6AX)
                     {
                         if (preReqStatusObj.ScenePD == "Installed")
                         {

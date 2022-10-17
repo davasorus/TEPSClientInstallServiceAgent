@@ -10,35 +10,6 @@ namespace testInstallServer.Classes
 {
     internal class installerClass
     {
-        private readonly string preReqRun = @"C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Agent\PreReqs";
-        private readonly string nwsAddonLocalRun = @"C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Agent\Addons";
-        private readonly string clientRun = @"C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Agent\Clients";
-        private readonly string dotNet47 = "dotNetFx471_Full_setup_Offline.exe";
-        private readonly string dotNet48 = "ndp48-x86-x64-allos-enu.exe";
-        private readonly string sqlCE3532 = "SSCERuntime_x86-ENU.msi";
-        private readonly string sqlCE3564 = "SSCERuntime_x64-ENU.msi";
-        private readonly string sqlCE4032 = "SSCERuntime_x86-ENU-4.0.exe";
-        private readonly string sqlCE4064 = "SSCERuntime_x64-ENU-4.0.exe";
-        private readonly string nwpsGis32 = "NewWorld.Gis.Components.x86.msi";
-        private readonly string nwpsGis64 = "NewWorld.Gis.Components.x64.msi";
-        private readonly string msSync64 = "Synchronization-v2.1-x64-ENU.msi";
-        private readonly string msProServ64 = "ProviderServices-v2.1-x64-ENU.msi";
-        private readonly string msDbPro64 = "DatabaseProviders-v3.1-x64-ENU.msi";
-        private readonly string msSync32 = "Synchronization-v2.1-x86-ENU.msi";
-        private readonly string msProServ32 = "ProviderServices-v2.1-x86-ENU.msi";
-        private readonly string msDbPro32 = "DatabaseProviders-v3.1-x86-ENU.msi";
-        private readonly string nwpsUpdate = "NewWorld.Management.Updater.msi";
-        private readonly string sqlClr32 = "SQLSysClrTypesx86.msi";
-        private readonly string sqlClr64 = "SQLSysClrTypesx64.msi";
-        private readonly string sqlClr201232 = "SQLSysClrTypes2012.msi";
-        private readonly string sqlClr201264 = "SQLSysClrTypesx642012.msi";
-        private readonly string SCPD6 = "SPD6-4-8993.exe";
-        private readonly string SCPD6AX = "SPDX6-4-3091.exe";
-        private readonly string SCPD4 = "SPD4-0-92.exe";
-        private readonly string mspClient = "NewWorldMSPClient.msi";
-        private readonly string cadClient64 = "NewWorld.Enterprise.CAD.Client.x64.msi";
-        private readonly string cadClient32 = "NewWorld.Enterprise.CAD.Client.x86.msi";
-        private readonly string cadIncObs64 = "NewWorld.Enterprise.CAD.IncidentObserver.x64.msi";
         private string returnedValue = "";
 
         private loggingClass loggingClass = new loggingClass();
@@ -61,21 +32,21 @@ namespace testInstallServer.Classes
                 loggingClass.logEntryWriter(".Net 3.5 failed to install", "error");
             }
 
-            if (Directory.Exists(preReqRun))
+            if (Directory.Exists(configValues.preReqRun))
             {
-                if (File.Exists(Path.Combine(preReqRun, dotNet47)))
+                if (File.Exists(Path.Combine(configValues.preReqRun, masterPreReqList.dotNet47)))
                 {
                     loggingClass.logEntryWriter("Running 4.7.1 .Net", "info");
 
                     try
                     {
-                        returnedValue = installProgramAsync(dotNet47, preReqRun).Result;
+                        returnedValue = installProgramAsync(masterPreReqList.dotNet47, configValues.preReqRun).Result;
                     }
                     catch (Exception ex)
                     {
                         if (ex.ToString().Contains("The system cannot find the file specified"))
                         {
-                            string logEntry = $"unable to find {dotNet47}, could not install. Verify that it was downloaded.";
+                            string logEntry = $"unable to find {masterPreReqList.dotNet47}, could not install. Verify that it was downloaded.";
                             loggingClass.logEntryWriter(logEntry, "error");
 
                             returnedValue = "false";
@@ -107,13 +78,13 @@ namespace testInstallServer.Classes
 
                     try
                     {
-                        returnedValue = installProgramAsync(dotNet48, preReqRun).Result;
+                        returnedValue = installProgramAsync(masterPreReqList.dotNet48, configValues.preReqRun).Result;
                     }
                     catch (Exception ex)
                     {
                         if (ex.ToString().Contains("The system cannot find the file specified"))
                         {
-                            string logEntry = $"unable to find {dotNet48}, could not install. Verify that it was downloaded.";
+                            string logEntry = $"unable to find {masterPreReqList.dotNet48}, could not install. Verify that it was downloaded.";
                             loggingClass.logEntryWriter(logEntry, "error");
 
                             returnedValue = "false";
@@ -141,19 +112,19 @@ namespace testInstallServer.Classes
             }
             else
             {
-                if (copyClass.preReqSearch(Path.Combine(installerPath, "_Client-Installation"), dotNet48) == 1)
+                if (copyClass.preReqSearch(Path.Combine(installerPath, "_Client-Installation"), masterPreReqList.dotNet48) == 1)
                 {
                     try
                     {
                         loggingClass.logEntryWriter("Running 4.8 .Net", "info");
 
-                        returnedValue = preReqRunAsync(Path.Combine(installerPath, "_Client-Installation"), dotNet48).Result;
+                        returnedValue = preReqRunAsync(Path.Combine(installerPath, "_Client-Installation"), masterPreReqList.dotNet48).Result;
                     }
                     catch (Exception ex)
                     {
                         if (ex.ToString().Contains("The system cannot find the file specified"))
                         {
-                            string logEntry = $"unable to find {dotNet48}, could not install. Verify that the network path is correct.";
+                            string logEntry = $"unable to find {masterPreReqList.dotNet48}, could not install. Verify that the network path is correct.";
                             loggingClass.logEntryWriter(logEntry, "error");
 
                             returnedValue = "false";
@@ -176,13 +147,13 @@ namespace testInstallServer.Classes
                     {
                         loggingClass.logEntryWriter("Running 4.7.1 .Net", "info");
 
-                        returnedValue = preReqRunAsync(Path.Combine(installerPath, "_Client-Installation"), dotNet47).Result;
+                        returnedValue = preReqRunAsync(Path.Combine(installerPath, "_Client-Installation"), masterPreReqList.dotNet47).Result;
                     }
                     catch (Exception ex)
                     {
                         if (ex.ToString().Contains("The system cannot find the file specified"))
                         {
-                            string logEntry = $"unable to find {dotNet47}, could not install. Verify that the network path is correct.";
+                            string logEntry = $"unable to find {masterPreReqList.dotNet47}, could not install. Verify that the network path is correct.";
                             loggingClass.logEntryWriter(logEntry, "error");
 
                             returnedValue = "false";
@@ -213,13 +184,13 @@ namespace testInstallServer.Classes
 
                 try
                 {
-                    if (File.Exists(Path.Combine(preReqRun, sqlCE3532)))
+                    if (File.Exists(Path.Combine(configValues.preReqRun, masterPreReqList.sqlCE3532)))
                     {
-                        returnedValue = installProgramAsync(sqlCE3532, preReqRun).Result;
+                        returnedValue = installProgramAsync(masterPreReqList.sqlCE3532, configValues.preReqRun).Result;
                     }
                     else
                     {
-                        returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), sqlCE3532);
+                        returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), masterPreReqList.sqlCE3532);
                     }
                 }
                 catch (Exception ex)
@@ -237,13 +208,13 @@ namespace testInstallServer.Classes
 
                 try
                 {
-                    if (File.Exists(Path.Combine(preReqRun, sqlCE3532)))
+                    if (File.Exists(Path.Combine(configValues.preReqRun, masterPreReqList.sqlCE3532)))
                     {
-                        returnedValue = await installProgramAsync(sqlCE3564, preReqRun);
+                        returnedValue = await installProgramAsync(masterPreReqList.sqlCE3564, configValues.preReqRun);
                     }
                     else
                     {
-                        returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), sqlCE3564);
+                        returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), masterPreReqList.sqlCE3564);
                     }
                 }
                 catch (Exception ex)
@@ -263,13 +234,13 @@ namespace testInstallServer.Classes
 
                 try
                 {
-                    if (File.Exists(Path.Combine(preReqRun, sqlCE3532)))
+                    if (File.Exists(Path.Combine(configValues.preReqRun, masterPreReqList.sqlCE3532)))
                     {
-                        returnedValue = await installProgramAsync(sqlCE3532, preReqRun);
+                        returnedValue = await installProgramAsync(masterPreReqList.sqlCE3532, configValues.preReqRun);
                     }
                     else
                     {
-                        returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), sqlCE3532);
+                        returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), masterPreReqList.sqlCE3532);
                     }
                 }
                 catch (Exception ex)
@@ -296,13 +267,13 @@ namespace testInstallServer.Classes
 
                 try
                 {
-                    if (File.Exists(Path.Combine(preReqRun, (nwpsGis32))))
+                    if (File.Exists(Path.Combine(configValues.preReqRun, (masterPreReqList.nwpsGis32))))
                     {
-                        returnedValue = await installProgramAsync(nwpsGis32, preReqRun);
+                        returnedValue = await installProgramAsync(masterPreReqList.nwpsGis32, configValues.preReqRun);
                     }
                     else
                     {
-                        returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), (nwpsGis32));
+                        returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), masterPreReqList.nwpsGis32);
                     }
                 }
                 catch (Exception ex)
@@ -320,13 +291,13 @@ namespace testInstallServer.Classes
 
                 try
                 {
-                    if (File.Exists(Path.Combine(preReqRun, nwpsGis64)))
+                    if (File.Exists(Path.Combine(configValues.preReqRun, masterPreReqList.nwpsGis64)))
                     {
-                        returnedValue = await installProgramAsync(nwpsGis64, preReqRun);
+                        returnedValue = await installProgramAsync(masterPreReqList.nwpsGis64, configValues.preReqRun);
                     }
                     else
                     {
-                        returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), nwpsGis64);
+                        returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), masterPreReqList.nwpsGis64);
                     }
                 }
                 catch (Exception ex)
@@ -346,13 +317,13 @@ namespace testInstallServer.Classes
 
                 try
                 {
-                    if (File.Exists(Path.Combine(preReqRun, (nwpsGis32))))
+                    if (File.Exists(Path.Combine(configValues.preReqRun, masterPreReqList.nwpsGis32)))
                     {
-                        returnedValue = await installProgramAsync(nwpsGis32, preReqRun);
+                        returnedValue = await installProgramAsync(masterPreReqList.nwpsGis32, configValues.preReqRun);
                     }
                     else
                     {
-                        returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), nwpsGis32);
+                        returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), masterPreReqList.nwpsGis32);
                     }
                 }
                 catch (Exception ex)
@@ -379,13 +350,13 @@ namespace testInstallServer.Classes
 
                 try
                 {
-                    if (File.Exists(Path.Combine(preReqRun, msSync64)))
+                    if (File.Exists(Path.Combine(configValues.preReqRun, masterPreReqList.msSync64)))
                     {
-                        returnedValue = await installProgramAsync(msSync64, preReqRun);
+                        returnedValue = await installProgramAsync(masterPreReqList.msSync64, configValues.preReqRun);
                     }
                     else
                     {
-                        returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), msSync64);
+                        returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), masterPreReqList.msSync64);
                     }
                 }
                 catch (Exception ex)
@@ -403,13 +374,13 @@ namespace testInstallServer.Classes
 
                 try
                 {
-                    if (File.Exists(Path.Combine(preReqRun, msProServ64)))
+                    if (File.Exists(Path.Combine(configValues.preReqRun, masterPreReqList.msProServ64)))
                     {
-                        returnedValue = await installProgramAsync(msProServ64, preReqRun);
+                        returnedValue = await installProgramAsync(masterPreReqList.msProServ64, configValues.preReqRun);
                     }
                     else
                     {
-                        returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), msProServ64);
+                        returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), masterPreReqList.msProServ64);
                     }
                 }
                 catch (Exception ex)
@@ -427,13 +398,13 @@ namespace testInstallServer.Classes
 
                 try
                 {
-                    if (File.Exists(Path.Combine(preReqRun, msDbPro64)))
+                    if (File.Exists(Path.Combine(configValues.preReqRun, masterPreReqList.msDbPro64)))
                     {
-                        returnedValue = await installProgramAsync(msDbPro64, preReqRun);
+                        returnedValue = await installProgramAsync(masterPreReqList.msDbPro64, configValues.preReqRun);
                     }
                     else
                     {
-                        returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), msDbPro64);
+                        returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), masterPreReqList.msDbPro64);
                     }
                 }
                 catch (Exception ex)
@@ -453,13 +424,13 @@ namespace testInstallServer.Classes
 
                 try
                 {
-                    if (File.Exists(Path.Combine(preReqRun, msSync32)))
+                    if (File.Exists(Path.Combine(configValues.preReqRun, masterPreReqList.msSync32)))
                     {
-                        returnedValue = await installProgramAsync(msSync32, preReqRun);
+                        returnedValue = await installProgramAsync(masterPreReqList.msSync32, configValues.preReqRun);
                     }
                     else
                     {
-                        returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), msSync32);
+                        returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), masterPreReqList.msSync32);
                     }
                 }
                 catch (Exception ex)
@@ -477,13 +448,13 @@ namespace testInstallServer.Classes
 
                 try
                 {
-                    if (File.Exists(Path.Combine(preReqRun, msProServ32)))
+                    if (File.Exists(Path.Combine(configValues.preReqRun, masterPreReqList.msProServ32)))
                     {
-                        returnedValue = await installProgramAsync(msProServ32, preReqRun);
+                        returnedValue = await installProgramAsync(masterPreReqList.msProServ32, configValues.preReqRun);
                     }
                     else
                     {
-                        returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), msProServ32);
+                        returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), masterPreReqList.msProServ32);
                     }
                 }
                 catch (Exception ex)
@@ -501,13 +472,13 @@ namespace testInstallServer.Classes
 
                 try
                 {
-                    if (File.Exists(Path.Combine(preReqRun, msProServ32)))
+                    if (File.Exists(Path.Combine(configValues.preReqRun, masterPreReqList.msProServ32)))
                     {
-                        returnedValue = await installProgramAsync(msDbPro32, preReqRun);
+                        returnedValue = await installProgramAsync(masterPreReqList.msDbPro32, configValues.preReqRun);
                     }
                     else
                     {
-                        returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), msProServ32);
+                        returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), masterPreReqList.msProServ32);
                     }
                 }
                 catch (Exception ex)
@@ -532,13 +503,13 @@ namespace testInstallServer.Classes
             {
                 loggingClass.logEntryWriter("Running Updater Installer", "info");
 
-                if (File.Exists(Path.Combine(preReqRun, nwpsUpdate)))
+                if (File.Exists(Path.Combine(configValues.preReqRun, masterPreReqList.nwpsUpdate)))
                 {
-                    returnedValue = await installProgramAsync(nwpsUpdate, preReqRun);
+                    returnedValue = await installProgramAsync(masterPreReqList.nwpsUpdate, configValues.preReqRun);
                 }
                 else
                 {
-                    returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), nwpsUpdate);
+                    returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), masterPreReqList.nwpsUpdate);
                 }
             }
             catch (Exception ex)
@@ -574,9 +545,9 @@ namespace testInstallServer.Classes
                 //will check for scene pd 6 before displaying install prompt
                 // If scenepd 6 install is denied this will check for scene pd 4 before displaying install prompt
                 //if scene pd 4 is not located and that is the desired scene pd version a message is displayed with paths to move folders
-                if (File.Exists(preReqRun + @"\SPD6-4-8993.exe"))
+                if (File.Exists(configValues.preReqRun + @"\SPD6-4-8993.exe"))
                 {
-                    string command111 = $"msiexec /i \"{clientRun}\\{SCPD6}\" /q /L*V \"C:\\TEMP\\ScenePD.log\"";
+                    string command111 = $"msiexec /i \"{configValues.clientRun}\\{masterPreReqList.SCPD6}\" /q /L*V \"C:\\TEMP\\ScenePD.log\"";
 
                     if (powerShellScriptRun(command111).Equals(true))
                     {
@@ -619,14 +590,14 @@ namespace testInstallServer.Classes
         {
             try
             {
-                if (File.Exists(Path.Combine(preReqRun, sqlCE4064)))
+                if (File.Exists(Path.Combine(configValues.preReqRun, masterPreReqList.sqlCE4064)))
                 {
-                    returnedValue = await runProgramAsync(sqlCE4064, preReqRun);
+                    returnedValue = await runProgramAsync(masterPreReqList.sqlCE4064, configValues.preReqRun);
                 }
                 else
                 {
                     //returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), sqlClr201232);
-                    throw new FileNotFoundException($"File Not found in {Path.Combine(preReqRun, sqlCE4064)}");
+                    throw new FileNotFoundException($"File Not found in {Path.Combine(configValues.preReqRun, masterPreReqList.sqlCE4064)}");
                 }
             }
             catch (Exception ex)
@@ -648,11 +619,11 @@ namespace testInstallServer.Classes
         {
             try
             {
-                if (File.Exists(Path.Combine(preReqRun, "vstor_redist.exe")))
+                if (File.Exists(Path.Combine(configValues.preReqRun, "vstor_redist.exe")))
                 {
                     loggingClass.logEntryWriter("Running Primary Interop Assemblies for Office", "info");
 
-                    returnedValue = await installProgramAsync(@"vstor_redist.exe", preReqRun);
+                    returnedValue = await installProgramAsync(@"vstor_redist.exe", configValues.preReqRun);
                 }
                 else
                 {
@@ -682,22 +653,22 @@ namespace testInstallServer.Classes
 
             try
             {
-                if (File.Exists(Path.Combine(preReqRun, sqlClr32)))
+                if (File.Exists(Path.Combine(configValues.preReqRun, masterPreReqList.sqlClr32)))
                 {
-                    returnedValue = await installProgramAsync(sqlClr32, preReqRun);
+                    returnedValue = await installProgramAsync(masterPreReqList.sqlClr32, configValues.preReqRun);
                 }
                 else
                 {
-                    returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), sqlClr32);
+                    returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), masterPreReqList.sqlClr32);
                 }
 
-                if (File.Exists(Path.Combine(preReqRun, sqlClr64)))
+                if (File.Exists(Path.Combine(configValues.preReqRun, masterPreReqList.sqlClr64)))
                 {
-                    returnedValue = await installProgramAsync(sqlClr64, preReqRun);
+                    returnedValue = await installProgramAsync(masterPreReqList.sqlClr64, configValues.preReqRun);
                 }
                 else
                 {
-                    returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), sqlClr64);
+                    returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), masterPreReqList.sqlClr64);
                 }
             }
             catch (Exception ex)
@@ -718,24 +689,24 @@ namespace testInstallServer.Classes
         {
             try
             {
-                if (File.Exists(Path.Combine(preReqRun, sqlClr201232)))
+                if (File.Exists(Path.Combine(configValues.preReqRun, masterPreReqList.sqlClr201232)))
                 {
-                    returnedValue = await installProgramAsync(sqlClr201232, preReqRun);
+                    returnedValue = await installProgramAsync(masterPreReqList.sqlClr201232, configValues.preReqRun);
                 }
                 else
                 {
                     //returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), sqlClr201232);
-                    throw new FileNotFoundException($"File Not found in {Path.Combine(preReqRun, sqlClr201232)}");
+                    throw new FileNotFoundException($"File Not found in {Path.Combine(configValues.preReqRun, masterPreReqList.sqlClr201232)}");
                 }
 
-                if (File.Exists(Path.Combine(preReqRun, sqlClr201264)))
+                if (File.Exists(Path.Combine(configValues.preReqRun, masterPreReqList.sqlClr201264)))
                 {
-                    returnedValue = await installProgramAsync(sqlClr201264, preReqRun);
+                    returnedValue = await installProgramAsync(masterPreReqList.sqlClr201264, configValues.preReqRun);
                 }
                 else
                 {
                     //returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), sqlClr201232);
-                    throw new FileNotFoundException($"File Not found in {Path.Combine(preReqRun, sqlClr201264)}");
+                    throw new FileNotFoundException($"File Not found in {Path.Combine(configValues.preReqRun, masterPreReqList.sqlClr201264)}");
                 }
             }
             catch (Exception ex)
@@ -758,13 +729,13 @@ namespace testInstallServer.Classes
 
             try
             {
-                if (File.Exists(Path.Combine(clientRun, mspClient)))
+                if (File.Exists(Path.Combine(configValues.clientRun, masterClientList.mspClient)))
                 {
                     returnedValue1 = powerShellScriptRun(command).Equals(true);
                 }
                 else
                 {
-                    throw new Exception($"MSP Installer is not in {clientRun}");
+                    throw new Exception($"MSP Installer is not in {configValues.clientRun}");
                 }
             }
             catch (Exception ex)
@@ -787,13 +758,13 @@ namespace testInstallServer.Classes
 
             try
             {
-                if (File.Exists(Path.Combine(clientRun, cadClient64)))
+                if (File.Exists(Path.Combine(configValues.clientRun, masterClientList.cadClient64)))
                 {
                     returnedValue12 = powerShellScriptRun(command).Equals(true);
                 }
                 else
                 {
-                    throw new Exception($"CAD Installer is not in {clientRun}");
+                    throw new Exception($"CAD Installer is not in {configValues.clientRun}");
                 }
             }
             catch (Exception ex)
@@ -820,13 +791,13 @@ namespace testInstallServer.Classes
 
                 loggingClass.logEntryWriter(logEntry, "info");
 
-                if (File.Exists(Path.Combine(clientRun, cadIncObs64)))
+                if (File.Exists(Path.Combine(configValues.clientRun, masterClientList.cadIncObs64)))
                 {
-                    returnedValue = await installProgramAsync(cadIncObs64, clientRun);
+                    returnedValue = await installProgramAsync(masterClientList.cadIncObs64, configValues.clientRun);
                 }
                 else
                 {
-                    returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), cadIncObs64);
+                    returnedValue = await preReqRunAsync(Path.Combine(installerPath, @"_Client-Installation\"), masterClientList.cadIncObs64);
                 }
             }
             catch (Exception ex)
@@ -1060,7 +1031,7 @@ namespace testInstallServer.Classes
             {
                 if (sDir.StartsWith("https"))
                 {
-                    foreach (var filename in Directory.GetFiles(preReqRun))
+                    foreach (var filename in Directory.GetFiles(configValues.preReqRun))
                     {
                         //if the file name of a found file matches what we are looking for code is run
                         if (Path.GetFileName(filename) == preReqName)
@@ -1068,23 +1039,23 @@ namespace testInstallServer.Classes
                             //if the file we found(that matches what we are looking for) matches specific pre reqs
                             //then specific UI code is ran for the install
                             //otherwise it is silently installed
-                            if (Path.GetFileName(filename) == sqlCE4064)
+                            if (Path.GetFileName(filename) == masterPreReqList.sqlCE4064)
                             {
                                 return returnedValue = runProgramAsync(preReqName, Path.GetDirectoryName(filename)).Result;
                             }
-                            else if (Path.GetFileName(filename) == sqlCE4032)
+                            else if (Path.GetFileName(filename) == masterPreReqList.sqlCE4032)
                             {
                                 return returnedValue = runProgramAsync(preReqName, Path.GetDirectoryName(filename)).Result;
                             }
-                            else if (Path.GetFileName(filename) == mspClient)
+                            else if (Path.GetFileName(filename) == masterClientList.mspClient)
                             {
                                 return returnedValue = runProgramAsync(preReqName, Path.GetDirectoryName(filename)).Result;
                             }
-                            else if (Path.GetFileName(filename) == cadClient64)
+                            else if (Path.GetFileName(filename) == masterClientList.cadClient64)
                             {
                                 return returnedValue = runProgramAsync(preReqName, Path.GetDirectoryName(filename)).Result;
                             }
-                            else if (Path.GetFileName(filename) == cadClient32)
+                            else if (Path.GetFileName(filename) == masterClientList.cadClient32)
                             {
                                 return returnedValue = runProgramAsync(preReqName, Path.GetDirectoryName(filename)).Result;
                             }
@@ -1094,7 +1065,7 @@ namespace testInstallServer.Classes
                             }
                         }
                     }
-                    await preReqRunAsync(preReqRun, preReqName);
+                    await preReqRunAsync(configValues.preReqRun, preReqName);
                 }
                 else
                 {
@@ -1108,23 +1079,23 @@ namespace testInstallServer.Classes
                                 //if the file we found(that matches what we are looking for) matches specific pre reqs
                                 //then specific UI code is ran for the install
                                 //otherwise it is silently installed
-                                if (Path.GetFileName(filename) == sqlCE4064)
+                                if (Path.GetFileName(filename) == masterPreReqList.sqlCE4064)
                                 {
                                     return returnedValue = runProgramAsync(preReqName, Path.GetDirectoryName(filename)).Result;
                                 }
-                                else if (Path.GetFileName(filename) == sqlCE4032)
+                                else if (Path.GetFileName(filename) == masterPreReqList.sqlCE4032)
                                 {
                                     return returnedValue = runProgramAsync(preReqName, Path.GetDirectoryName(filename)).Result;
                                 }
-                                else if (Path.GetFileName(filename) == mspClient)
+                                else if (Path.GetFileName(filename) == masterClientList.mspClient)
                                 {
                                     return returnedValue = runProgramAsync(preReqName, Path.GetDirectoryName(filename)).Result;
                                 }
-                                else if (Path.GetFileName(filename) == cadClient64)
+                                else if (Path.GetFileName(filename) == masterClientList.cadClient64)
                                 {
                                     return returnedValue = runProgramAsync(preReqName, Path.GetDirectoryName(filename)).Result;
                                 }
-                                else if (Path.GetFileName(filename) == cadClient32)
+                                else if (Path.GetFileName(filename) == masterClientList.cadClient32)
                                 {
                                     return returnedValue = runProgramAsync(preReqName, Path.GetDirectoryName(filename)).Result;
                                 }
