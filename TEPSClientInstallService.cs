@@ -14,7 +14,6 @@ namespace testInstallServer
 {
     public partial class TEPSClientInstallService : ServiceBase
     {
-        private apiClass apiClass = new apiClass();
         private loggingClass loggingClass = new loggingClass();
         private installerClass installerClass = new installerClass();
 
@@ -53,9 +52,9 @@ namespace testInstallServer
 
             timer.Elapsed += Timer_Elapsed;
 
-            Directory.CreateDirectory("C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Updater");
+            Directory.CreateDirectory(configValues.updaterPath);
 
-            File.Copy(Path.Combine("C:\\Services\\Tyler-Client-Install-Agent", "TEPS Automated Agent Updater.exe"), Path.Combine("C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Updater", "TEPS Automated Agent Updater.exe"), true);
+            File.Copy(Path.Combine(configValues.servicePath, "TEPS Automated Agent Updater.exe"), Path.Combine(configValues.updaterPath, "TEPS Automated Agent Updater.exe"), true);
 
             Process[] localbyName = Process.GetProcessesByName("TEPS Automated Agent Updater");
             if (localbyName.Length > 0)
@@ -63,15 +62,15 @@ namespace testInstallServer
             }
             else
             {
-                installerClass.openProgram("C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Updater", "TEPS Automated Agent Updater.exe");
+                installerClass.openProgram(configValues.updaterPath, "TEPS Automated Agent Updater.exe");
             }
         }
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            if (!File.Exists(Path.Combine("C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Updater", "TEPS Automated Agent Updater.exe")))
+            if (!File.Exists(Path.Combine(configValues.updaterPath, "TEPS Automated Agent Updater.exe")))
             {
-                File.Move(Path.Combine("C:\\Services\\Tyler-Client-Install-Agent", "TEPS Automated Agent Updater.exe"), Path.Combine("C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Updater", "TEPS Automated Agent Updater.exe"));
+                File.Move(Path.Combine(configValues.servicePath, "TEPS Automated Agent Updater.exe"), Path.Combine(configValues.updaterPath, "TEPS Automated Agent Updater.exe"));
             }
 
             Process[] localbyName = Process.GetProcessesByName("TEPS Automated Agent Updater");
@@ -80,7 +79,7 @@ namespace testInstallServer
             }
             else
             {
-                installerClass.openProgram("C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Updater", "TEPS Automated Agent Updater.exe");
+                installerClass.openProgram(configValues.updaterPath, "TEPS Automated Agent Updater.exe");
             }
         }
 
@@ -100,6 +99,8 @@ internal class configValues
     public static readonly string clientRun = @"C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Agent\Clients";
     public static string applicationName = "TEPS Automated Client Install Agent " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
     public static readonly string logFileName = $@"C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Agent\Logging\{applicationName}.json";
+    public static readonly string updaterPath = "C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Updater";
+    public static readonly string servicePath = "C:\\Services\\Tyler-Client-Install-Agent";
 }
 
 internal class masterPreReqList

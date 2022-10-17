@@ -403,7 +403,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\apiClass.cs" />
     <Compile Include="Classes\copyClass.cs" />
     <Compile Include="Classes\installerClass.cs" />
     <Compile Include="Classes\loggingClass.cs" />
