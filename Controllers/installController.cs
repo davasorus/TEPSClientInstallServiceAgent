@@ -15,8 +15,6 @@ namespace testInstallServer.Classes
         private serviceClass serviceClass = new serviceClass();
         private updaterConfigClass updaterConfigClass = new updaterConfigClass();
 
-        private readonly string clientRun = @"C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Agent\Clients";
-
         #region pre req install
 
         //installs DotNet
@@ -333,7 +331,7 @@ namespace testInstallServer.Classes
 
             //installMSP
 
-            string command = $"msiexec /i \"{clientRun}\\NewWorldMSPClient.msi\" addlocal=\"AegisClientBase,F_VB6RedistRuntime,Maintenance,Corrections,LERMS\" MSPSERVERNAME=\"{serverConfigObj.MSPServer}\" AUTHSERVERNAME=\"{serverConfigObj.ESSServer}\" /q /L*V \"C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Logging\\MSP_Install_" + DateTime.Now.ToString("dddd,dd_MMMM_yyyy_HH_mm_ss") + ".log\"";
+            string command = $"msiexec /i \"{configValues.clientRun}\\NewWorldMSPClient.msi\" addlocal=\"AegisClientBase,F_VB6RedistRuntime,Maintenance,Corrections,LERMS\" MSPSERVERNAME=\"{serverConfigObj.MSPServer}\" AUTHSERVERNAME=\"{serverConfigObj.ESSServer}\" /q /L*V \"C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Logging\\MSP_Install_" + DateTime.Now.ToString("dddd,dd_MMMM_yyyy_HH_mm_ss") + ".log\"";
 
             if (installerClass.MSP(command).Result.Equals(true))
             {
@@ -361,7 +359,7 @@ namespace testInstallServer.Classes
 
             List<tupleData> tupleList = new List<tupleData>();
 
-            string command1 = $"msiexec /i \"{clientRun}\\NewWorld.Enterprise.CAD.Client.x64.msi\" DISPATCH_SERVER=\"{serverConfigObj.CADServer}\" MEMBERSHIP_SERVER=\"{serverConfigObj.ESSServer}\" GIS_SERVER_NAME=\"{serverConfigObj.GISServer}\" GIS_INSTANCE=\"{serverConfigObj.GISInstance}\" NWS_CHECKBOX_PICTOMETRY_ENABLE=\"0\" /q /L*V \"C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Logging\\CAD_Install_" + DateTime.Now.ToString("dddd,dd_MMMM_yyyy_HH_mm_ss") + ".log\"";
+            string command1 = $"msiexec /i \"{configValues.clientRun}\\NewWorld.Enterprise.CAD.Client.x64.msi\" DISPATCH_SERVER=\"{serverConfigObj.CADServer}\" MEMBERSHIP_SERVER=\"{serverConfigObj.ESSServer}\" GIS_SERVER_NAME=\"{serverConfigObj.GISServer}\" GIS_INSTANCE=\"{serverConfigObj.GISInstance}\" NWS_CHECKBOX_PICTOMETRY_ENABLE=\"0\" /q /L*V \"C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Logging\\CAD_Install_" + DateTime.Now.ToString("dddd,dd_MMMM_yyyy_HH_mm_ss") + ".log\"";
 
             if (installerClass.CAD(command1).Result.Equals(true))
             {
@@ -409,7 +407,7 @@ namespace testInstallServer.Classes
 
             List<tupleData> tupleList = new List<tupleData>();
 
-            string command00 = $"msiexec /i \"{clientRun}\\NewWorldMSPClient.msi\" addlocal=\"AegisClientBase,F_VB6RedistRuntime,Maintenance,Corrections,LERMS\" MSPSERVERNAME=\"{serverConfigObj.MSPServer}\" AUTHSERVERNAME=\"{serverConfigObj.ESSServer}\" /q /L*V \"C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Logging\\MSP_Install_" + DateTime.Now.ToString("dddd,dd_MMMM_yyyy_HH_mm_ss") + ".log\"";
+            string command00 = $"msiexec /i \"{configValues.clientRun}\\NewWorldMSPClient.msi\" addlocal=\"AegisClientBase,F_VB6RedistRuntime,Maintenance,Corrections,LERMS\" MSPSERVERNAME=\"{serverConfigObj.MSPServer}\" AUTHSERVERNAME=\"{serverConfigObj.ESSServer}\" /q /L*V \"C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Logging\\MSP_Install_" + DateTime.Now.ToString("dddd,dd_MMMM_yyyy_HH_mm_ss") + ".log\"";
 
             if (installerClass.MSP(command00).Result.Equals(true))
             {
@@ -427,7 +425,7 @@ namespace testInstallServer.Classes
                 goto mspreset;
             }
 
-            string command11 = $"msiexec /i \"{clientRun}\\NewWorld.Enterprise.CAD.Client.x64.msi\" DISPATCH_SERVER=\"{serverConfigObj.CADServer}\" MEMBERSHIP_SERVER=\"{serverConfigObj.ESSServer}\" GIS_SERVER_NAME=\"{serverConfigObj.GISServer}\" GIS_INSTANCE=\"{serverConfigObj.GISInstance}\" NWS_CHECKBOX_PICTOMETRY_ENABLE=\"0\" /q /L*V \"C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Logging\\CAD_Install_" + DateTime.Now.ToString("dddd,dd_MMMM_yyyy_HH_mm_ss") + ".log\"";
+            string command11 = $"msiexec /i \"{configValues.clientRun}\\NewWorld.Enterprise.CAD.Client.x64.msi\" DISPATCH_SERVER=\"{serverConfigObj.CADServer}\" MEMBERSHIP_SERVER=\"{serverConfigObj.ESSServer}\" GIS_SERVER_NAME=\"{serverConfigObj.GISServer}\" GIS_INSTANCE=\"{serverConfigObj.GISInstance}\" NWS_CHECKBOX_PICTOMETRY_ENABLE=\"0\" /q /L*V \"C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Logging\\CAD_Install_" + DateTime.Now.ToString("dddd,dd_MMMM_yyyy_HH_mm_ss") + ".log\"";
 
             if (installerClass.CAD(command11).Result.Equals(true))
             {
