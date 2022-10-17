@@ -9,8 +9,7 @@ namespace testInstallServer.Classes
     {
         private static Logger _logger;
 
-        private static string applicationName = "TEPS Automated Client Install Agent " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
-        private readonly string logFileName = $@"C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Agent\Logging\{applicationName}.json";
+        
 
         //adds log messages to log collection (which is then seen via the internal log viewer view)
         public void logEntryWriter(string logMessage, string level)
@@ -27,7 +26,7 @@ namespace testInstallServer.Classes
             var target =
                 new FileTarget
                 {
-                    FileName = logFileName,
+                    FileName = configValues.logFileName,
                     ArchiveAboveSize = 5000000,
                     ArchiveNumbering = ArchiveNumberingMode.Sequence
                 };
