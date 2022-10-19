@@ -26,7 +26,7 @@ namespace testInstallServer.Classes
         }
 
         // GET
-        //returns a list of lists that should be present on machine
+        //returns a list of lists of files that should be present on machine
 
         public async Task<IHttpActionResult> GetPresentFiles()
         {
