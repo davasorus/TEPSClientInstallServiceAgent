@@ -33,6 +33,13 @@ namespace TEPSClientInstallService.Classes
             return jsonFilePackage.ToString();
         }
 
+        public string parseRequestBodyForMasterHost(string body)
+        {
+            string response = "";
+
+            return response;
+        }
+
         private async Task<string> parseORI(string body)
         {
             serverConfigObj.configFileORIObjs.Clear();
