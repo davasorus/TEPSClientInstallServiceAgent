@@ -10,7 +10,6 @@ namespace testInstallServer.Classes
 {
     public class copyClass
     {
-       
         private bool flag;
 
         private loggingClass loggingClass = new loggingClass();
