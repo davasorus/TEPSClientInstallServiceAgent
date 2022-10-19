@@ -61,7 +61,8 @@ namespace testInstallServer.Classes
 
             foreach (var file in filePreReq)
             {
-                if (file.Equals(custFilesPre))
+                string fileName = Path.GetFileName(file);
+                if (custFilesPre.Contains(fileName))
                 {
                     tupleList.Add(new tupleData() { responseCode = "200 OK", message = $"{custFilesPre} found on machine" });
                 }
@@ -74,7 +75,8 @@ namespace testInstallServer.Classes
 
             foreach (var file in fileAddOn)
             {
-                if (file.Equals(custFilesAddon))
+                string fileName = Path.GetFileName(file);
+                if (custFilesAddon.Contains(fileName)
                 {
                     tupleList.Add(new tupleData() { responseCode = "200 OK", message = $"{custFilesAddon} found on machine" });
                 }
@@ -86,7 +88,8 @@ namespace testInstallServer.Classes
 
             foreach (var file in fileClient)
             {
-                if (file.Equals(custFilesClient))
+                string fileName = Path.GetFileName(file);
+                if (custFilesClient.Contains(fileName))
                 {
                     tupleList.Add(new tupleData() { responseCode = "200 OK", message = $"{custFilesClient} found on machine" });
                 }
