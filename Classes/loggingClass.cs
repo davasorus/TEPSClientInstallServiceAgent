@@ -1,15 +1,12 @@
 ﻿using NLog;
 using NLog.Config;
 using NLog.Targets;
-using System.Reflection;
 
 namespace testInstallServer.Classes
 {
     public class loggingClass
     {
         private static Logger _logger;
-
-        
 
         //adds log messages to log collection (which is then seen via the internal log viewer view)
         public void logEntryWriter(string logMessage, string level)
