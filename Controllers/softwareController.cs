@@ -25,7 +25,7 @@ namespace testInstallServer.Classes
         }
 
         // GET
-       
+
         public async Task<IHttpActionResult> GetPresentFiles()
         {
             List<tupleData> tupleList = new List<tupleData>();
@@ -53,10 +53,10 @@ namespace testInstallServer.Classes
 
             // TODO 2.1
             //so it looks like our comparisons are still wonky
-            //you may want to do two foreach loops 
+            //you may want to do two foreach loops
             //     since we are checking one list to another list we would need to iterate through both lists.
             //        hint: you could actually drop the list searching code into the Classes/UtilityClass.cs file and off load the computational work to background thread
-            //   
+            //
             //this is the response that lead me to this conclusion {\"responseCode\":\"400 Bad Request\",\"message\":\"System.Collections.Generic.List`1[System.String] not found on machine\"},
 
             foreach (var file in filePreReq)
@@ -76,7 +76,7 @@ namespace testInstallServer.Classes
             foreach (var file in fileAddOn)
             {
                 string fileName = Path.GetFileName(file);
-                if (custFilesAddon.Contains(fileName)
+                if (custFilesAddon.Contains(fileName))
                 {
                     tupleList.Add(new tupleData() { responseCode = "200 OK", message = $"{custFilesAddon} found on machine" });
                 }
