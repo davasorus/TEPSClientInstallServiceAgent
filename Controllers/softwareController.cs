@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -25,70 +26,91 @@ namespace testInstallServer.Classes
         }
 
         // GET
+        //returns a list of lists that should be present on machine
 
         public async Task<IHttpActionResult> GetPresentFiles()
         {
             List<tupleData> tupleList = new List<tupleData>();
-            var filePreReq = Directory.GetFiles(configValues.preReqRun);
-            var fileAddOn = Directory.GetFiles(configValues.nwsAddonLocalRun);
-            var fileClient = Directory.GetFiles(configValues.clientRun);
 
-            List<string> custFilesPre = new List<string>()
+            List<string> localPreReqs = new List<string>()
             {
-                masterPreReqList.dotNet47, masterPreReqList.dotNet48, masterPreReqList.sqlCE3532, masterPreReqList.sqlCE3564, masterPreReqList.sqlCE4032,
+                masterPreReqList.dotNet48, masterPreReqList.sqlCE3532, masterPreReqList.sqlCE3564, masterPreReqList.sqlCE4032,
                 masterPreReqList.sqlCE4064, masterPreReqList.nwpsGis32, masterPreReqList.nwpsGis64, masterPreReqList.msSync32, masterPreReqList.msSync64,
                 masterPreReqList.msProServ64, masterPreReqList.msDbPro64, masterPreReqList.msProServ32, masterPreReqList.msProServ32, masterPreReqList.msDbPro32,
                 masterPreReqList.nwpsUpdate, masterPreReqList.sqlClr32, masterPreReqList.sqlClr64, masterPreReqList.sqlClr32, masterPreReqList.sqlClr64,
-                masterPreReqList.sqlClr201232, masterPreReqList.sqlClr201264, masterPreReqList.SCPD4, masterPreReqList.SCPD6, masterPreReqList.SCPD6AX
+                masterPreReqList.sqlClr201232, masterPreReqList.sqlClr201264, masterPreReqList.SCPD4, masterPreReqList.SCPD6
             };
 
-            List<string> custFilesClient = new List<string>()
+            List<string> localInstallers = new List<string>()
             {
-                masterClientList.mspClient, masterClientList.cadClient32, masterClientList.cadClient64, masterClientList.cadIncObs64
+                masterClientList.mspClient, masterClientList.cadClient64, masterClientList.cadIncObs64
             };
 
-            List<string> custFilesAddon = new List<string>()
+            List<string> localCustomAddons = new List<string>()
             {
             };
 
-            foreach (var file in filePreReq)
+            try
             {
-                string fileName = Path.GetFileName(file);
-                if (custFilesPre.Contains(fileName))
+                foreach (string item in localPreReqs)
                 {
-                    tupleList.Add(new tupleData() { responseCode = "200 OK", message = $"{fileName} found on machine" });
-                }
-                else
-                {
-                    tupleList.Add(new tupleData()
-                    { responseCode = "400 Bad Request", message = $"{fileName} not found on machine" });
+                    if (File.Exists(Path.Combine(configValues.preReqRun, item)))
+                    {
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = $"{item} found on machine" });
+                    }
+                    else
+                    {
+                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = $"{item} not found" });
+                    }
                 }
             }
-
-            foreach (var file in fileAddOn)
+            catch (Exception ex)
             {
-                string fileName = Path.GetFileName(file);
-                if (custFilesAddon.Contains(fileName))
-                {
-                    tupleList.Add(new tupleData() { responseCode = "200 OK", message = $"{fileName} found on machine" });
-                }
-                else
-                {
-                    tupleList.Add(new tupleData() { responseCode = "400 Bad Request", message = $"{fileName} not found on machine" });
-                }
+                loggingClass.logEntryWriter(ex.ToString(), "error");
+
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = ex.ToString() });
             }
 
-            foreach (var file in fileClient)
+            try
             {
-                string fileName = Path.GetFileName(file);
-                if (custFilesClient.Contains(fileName))
+                foreach (string item in localInstallers)
                 {
-                    tupleList.Add(new tupleData() { responseCode = "200 OK", message = $"{fileName} found on machine" });
+                    if (File.Exists(Path.Combine(configValues.clientRun, item)))
+                    {
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = $"{item} found on machine" });
+                    }
+                    else
+                    {
+                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = $"{item} not found" });
+                    }
                 }
-                else
+            }
+            catch (Exception ex)
+            {
+                loggingClass.logEntryWriter(ex.ToString(), "error");
+
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = ex.ToString() });
+            }
+
+            try
+            {
+                foreach (string item in localCustomAddons)
                 {
-                    tupleList.Add(new tupleData() { responseCode = "400 Bad Request", message = $"{fileName} not found on machine" });
+                    if (File.Exists(Path.Combine(configValues.nwsAddonLocalRun, item)))
+                    {
+                        tupleList.Add(new tupleData { responseCode = "200 OK", message = $"{item} found on machine" });
+                    }
+                    else
+                    {
+                        tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = $"{item} not found" });
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                loggingClass.logEntryWriter(ex.ToString(), "error");
+
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = ex.ToString() });
             }
 
             return Json(tupleList);
