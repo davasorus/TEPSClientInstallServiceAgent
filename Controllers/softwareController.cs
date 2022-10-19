@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using System.Web.Http;
+using TEPSClientInstallService.Classes;
 
 namespace testInstallServer.Classes
 {
@@ -11,6 +12,7 @@ namespace testInstallServer.Classes
         private loggingClass loggingClass = new loggingClass();
         private preReqStatusClass preReqStatusClass = new preReqStatusClass();
         private uninstallerClass uninstallerClass = new uninstallerClass();
+        private utilityClass utilityClass = new utilityClass();
 
         private string returnedValue = "";
 
@@ -21,6 +23,21 @@ namespace testInstallServer.Classes
         public async Task<IHttpActionResult> GetString()
         {
             List<tupleData> tupleList = new List<tupleData>();
+
+            return Json(tupleList);
+        }
+
+        //TODO # 4
+        // we need to pass the body to a parser in the utility class, and we want to return the string that contains the "hostname"
+        // from there we want to store that value into a public static global string variable
+        // from there we want to return 200 OK "Successfully configured" if the parser works, 400 Bad Request and then pass the error back as a string
+        // HINT: you will need similar code that is already on the master service to handle the json array in the parser
+        //POST
+        public async Task<IHttpActionResult> PostConfiguration()
+        {
+            List<tupleData> tupleList = new List<tupleData>();
+
+            var response = utilityClass.parseRequestBodyForMasterHost(Request.Content.ReadAsStringAsync().Result);
 
             return Json(tupleList);
         }
