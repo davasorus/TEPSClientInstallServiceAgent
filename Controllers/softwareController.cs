@@ -83,11 +83,11 @@ namespace testInstallServer.Classes
                 string fileName = Path.GetFileName(file);
                 if (custFilesClient.Contains(fileName))
                 {
-                    tupleList.Add(new tupleData() { responseCode = "200 OK", message = $"{file} found on machine" });
+                    tupleList.Add(new tupleData() { responseCode = "200 OK", message = $"{fileName} found on machine" });
                 }
                 else
                 {
-                    tupleList.Add(new tupleData() { responseCode = "400 Bad Request", message = $"{file} not found on machine" });
+                    tupleList.Add(new tupleData() { responseCode = "400 Bad Request", message = $"{fileName} not found on machine" });
                 }
             }
 
