@@ -51,25 +51,17 @@ namespace testInstallServer.Classes
             {
             };
 
-            // TODO 2.1
-            //so it looks like our comparisons are still wonky
-            //you may want to do two foreach loops
-            //     since we are checking one list to another list we would need to iterate through both lists.
-            //        hint: you could actually drop the list searching code into the Classes/UtilityClass.cs file and off load the computational work to background thread
-            //
-            //this is the response that lead me to this conclusion {\"responseCode\":\"400 Bad Request\",\"message\":\"System.Collections.Generic.List`1[System.String] not found on machine\"},
-
             foreach (var file in filePreReq)
             {
                 string fileName = Path.GetFileName(file);
                 if (custFilesPre.Contains(fileName))
                 {
-                    tupleList.Add(new tupleData() { responseCode = "200 OK", message = $"{custFilesPre} found on machine" });
+                    tupleList.Add(new tupleData() { responseCode = "200 OK", message = $"{file} found on machine" });
                 }
                 else
                 {
                     tupleList.Add(new tupleData()
-                    { responseCode = "400 Bad Request", message = $"{custFilesPre} not found on machine" });
+                    { responseCode = "400 Bad Request", message = $"{file} not found on machine" });
                 }
             }
 
@@ -78,11 +70,11 @@ namespace testInstallServer.Classes
                 string fileName = Path.GetFileName(file);
                 if (custFilesAddon.Contains(fileName))
                 {
-                    tupleList.Add(new tupleData() { responseCode = "200 OK", message = $"{custFilesAddon} found on machine" });
+                    tupleList.Add(new tupleData() { responseCode = "200 OK", message = $"{file} found on machine" });
                 }
                 else
                 {
-                    tupleList.Add(new tupleData() { responseCode = "400 Bad Request", message = $"{custFilesAddon} not found on machine" });
+                    tupleList.Add(new tupleData() { responseCode = "400 Bad Request", message = $"{file} not found on machine" });
                 }
             }
 
@@ -91,11 +83,11 @@ namespace testInstallServer.Classes
                 string fileName = Path.GetFileName(file);
                 if (custFilesClient.Contains(fileName))
                 {
-                    tupleList.Add(new tupleData() { responseCode = "200 OK", message = $"{custFilesClient} found on machine" });
+                    tupleList.Add(new tupleData() { responseCode = "200 OK", message = $"{file} found on machine" });
                 }
                 else
                 {
-                    tupleList.Add(new tupleData() { responseCode = "400 Bad Request", message = $"{custFilesClient} not found on machine" });
+                    tupleList.Add(new tupleData() { responseCode = "400 Bad Request", message = $"{file} not found on machine" });
                 }
             }
 
