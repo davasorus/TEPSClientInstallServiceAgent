@@ -335,11 +335,11 @@ namespace testInstallServer.Classes
 
             if (installerClass.MSP(command).Result.Equals(true))
             {
-                tupleList.Add(new tupleData { responseCode = "200 OK", message = $"MSP Installed successfully values passed - MSP Server: {serverConfigObj.MSPServer} | ESS Server: {serverConfigObj.ESSServer}" });
+                tupleList.Add(new tupleData { responseCode = "200 OK", message = $"LERMS Installed successfully values passed - APP Server: {serverConfigObj.MSPServer} | ESS Server: {serverConfigObj.ESSServer}" });
             }
             else
             {
-                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = $"MSP failed to install values passed - MSP Server: {serverConfigObj.MSPServer} | ESS Server: {serverConfigObj.ESSServer}" });
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = $"LERMS failed to install values passed - APP Server: {serverConfigObj.MSPServer} | ESS Server: {serverConfigObj.ESSServer}" });
             }
 
         mspreset1:
@@ -411,11 +411,11 @@ namespace testInstallServer.Classes
 
             if (installerClass.MSP(command00).Result.Equals(true))
             {
-                tupleList.Add(new tupleData { responseCode = "200 OK", message = $"MSP Installed successfully values passed - MSP Server: {serverConfigObj.MSPServer} | ESS Server: {serverConfigObj.ESSServer}" });
+                tupleList.Add(new tupleData { responseCode = "200 OK", message = $"LERMS Installed successfully values passed - APP Server: {serverConfigObj.MSPServer} | ESS Server: {serverConfigObj.ESSServer}" });
             }
             else
             {
-                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = $"MSP failed to install values passed - MSP Server: {serverConfigObj.MSPServer} | ESS Server: {serverConfigObj.ESSServer}" });
+                tupleList.Add(new tupleData { responseCode = "400 Bad Request", message = $"LERMS failed to install values passed - APP Server: {serverConfigObj.MSPServer} | ESS Server: {serverConfigObj.ESSServer}" });
             }
 
         mspreset:
