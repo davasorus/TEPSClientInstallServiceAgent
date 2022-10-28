@@ -101,7 +101,7 @@
   <PropertyGroup>
     <ManifestKeyFile>authenticode.TylerTech-2022-private-a.pfx</ManifestKeyFile>
   </PropertyGroup>
-  <ItemGroup>
+   <ItemGroup>
     <Reference Include="Cake.Powershell, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\Cake.Powershell.1.0.1\lib\net46\Cake.Powershell.dll</HintPath>
     </Reference>
