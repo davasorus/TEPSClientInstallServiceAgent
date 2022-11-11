@@ -46,6 +46,22 @@ namespace TEPSClientInstallService.Classes
 
             try
             {
+                dynamic jsonObj = JsonConvert.DeserializeObject(body);
+                foreach (var obj in jsonObj.Properties())
+                {
+                    if (obj.Name == "PoliceList")
+                    {
+                        foreach (var obj2 in obj.Value)
+                        {
+                            serverConfigObj.configFileORIObjs.Add(new jsonConfigFileORIObj { FieldName = obj2.FieldName, ORI = obj2.ORI });
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                loggingClass.logEntryWriter(ex.ToString(), "error");
+
                 for (var i = 1; i < body.Length; i++)
                 {
                     string txt = $"ORI{i}";
@@ -58,23 +74,17 @@ namespace TEPSClientInstallService.Classes
                     {
                         string ori = oriToken.Value<string>("ORI");
 
+                        loggingClass.logEntryWriter(ori, "debug");
+
                         serverConfigObj.configFileORIObjs.Add(new jsonConfigFileORIObj { FieldName = txt, ORI = ori });
                     }
                     else
                     {
                         i = body.Length;
+
+                        loggingClass.logEntryWriter(i.ToString(), "debug");
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                string logEntry1 = ex.ToString();
-
-                loggingClass.logEntryWriter(logEntry1, "error");
-
-                //await loggingClass.remoteErrorReporting("Client Admin Tool", Assembly.GetExecutingAssembly().GetName().Version.ToString(), ex.ToString(), "Automated Error Reported by " + Environment.UserName);
-
-                return "error";
             }
 
             return "";
@@ -85,6 +95,20 @@ namespace TEPSClientInstallService.Classes
             serverConfigObj.configFileFDIDObjs.Clear();
 
             try
+            {
+                dynamic jsonObj = JsonConvert.DeserializeObject(body);
+                foreach (var obj in jsonObj.Properties())
+                {
+                    if (obj.Name == "FireList")
+                    {
+                        foreach (var obj2 in obj.Value)
+                        {
+                            serverConfigObj.configFileFDIDObjs.Add(new jsonConfigFileFDIDObj { FieldName = obj2.FieldName, FDID = obj2.FDID });
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
             {
                 for (var i = 1; i < body.Length; i++)
                 {
@@ -105,16 +129,6 @@ namespace TEPSClientInstallService.Classes
                         i = body.Length;
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                string logEntry1 = ex.ToString();
-
-                loggingClass.logEntryWriter(logEntry1, "error");
-
-                //await loggingClass.remoteErrorReporting("Client Admin Tool", Assembly.GetExecutingAssembly().GetName().Version.ToString(), ex.ToString(), "Automated Error Reported by " + Environment.UserName);
-
-                return "error";
             }
 
             return "";
