@@ -185,7 +185,7 @@ namespace TEPSClientInstallService.Classes
 
         //work done to compare information already in the updater config file to information that is in the utility
         //the information that is already present does not get added
-        public void seeIfNodesExist(string textBox)
+        public void seeIfPoliceNodesExist(string textBox)
         {
             updaterConfig.Load(@"C:\Program Files (x86)\New World Systems\New World Automatic Updater\NewWorld.Management.Updater.Service.exe.config");
 
@@ -205,11 +205,114 @@ namespace TEPSClientInstallService.Classes
                         toRemove.Add(AddNode);
                     }
 
+                    if ((AttrID.Value == "Merge Client"))// && (AttrURI.Value == "http://" + MobileServer.Text + "/MobileUpdates/Merge Client/Update.xml"))
+                    {
+                        toRemove.Add(AddNode);
+                    }
+
+                    if ((AttrID.Value == "NWS Updater"))// && (AttrURI.Value == "http://" + MobileServer.Text + "/MobileUpdates/Merge Client/Update.xml"))
+                    {
+                        toRemove.Add(AddNode);
+                    }
+
+                    if (textBox != "")
+                    {
+                        string upperORI = textBox.ToUpper();
+                        if ((AttrID.Value == upperORI))// && (AttrURI.Value == "http://" + MobileServer.Text + "/MobileUpdates/" + ORI + "/Update.xml"))
+                        {
+                            toRemove.Add(AddNode);
+                        }
+                    }
+                }
+            }
+
+            foreach (XmlNode xmlElement in toRemove)
+            {
+                try
+                {
+                    XmlNode node = xmlElement.ParentNode;
+                    node.RemoveChild(xmlElement);
+
+                    updaterConfig.Save(@"C:\Program Files (x86)\New World Systems\New World Automatic Updater\NewWorld.Management.Updater.Service.exe.config");
+                }
+                catch
+                {
+                    //loggingClass.queEntrywriter("ORI's and FDID's should not be the same");
+                }
+            }
+        }
+
+        //work done to compare information already in the updater config file to information that is in the utility
+        //the information that is already present does not get added
+        public void seeIfFireNodesExist(string textBox)
+        {
+            updaterConfig.Load(@"C:\Program Files (x86)\New World Systems\New World Automatic Updater\NewWorld.Management.Updater.Service.exe.config");
+
+            XmlNodeList PoliceClientNode = updaterConfig.GetElementsByTagName("add");
+            List<XmlNode> toRemove = new List<XmlNode>();
+
+            foreach (XmlNode AddNode in PoliceClientNode)
+            {
+                XmlAttributeCollection attrColl = AddNode.Attributes;
+                XmlAttribute AttrID = attrColl["id"];
+                XmlAttribute AttrURI = attrColl["manifestUri"];
+
+                if (AttrID != null)
+                {
                     if ((AttrID.Value == "Fire Client"))// && (AttrURI.Value == "http://" + MobileServer.Text + "/MobileUpdates/Fire Client/Update.xml"))
                     {
                         toRemove.Add(AddNode);
                     }
 
+                    if ((AttrID.Value == "NWS Updater"))// && (AttrURI.Value == "http://" + MobileServer.Text + "/MobileUpdates/Merge Client/Update.xml"))
+                    {
+                        toRemove.Add(AddNode);
+                    }
+
+                    if (textBox != "")
+                    {
+                        string upperORI = textBox.ToUpper();
+                        if ((AttrID.Value == upperORI))// && (AttrURI.Value == "http://" + MobileServer.Text + "/MobileUpdates/" + ORI + "/Update.xml"))
+                        {
+                            toRemove.Add(AddNode);
+                        }
+                    }
+                }
+            }
+
+            foreach (XmlNode xmlElement in toRemove)
+            {
+                try
+                {
+                    XmlNode node = xmlElement.ParentNode;
+                    node.RemoveChild(xmlElement);
+
+                    updaterConfig.Save(@"C:\Program Files (x86)\New World Systems\New World Automatic Updater\NewWorld.Management.Updater.Service.exe.config");
+                }
+                catch
+                {
+                    //loggingClass.queEntrywriter("ORI's and FDID's should not be the same");
+                }
+            }
+        }
+
+        //work done to compare information already in the updater config file to information that is in the utility
+        //the information that is already present does not get added
+        public void seeIfMergeNodesExist(string textBox)
+        {
+            updaterConfig.Load(@"C:\Program Files (x86)\New World Systems\New World Automatic Updater\NewWorld.Management.Updater.Service.exe.config");
+
+            XmlNodeList PoliceClientNode = updaterConfig.GetElementsByTagName("add");
+            List<XmlNode> toRemove = new List<XmlNode>();
+
+            foreach (XmlNode AddNode in PoliceClientNode)
+            {
+                XmlAttributeCollection attrColl = AddNode.Attributes;
+                XmlAttribute AttrID = attrColl["id"];
+                XmlAttribute AttrURI = attrColl["manifestUri"];
+
+                if (AttrID != null)
+                {
                     if ((AttrID.Value == "Merge Client"))// && (AttrURI.Value == "http://" + MobileServer.Text + "/MobileUpdates/Merge Client/Update.xml"))
                     {
                         toRemove.Add(AddNode);

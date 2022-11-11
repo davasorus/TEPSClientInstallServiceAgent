@@ -480,7 +480,7 @@ namespace testInstallServer.Classes
 
             foreach (var item in serverConfigObj.configFileORIObjs)
             {
-                updaterConfigClass.seeIfNodesExist(item.ORI);
+                updaterConfigClass.seeIfPoliceNodesExist(item.ORI);
 
                 updaterConfigClass.oriSub(item.ORI, serverConfigObj.MobileServer);
 
@@ -540,7 +540,7 @@ namespace testInstallServer.Classes
 
             foreach (var item in serverConfigObj.configFileFDIDObjs)
             {
-                updaterConfigClass.seeIfNodesExist(item.FDID);
+                updaterConfigClass.seeIfFireNodesExist(item.FDID);
 
                 updaterConfigClass.fdidSub(item.FDID, serverConfigObj.MobileServer);
 
@@ -600,7 +600,7 @@ namespace testInstallServer.Classes
 
             foreach (var item in serverConfigObj.configFileORIObjs)
             {
-                updaterConfigClass.seeIfNodesExist(item.ORI);
+                updaterConfigClass.seeIfMergeNodesExist(item.ORI);
 
                 updaterConfigClass.oriSub(item.ORI, serverConfigObj.MobileServer);
 
@@ -660,7 +660,7 @@ namespace testInstallServer.Classes
 
             foreach (var item in serverConfigObj.configFileORIObjs)
             {
-                updaterConfigClass.seeIfNodesExist(item.ORI);
+                updaterConfigClass.seeIfPoliceNodesExist(item.ORI);
 
                 updaterConfigClass.oriSub(item.ORI, serverConfigObj.MobileServer);
 
@@ -669,7 +669,7 @@ namespace testInstallServer.Classes
 
             foreach (var item in serverConfigObj.configFileFDIDObjs)
             {
-                updaterConfigClass.seeIfNodesExist(item.FDID);
+                updaterConfigClass.seeIfFireNodesExist(item.FDID);
 
                 updaterConfigClass.fdidSub(item.FDID, serverConfigObj.MobileServer);
 
